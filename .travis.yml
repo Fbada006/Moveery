@@ -38,4 +38,4 @@ cache:
     - $HOME/.gradle/wrapper/
     - $HOME/.android/build-cache
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -t 4f66db1a-2f9c-41f3-a915-6ce70c6fa6b6
