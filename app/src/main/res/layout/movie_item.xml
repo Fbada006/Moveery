@@ -4,19 +4,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_margin="4dp"
+    android:elevation="16dp"
     app:cardCornerRadius="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_movie_poster"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="0dp"
+            android:layout_weight="2"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -24,12 +26,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="1"
             android:gravity="center_horizontal"
+            android:maxLines="1"
             android:padding="4dp"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+
             tools:text="This is the movie title" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

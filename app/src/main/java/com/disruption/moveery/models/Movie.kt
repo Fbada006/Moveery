@@ -21,12 +21,10 @@ data class Movie(
     val original_language: String,
     val original_title: String,
     val overview: String,
-    val popularity: Double,
     val poster_path: String,
     val release_date: String,
     val title: String,
     @Json(name = "video")
     val hasVideo: Boolean,
-    val vote_average: Double,
-    val vote_count: Int
+    val vote_average: Double
 ) : Parcelable
