@@ -7,7 +7,20 @@
 
     <fragment
         android:id="@+id/dest_landing_fragment"
-        android:name="com.disruption.moveery.landing.LandingFragment"
+        android:name="com.disruption.moveery.ui.landing.LandingFragment"
         android:label="@string/label_discover_frag"
-        tools:layout="@layout/fragment_landing" />
+        tools:layout="@layout/fragment_landing">
+        <action
+            android:id="@+id/action_dest_landing_fragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.disruption.moveery.ui.details.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="movie"
+            app:argType="com.disruption.moveery.models.Movie" />
+    </fragment>
 </navigation>

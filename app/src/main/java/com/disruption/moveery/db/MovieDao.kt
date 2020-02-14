@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.disruption.moveery.network.Movie
+import com.disruption.moveery.models.Movie
 
 @Dao
 interface MovieDao {

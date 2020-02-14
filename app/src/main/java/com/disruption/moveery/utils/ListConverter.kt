@@ -1,4 +1,4 @@
-package com.disruption.moveery.db
+package com.disruption.moveery.utils
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

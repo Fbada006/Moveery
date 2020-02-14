@@ -1,4 +1,4 @@
-package com.disruption.moveery.landing
+package com.disruption.moveery.ui.landing
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,10 +11,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.disruption.moveery.R
-import com.disruption.moveery.network.Movie
+import com.disruption.moveery.models.Movie
 import com.disruption.moveery.utils.Constants
 
-class LandingPageAdapter(private val context: Context) :
+class LandingPageAdapter(
+    private val context: Context,
+    private val onClickListener: OnMovieClickListener
+) :
     ListAdapter<Movie, LandingPageAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
@@ -22,7 +25,11 @@ class LandingPageAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(context, getItem(position))
+        val movie = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(movie)
+        }
+        holder.bind(context, movie)
     }
 
     class MovieViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -65,4 +72,8 @@ class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
     override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
         return oldItem == newItem
     }
+}
+
+class OnMovieClickListener(val clickListener: (movie: Movie) -> Unit) {
+    fun onClick(movie: Movie) = clickListener(movie)
 }

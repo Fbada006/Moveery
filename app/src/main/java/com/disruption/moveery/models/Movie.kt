@@ -1,10 +1,16 @@
-package com.disruption.moveery.network
+package com.disruption.moveery.models
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+/**This is the model that is queried from the network and saved in the db
+ * TODO: Update domain and data models
+ * */
 @Entity(tableName = "movies")
+@Parcelize
 data class Movie(
     @PrimaryKey
     val id: Int,
@@ -23,4 +29,4 @@ data class Movie(
     val hasVideo: Boolean,
     val vote_average: Double,
     val vote_count: Int
-)
+) : Parcelable

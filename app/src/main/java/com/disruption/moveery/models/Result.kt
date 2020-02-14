@@ -1,4 +1,4 @@
-package com.disruption.moveery.network
+package com.disruption.moveery.models
 
 import com.squareup.moshi.Json
 
