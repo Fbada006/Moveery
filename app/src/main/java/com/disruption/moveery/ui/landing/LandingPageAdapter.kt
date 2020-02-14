@@ -38,8 +38,8 @@ class LandingPageAdapter(
         private val movieImage =
             itemView.findViewById<AppCompatImageView>(R.id.iv_movie_poster)
 
+        /**Binds data to the [MovieViewHolder]*/
         fun bind(context: Context, item: Movie) {
-            //TODO: Bind your views here
             movieTitle.text = item.title
             val posterUrl = Constants.IMAGE_BASE_URL + item.poster_path
 
@@ -50,9 +50,8 @@ class LandingPageAdapter(
                 .into(movieImage)
         }
 
-        //For inflating the layout in onCreateViewHolder()
-        //TODO: Make sure your layout name is resolved
         companion object {
+            /**For inflating the layout in [onCreateViewHolder]*/
             fun from(parent: ViewGroup): MovieViewHolder {
                 val view =
                     LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
@@ -62,6 +61,8 @@ class LandingPageAdapter(
     }
 }
 
+/** DiffUtil is a utility class that calculates the difference between two lists and outputs a
+ * list of update operations that converts the first list into the second one.*/
 class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
         //TODO: Confirm that your id variable matches this one or change this one to match
@@ -74,6 +75,8 @@ class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
     }
 }
 
+/**The click listener for the RV passing the clicked [Movie] in a lambda*/
 class OnMovieClickListener(val clickListener: (movie: Movie) -> Unit) {
+    /**Called when a movie is clicked*/
     fun onClick(movie: Movie) = clickListener(movie)
 }

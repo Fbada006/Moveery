@@ -17,6 +17,7 @@ abstract class MovieRoomDatabase : RoomDatabase() {
     companion object {
         private var INSTANCE: MovieRoomDatabase? = null
 
+        /**Returns a database instance if it does not exist*/
         fun getDatabase(context: Context): MovieRoomDatabase {
             synchronized(this) {
                 var instance = INSTANCE

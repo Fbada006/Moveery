@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+/**A [TypeConverter] to help with storing a [List] with Room*/
 class ListConverter {
     @TypeConverter
     fun stringToIntList(data: String): List<Int> {

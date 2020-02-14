@@ -15,10 +15,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
-/**
- * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
- * full Kotlin compatibility.
- */
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
@@ -37,10 +33,7 @@ val client = OkHttpClient.Builder()
     .writeTimeout(30, TimeUnit.SECONDS)
     .build()
 
-/**
- * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
- * object.
- */
+
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
@@ -53,6 +46,7 @@ private val retrofit = Retrofit.Builder()
  */
 interface MovieApiService {
 
+    /**Returns movies on the landing page*/
     @GET("discover/{type}")
     fun getDiscoverMoviesAsync(
         @Path("type") type: String = "movie",

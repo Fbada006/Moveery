@@ -10,6 +10,7 @@ import com.disruption.moveery.utils.Event
 import com.disruption.moveery.utils.singleArgViewModelFactory
 import kotlinx.coroutines.launch
 
+/**The class holding the loading status of the API call*/
 enum class MovieApiStatus { LOADING, ERROR, DONE }
 
 /**The view model that handles the UI and logic for the [LandingFragment]*/
