@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.disruption.moveery.R
+import com.disruption.moveery.databinding.FragmentDetailsBinding
 
 /**
  * A fragment to show the details of the movie
@@ -20,7 +20,9 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val binding = FragmentDetailsBinding.inflate(inflater)
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        return binding.root
     }
 }
