@@ -38,13 +38,6 @@ class RatingCustomView(context: Context, attrs: AttributeSet?) : View(context, a
         invalidate()
     }
 
-    /**How thick the stroke should be*/
-    fun setStrokeWidth(strokeWidth: Float) {
-        this.strokeWidth = strokeWidth
-        strokePaint.strokeWidth = strokeWidth
-        invalidate()
-    }
-
     /**What colour should fill the view depends on the rating*/
     fun setFillColor(fillColor: Int) {
         this.fillColor = fillColor
