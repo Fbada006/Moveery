@@ -10,7 +10,7 @@ import kotlin.math.atan
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-
+/**Class to set the custom view for the movie rating*/
 class RatingCustomView(context: Context, attrs: AttributeSet?) : View(context, attrs) {
 
     companion object {
@@ -31,34 +31,36 @@ class RatingCustomView(context: Context, attrs: AttributeSet?) : View(context, a
 
     constructor(context: Context) : this(context, null)
 
+    /**Set the color of the outer stroke*/
     fun setStrokeColor(strokeCol: Int) {
         strokeColor = strokeCol
         strokePaint.color = strokeCol
         invalidate()
     }
 
+    /**How thick the stroke should be*/
     fun setStrokeWidth(strokeWidth: Float) {
         this.strokeWidth = strokeWidth
         strokePaint.strokeWidth = strokeWidth
         invalidate()
     }
 
+    /**What colour should fill the view depends on the rating*/
     fun setFillColor(fillColor: Int) {
         this.fillColor = fillColor
         fillPaint.color = fillColor
         invalidate()
     }
 
+    /**Set the value that is actually supposed to fill the view*/
     fun setValue(value: Int) {
         adjustValue(value)
         setPaths()
         invalidate()
     }
 
-    fun getValue(): Int {
-        return value
-    }
-
+    /**Adjust the value according to the value given to make sure it is within the parameters
+     * of [MAX_VALUE] and [MIN_VALUE]*/
     private fun adjustValue(value: Int) {
         this.value = MAX_VALUE.coerceAtMost(MIN_VALUE.coerceAtLeast(value))
     }
