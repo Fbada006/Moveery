@@ -1,6 +1,6 @@
-package com.disruption.moveery.db
+package com.disruption.moveery.data
 
-import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,7 +13,7 @@ interface MovieDao {
 
     /**Returns all the movies in the DB*/
     @Query("SELECT * FROM movies")
-    fun getAllMovies(): LiveData<List<Movie>>
+    fun getAllMovies(): DataSource.Factory<Int, Movie>
 
     /**Uses coroutines to insert the data into the db on a different thread*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)

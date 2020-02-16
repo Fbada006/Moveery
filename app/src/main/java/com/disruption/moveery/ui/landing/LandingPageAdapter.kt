@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -19,14 +19,14 @@ class LandingPageAdapter(
     private val context: Context,
     private val onClickListener: OnMovieClickListener
 ) :
-    ListAdapter<Movie, LandingPageAdapter.MovieViewHolder>(MovieDiffCallback()) {
+    PagedListAdapter<Movie, LandingPageAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = getItem(position)
+        val movie = getItem(position)!!
         holder.itemView.setOnClickListener {
             onClickListener.onClick(movie)
         }

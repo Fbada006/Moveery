@@ -9,8 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.disruption.moveery.data.MovieRoomDatabase
 import com.disruption.moveery.databinding.FragmentLandingBinding
-import com.disruption.moveery.db.MovieRoomDatabase
 import com.disruption.moveery.repo.MovieRepo
 import com.disruption.moveery.utils.DetailsHelper
 

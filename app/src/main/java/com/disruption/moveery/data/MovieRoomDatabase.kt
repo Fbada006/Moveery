@@ -1,4 +1,4 @@
-package com.disruption.moveery.db
+package com.disruption.moveery.data
 
 import android.content.Context
 import androidx.room.Database

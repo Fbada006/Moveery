@@ -53,7 +53,7 @@ class LandingViewModel(repo: MovieRepo) : ViewModel() {
     }
 
     /**These are all the movies queried from the db*/
-    val movieList = repo.allMovies
+    val movieList = repo.getAllMovies()
 
     /**Called when a user clicks on a movie*/
     fun displayMovieDetails(movie: Movie) {
