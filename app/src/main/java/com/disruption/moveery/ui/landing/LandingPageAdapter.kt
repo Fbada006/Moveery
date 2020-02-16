@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
 import com.disruption.moveery.models.Movie
 import com.disruption.moveery.utils.Constants
@@ -41,11 +42,13 @@ class LandingPageAdapter(
         /**Binds data to the [MovieViewHolder]*/
         fun bind(context: Context, item: Movie) {
             movieTitle.text = item.title
-            val posterUrl = Constants.IMAGE_BASE_URL + item.poster_path
 
+            val posterUrl = Constants.IMAGE_BASE_URL + item.poster_path
             Glide.with(context)
                 .load(posterUrl)
                 .centerCrop()
+                .error(R.drawable.ic_broken_image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.movie_loading_animation)
                 .into(movieImage)
         }

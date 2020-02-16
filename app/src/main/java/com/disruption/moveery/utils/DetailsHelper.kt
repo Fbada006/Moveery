@@ -2,9 +2,11 @@ package com.disruption.moveery.utils
 
 import android.content.Context
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.disruption.moveery.R
 
-/**Handles getting the genres of the selected [Movie]*/
+/**Handles getting the genres of the selected movie*/
 object DetailsHelper {
     /**Returns the genres of the movie from the given [genreIds]*/
     fun getGenres(genreIds: List<Int>, context: Context): String {
@@ -44,5 +46,23 @@ object DetailsHelper {
             averageRating <= 100 -> ContextCompat.getColor(context, R.color.lessThan100OrEqual)
             else -> ContextCompat.getColor(context, R.color.colorAccent)
         }
+    }
+
+    /**This method listens to scrolls and determines if Glide should load images*/
+    fun listenToUserScrolls(context: Context, recyclerView: RecyclerView) {
+        recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE ||
+                    newState == RecyclerView.SCROLL_STATE_SETTLING
+                ) {
+                    //Load the images because user is no longer scrolling
+                    Glide.with(context).resumeRequests()
+                } else {
+                    //No point loading the images if the user scrolling
+                    Glide.with(context).pauseRequests()
+                }
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
     }
 }

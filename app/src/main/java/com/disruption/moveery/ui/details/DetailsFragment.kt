@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentDetailsBinding
 import com.disruption.moveery.utils.Constants
@@ -27,6 +28,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater)
+
         displayMovieDetails()
 
         // Inflate the layout for this fragment
@@ -40,6 +42,8 @@ class DetailsFragment : Fragment() {
         Glide.with(requireContext())
             .load(posterUrl)
             .centerCrop()
+            .error(R.drawable.ic_broken_image)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
             .placeholder(R.drawable.movie_loading_animation)
             .into(binding.ivMoviePoster)
 
