@@ -52,7 +52,7 @@ class LandingViewModel(repo: MovieRepo) : ViewModel() {
         }
     }
 
-    /**These are all the movies queried from the db*/
+    /**These are all the movies queried from the db as a PagedList*/
     val movieList = repo.getAllMovies()
 
     /**Called when a user clicks on a movie*/
