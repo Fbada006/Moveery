@@ -22,7 +22,7 @@ private val moshi = Moshi.Builder()
 /**OkHttp for basic retrofit setup*/
 //TODO: Get rid of this logging
 val interceptor: HttpLoggingInterceptor =
-    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
 
 /**The client to set up retrofit*/
 val client = OkHttpClient.Builder()
