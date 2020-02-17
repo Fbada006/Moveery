@@ -27,28 +27,6 @@ class LandingViewModel(repo: MovieRepo) : ViewModel() {
     val navigateToSelectedMovie: LiveData<Event<Movie>>
         get() = _navigateToSelectedMovie
 
-//    /**
-//     * Call getMovieList() on init so we can display status immediately.
-//     */
-//    init {
-//        getMovieList(repo)
-//    }
-//
-//    /**
-//     * Gets the movie list information from the MoviesRepo
-//     */
-//    private fun getMovieList(repo: MovieRepo) {
-//        viewModelScope.launch {
-//            _status.value = MovieApiStatus.LOADING
-//            try {
-//                repo.getAllMovies()
-//                _status.value = MovieApiStatus.DONE
-//            } catch (ex: Exception) {
-//                _status.value = MovieApiStatus.ERROR
-//            }
-//        }
-//    }
-
     /**These are all the movies queried from the db as a PagedList*/
     val movieList = repo.getAllMovies()
 
@@ -57,8 +35,4 @@ class LandingViewModel(repo: MovieRepo) : ViewModel() {
         _navigateToSelectedMovie.value = Event(movie)
     }
 
-//    companion object {
-//        /**Factory to create this [LandingViewModel]*/
-//        val FACTORY = singleArgViewModelFactory(::LandingViewModel)
-//    }
 }
