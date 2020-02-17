@@ -47,11 +47,11 @@ class DetailsFragment : Fragment() {
             .placeholder(R.drawable.movie_loading_animation)
             .into(binding.ivMoviePoster)
 
-        val average = ((movie.vote_average) * 10).toInt()
+        val average = ((movie.vote_average)!! * 10).toInt()
 
         binding.tvMovieTitle.text = movie.original_title
         binding.tvMovieGenre.text = DetailsHelper.getGenres(movie.genre_ids, requireContext())
-        binding.tvMovieYear.text = movie.release_date.substring(0, 4)
+        binding.tvMovieYear.text = movie.release_date?.substring(0, 4)
         binding.tvMovieOverview.text = movie.overview
         binding.tvMovieRating.text = average.toString().plus("%")
         binding.ratingCustomView.apply {

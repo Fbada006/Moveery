@@ -17,5 +17,5 @@ interface MovieDao {
 
     /**Uses coroutines to insert the data into the db on a different thread*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllMovies(vararg movies: Movie)
+    suspend fun insertAllMovies(movies: List<Movie>)
 }

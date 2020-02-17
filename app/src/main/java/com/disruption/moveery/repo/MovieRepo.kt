@@ -3,23 +3,28 @@ package com.disruption.moveery.repo
 import androidx.lifecycle.LiveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.disruption.moveery.data.MovieRoomDatabase
+import com.disruption.moveery.data.MovieBoundaryCallBack
 import com.disruption.moveery.models.Movie
-import com.disruption.moveery.network.MovieApi
 import com.disruption.moveery.utils.Constants
+import kotlinx.coroutines.CoroutineScope
 
-/**This class is the data controller. It queries the API and saves data to the DB
- * then offers it back to the viewModels*/
-class MovieRepo(private val movieRoomDatabase: MovieRoomDatabase) {
-    /**Room executes all queries on a separate thread.*/
+/**
+ * Repository class that works with local and remote data sources.
+ * This class supplies data to the ViewModel to display
+ */
+class MovieRepo(
+    private val movieLocalCache: MovieLocalCache,
+    private val coroutineScope: CoroutineScope
+) {
+
+    /**Get all the movies to from the local storage*/
     fun getAllMovies(): LiveData<PagedList<Movie>> {
-        val source = movieRoomDatabase.movieDao.getAllMovies()
-        return LivePagedListBuilder(source, Constants.DATABASE_PAGE_SIZE).build()
-    }
+        val dataSourceFactory = movieLocalCache.getMovieData()
 
-    /**Use coroutines to get new movies and save them into the database*/
-    suspend fun refreshMovies() {
-        val movieResult = MovieApi.movieRetrofitService.getDiscoverMoviesAsync().await()
-        movieRoomDatabase.movieDao.insertAllMovies(*movieResult.movieList.toTypedArray())
+        val boundaryCallBack = MovieBoundaryCallBack(movieLocalCache, coroutineScope)
+
+        return LivePagedListBuilder(dataSourceFactory, Constants.DATABASE_PAGE_SIZE)
+            .setBoundaryCallback(boundaryCallBack)
+            .build()
     }
 }

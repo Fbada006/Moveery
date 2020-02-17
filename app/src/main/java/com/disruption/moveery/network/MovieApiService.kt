@@ -50,6 +50,7 @@ interface MovieApiService {
     @GET("discover/{type}")
     fun getDiscoverMoviesAsync(
         @Path("type") type: String = "movie",
+        @Query("page") page: Int,
         @Query("sort_by") sortBy: String? = "popularity.desc",
         @Query("api_key") apiKey: String = Constants.API_KEY
     ): Deferred<Result>

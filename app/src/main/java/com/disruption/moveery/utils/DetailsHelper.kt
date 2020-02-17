@@ -9,9 +9,9 @@ import com.disruption.moveery.R
 /**Handles getting the genres of the selected movie*/
 object DetailsHelper {
     /**Returns the genres of the movie from the given [genreIds]*/
-    fun getGenres(genreIds: List<Int>, context: Context): String {
+    fun getGenres(genreIds: List<Int>?, context: Context): String {
         val stringBuilder = StringBuilder()
-        genreIds.forEach {
+        genreIds?.forEach {
             when (it) {
                 28 -> stringBuilder.append(context.getString(R.string.genre_ation))
                 12 -> stringBuilder.append(context.getString(R.string.genre_adventure))
