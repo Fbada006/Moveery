@@ -2,13 +2,12 @@ package com.disruption.moveery.ui.settings
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.fragment.app.Fragment
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import com.disruption.moveery.R
 
 /**
- * A simple [Fragment] subclass to show the preferences.
+ * A simple [PreferenceFragmentCompat] subclass to show the preferences.
  */
 class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -32,7 +31,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
         }
     }
- 
+
     private fun updateTheme(nightId: Int): Boolean {
         AppCompatDelegate.setDefaultNightMode(nightId)
         requireActivity().recreate()

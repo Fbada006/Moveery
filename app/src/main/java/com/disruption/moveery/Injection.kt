@@ -8,6 +8,7 @@ import com.disruption.moveery.repo.MovieRepo
 import com.disruption.moveery.utils.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 
+/**Provides dependencies*/
 object Injection {
 
     /**
