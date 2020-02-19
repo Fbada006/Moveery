@@ -13,7 +13,7 @@ object DetailsHelper {
         val stringBuilder = StringBuilder()
         genreIds?.forEach {
             when (it) {
-                28 -> stringBuilder.append(context.getString(R.string.genre_ation))
+                28 -> stringBuilder.append(context.getString(R.string.genre_action))
                 12 -> stringBuilder.append(context.getString(R.string.genre_adventure))
                 16 -> stringBuilder.append(context.getString(R.string.genre_animation))
                 35 -> stringBuilder.append(context.getString(R.string.genre_comedy))
@@ -29,7 +29,7 @@ object DetailsHelper {
                 10749 -> stringBuilder.append(context.getString(R.string.genre_romance))
                 878 -> stringBuilder.append(context.getString(R.string.genre_scifi))
                 10770 -> stringBuilder.append(context.getString(R.string.genre_tv_movie))
-                53 -> stringBuilder.append(context.getString(R.string.genre_thriler))
+                53 -> stringBuilder.append(context.getString(R.string.genre_thriller))
                 10752 -> stringBuilder.append(context.getString(R.string.genre_war))
                 37 -> stringBuilder.append(context.getString(R.string.genre_western))
             }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="night_mode_labels">
+        <item>@string/pref_night_battery_set_label</item>
+        <item>@string/pref_night_on_label</item>
+        <item>@string/pref_night_off_label</item>
+    </string-array>
+
+    <string-array name="night_mode_values">
+        <item>@string/pref_night_battery_set_value</item>
+        <item>@string/pref_night_on_value</item>
+        <item>@string/pref_night_off_value</item>
+    </string-array>
+</resources>

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ListPreference
+        app:defaultValue="@string/pref_night_battery_set_value"
+        app:entries="@array/night_mode_labels"
+        app:entryValues="@array/night_mode_values"
+        app:key="@string/pref_night_mode_key"
+        app:title="@string/pref_night_mode_title" />
 
 </PreferenceScreen>

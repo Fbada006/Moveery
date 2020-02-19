@@ -3,7 +3,7 @@
     <string name="label_discover_frag">Discover</string>
 
     <!--Genres based on the movie IDs-->
-    <string name="genre_ation">Action, </string>
+    <string name="genre_action">Action, </string>
     <string name="genre_adventure">Adventure, </string>
     <string name="genre_animation">Animation, </string>
     <string name="genre_comedy">Comedy, </string>
@@ -19,7 +19,21 @@
     <string name="genre_romance">Romance, </string>
     <string name="genre_scifi">Science Fiction, </string>
     <string name="genre_tv_movie">TV Movie, </string>
-    <string name="genre_thriler">Thriller, </string>
+    <string name="genre_thriller">Thriller, </string>
     <string name="genre_war">War, </string>
     <string name="genre_western">Western, </string>
+
+    <!--Menus-->
+    <string name="label_settings">Settings</string>
+
+    <!--Preferences-->
+    <string name="pref_night_mode_title">Night Mode</string>
+    <string name="pref_night_mode_key">night_mode</string>
+    <string name="pref_night_battery_set_label">Set by Battery Saver</string>
+    <string name="pref_night_on_label">On</string>
+    <string name="pref_night_off_label">Off</string>
+
+    <string name="pref_night_battery_set_value">auto</string>
+    <string name="pref_night_on_value">on</string>
+    <string name="pref_night_off_value">off</string>
 </resources>
