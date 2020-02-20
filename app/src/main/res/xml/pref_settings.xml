@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <SwitchPreference
+        android:defaultValue="@bool/pref_show_notifications_default"
+        android:key="@string/pref_show_notifications_key"
+        android:summaryOff="@string/pref_show_notifications_summary_off"
+        android:summaryOn="@string/pref_show_notifications_summary_on"
+        android:title="@string/pref_notifications_label" />
 
     <ListPreference
         app:defaultValue="@string/pref_night_battery_set_value"
