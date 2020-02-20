@@ -36,4 +36,11 @@
     <string name="pref_night_battery_set_value">auto</string>
     <string name="pref_night_on_value">on</string>
     <string name="pref_night_off_value">off</string>
+
+    <!--Notification-->
+    <string name="main_notification_channel_name">Movie Refresh</string>
+    <string name="movie_refresh_starting">Movie refresh has started.</string>
+    <string name="movie_refresh_successful">Movie refresh successful.</string>
+    <string name="movie_refresh_failed">Movie refresh failed. Retrying.</string>
+    <string name="movie_refresh_title">Refreshing movies</string>
 </resources>

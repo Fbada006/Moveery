@@ -5,4 +5,7 @@ object Constants {
     const val API_KEY = "9ed751698b8b5963444886c285a5afb1"
     const val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original"
     const val DATABASE_PAGE_SIZE = 20
+    const val MOVIE_REFRESH_NOTIFICATION_CHANNEL_ID =
+        "com.disruption.moveery.movieRefreshChannelId"
+    const val MOVIE_REFRESH_NOTIFICATION_ID = 1138
 }
