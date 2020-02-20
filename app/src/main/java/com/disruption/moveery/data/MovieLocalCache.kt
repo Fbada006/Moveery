@@ -1,7 +1,6 @@
-package com.disruption.moveery.repo
+package com.disruption.moveery.data
 
 import androidx.paging.DataSource
-import com.disruption.moveery.data.MovieRoomDatabase
 import com.disruption.moveery.models.Movie
 import com.disruption.moveery.models.Result
 
@@ -12,7 +11,7 @@ class MovieLocalCache(private val movieRoomDatabase: MovieRoomDatabase) {
     fun getMovieData(): DataSource.Factory<Int, Movie> = movieRoomDatabase.movieDao.getAllMovies()
 
     /**Insert the movies into the database on a background thread*/
-    suspend fun insertMovies(movieResult: Result) {
+    suspend fun refreshMoviesCache(movieResult: Result) {
         movieRoomDatabase.movieDao.insertAllMovies(movieResult.movieList)
     }
 }

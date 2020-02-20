@@ -2,8 +2,8 @@ package com.disruption.moveery
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
+import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.MovieRoomDatabase
-import com.disruption.moveery.repo.MovieLocalCache
 import com.disruption.moveery.repo.MovieRepo
 import com.disruption.moveery.utils.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope
@@ -14,7 +14,7 @@ object Injection {
     /**
      * Creates an instance of [MovieLocalCache] based on the database.
      */
-    private fun providesCache(context: Context): MovieLocalCache {
+    fun providesCache(context: Context): MovieLocalCache {
         val database = MovieRoomDatabase.getDatabase(context)
         return MovieLocalCache(database)
     }

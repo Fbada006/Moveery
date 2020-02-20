@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.paging.PagedList
 import com.disruption.moveery.models.Movie
 import com.disruption.moveery.network.MovieApi
-import com.disruption.moveery.repo.MovieLocalCache
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -45,7 +44,7 @@ class MovieBoundaryCallBack(
         isRequestInProgress = true
         val result =
             MovieApi.movieRetrofitService.getDiscoverMoviesAsync(page = lastRequestedPage).await()
-        localCache.insertMovies(result)
+        localCache.refreshMoviesCache(result)
         lastRequestedPage++
         isRequestInProgress = false
     }
