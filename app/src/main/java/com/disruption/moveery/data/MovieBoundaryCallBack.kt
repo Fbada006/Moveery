@@ -1,6 +1,5 @@
 package com.disruption.moveery.data
 
-import android.util.Log
 import androidx.paging.PagedList
 import com.disruption.moveery.models.Movie
 import com.disruption.moveery.network.MovieApi
@@ -15,7 +14,6 @@ class MovieBoundaryCallBack(
     private val coroutineScope: CoroutineScope
 ) :
     PagedList.BoundaryCallback<Movie>() {
-    val TAG = "MovieBoundaryCallBack"
 
     // keep the last requested page. When the request is successful, increment the page number.
     private var lastRequestedPage = 1
@@ -26,14 +24,12 @@ class MovieBoundaryCallBack(
     override fun onZeroItemsLoaded() {
         coroutineScope.launch {
             requestAndSaveMovies()
-            Log.e(TAG, "On Zero Items loaded!-------------`: $lastRequestedPage ")
         }
     }
 
     override fun onItemAtEndLoaded(itemAtEnd: Movie) {
         coroutineScope.launch {
             requestAndSaveMovies()
-            Log.e(TAG, "On item ended loaded!-------------`: $lastRequestedPage ")
         }
     }
 
