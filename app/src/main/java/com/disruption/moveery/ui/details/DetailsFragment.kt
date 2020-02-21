@@ -34,6 +34,8 @@ class DetailsFragment : Fragment() {
 
         showAndHandleBackButton()
 
+        //  activity!!.window.statusBarColor = Color.TRANSPARENT
+
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -64,7 +66,7 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    fun showAndHandleBackButton() {
+    private fun showAndHandleBackButton() {
         val toolbar = binding.toolbar
         toolbar.apply {
             setNavigationIcon(R.drawable.ic_arrow_back)

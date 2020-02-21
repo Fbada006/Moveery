@@ -141,7 +141,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@null" />
+                android:background="@android:color/transparent" />
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </layout>
