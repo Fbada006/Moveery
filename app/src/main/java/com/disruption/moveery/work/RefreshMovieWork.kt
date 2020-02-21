@@ -13,8 +13,6 @@ import retrofit2.HttpException
 class RefreshMovieWork(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
 
-    val TAG = "RefreshMovieWork"
-
     /**This object has the tag for this work*/
     companion object {
         const val MOVIE_WORK_NAME = "RefreshMovieDataWorker"
