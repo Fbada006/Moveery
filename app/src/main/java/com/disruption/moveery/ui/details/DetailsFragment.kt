@@ -4,16 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.disruption.moveery.MainActivity
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentDetailsBinding
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
+
 
 /**
  * A fragment to show the details of the movie
@@ -30,6 +31,8 @@ class DetailsFragment : Fragment() {
         binding = FragmentDetailsBinding.inflate(inflater)
 
         displayMovieDetails()
+
+        showAndHandleBackButton()
 
         // Inflate the layout for this fragment
         return binding.root
@@ -61,13 +64,23 @@ class DetailsFragment : Fragment() {
         }
     }
 
+    fun showAndHandleBackButton() {
+        val toolbar = binding.toolbar
+        toolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back)
+            setNavigationOnClickListener {
+                activity?.onBackPressed()
+            }
+        }
+    }
+
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+        (activity as MainActivity?)!!.supportActionBar!!.hide()
     }
 
     override fun onStop() {
         super.onStop()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        (activity as MainActivity?)!!.supportActionBar!!.show()
     }
 }
