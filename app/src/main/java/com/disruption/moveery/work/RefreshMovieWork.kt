@@ -1,6 +1,7 @@
 package com.disruption.moveery.work
 
 import android.content.Context
+import androidx.preference.PreferenceManager
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.disruption.moveery.Injection
@@ -21,28 +22,40 @@ class RefreshMovieWork(appContext: Context, params: WorkerParameters) :
 
     override suspend fun doWork(): Result {
         val movieLocalCache = Injection.providesCache(applicationContext)
+        val sp = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        val areNotificationsEnabled = sp.getBoolean(
+            applicationContext.getString(R.string.pref_show_notifications_key),
+            applicationContext.resources.getBoolean(R.bool.pref_show_notifications_default)
+        )
+
         return try {
-            NotificationUtils.sendNotification(
-                applicationContext,
-                applicationContext.getString(R.string.movie_refresh_starting)
-            )
+            if (areNotificationsEnabled) {
+                NotificationUtils.sendNotification(
+                    applicationContext,
+                    applicationContext.getString(R.string.movie_refresh_starting)
+                )
+            }
 
             //We want fresh data so the page will always be set to 1
             val result =
                 MovieApi.movieRetrofitService.getDiscoverMoviesAsync(page = 1).await()
             movieLocalCache.refreshMoviesCache(result)
 
-            NotificationUtils.sendNotification(
-                applicationContext,
-                applicationContext.getString(R.string.movie_refresh_successful)
-            )
+            if (areNotificationsEnabled) {
+                NotificationUtils.sendNotification(
+                    applicationContext,
+                    applicationContext.getString(R.string.movie_refresh_successful)
+                )
+            }
 
             Result.success()
         } catch (e: HttpException) {
-            NotificationUtils.sendNotification(
-                applicationContext,
-                applicationContext.getString(R.string.movie_refresh_failed)
-            )
+            if (areNotificationsEnabled) {
+                NotificationUtils.sendNotification(
+                    applicationContext,
+                    applicationContext.getString(R.string.movie_refresh_failed)
+                )
+            }
             Result.retry()
         }
     }
