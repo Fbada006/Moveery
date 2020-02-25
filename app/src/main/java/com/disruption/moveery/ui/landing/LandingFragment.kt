@@ -13,7 +13,7 @@ import com.disruption.moveery.Injection
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentLandingBinding
 import com.disruption.moveery.ui.settings.SettingsActivity
-import com.disruption.moveery.utils.DetailsHelper
+import com.disruption.moveery.utils.LandingHelper.listenToUserScrolls
 
 /**The fragment that is first launched when the user opens the app*/
 class LandingFragment : Fragment() {
@@ -58,7 +58,7 @@ class LandingFragment : Fragment() {
         })
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
-        DetailsHelper.listenToUserScrolls(requireContext(), binding.moviesList)
+        listenToUserScrolls(binding.moviesList)
 
         // Inflate the layout for this fragment
         return binding.root
