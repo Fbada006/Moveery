@@ -35,7 +35,7 @@ class LandingFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
-        val adapter = LandingPageAdapter(context!!, OnMovieClickListener {
+        val adapter = LandingPageAdapter(requireContext(), OnMovieClickListener {
             viewModel.displayMovieDetails(it)
         })
 
