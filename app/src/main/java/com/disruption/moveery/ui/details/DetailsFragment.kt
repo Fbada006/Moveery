@@ -49,17 +49,8 @@ class DetailsFragment : DaggerFragment() {
     private fun displayMovieDetails() {
         val movie = args.movie
         val posterUrl = Constants.IMAGE_BASE_URL + movie.poster_path
-//        Glide.with(requireContext())
-//            .load(posterUrl)
-//            .centerCrop()
-//            .error(R.drawable.ic_broken_image)
-//            .diskCacheStrategy(DiskCacheStrategy.ALL)
-//            .placeholder(R.drawable.movie_loading_animation)
-//            .into(binding.ivMoviePoster)
 
-        requestManager
-            .load(posterUrl)
-            .into(binding.ivMoviePoster)
+        setMoviePoster(posterUrl)
 
         val average = ((movie.vote_average)!! * 10).toInt()
 
@@ -73,6 +64,12 @@ class DetailsFragment : DaggerFragment() {
             setFillColor(DetailsHelper.getRatingColor(average, requireContext()))
             setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
         }
+    }
+
+    private fun setMoviePoster(posterUrl: String) {
+        requestManager
+            .load(posterUrl)
+            .into(binding.ivMoviePoster)
     }
 
     private fun showAndHandleBackButton() {
