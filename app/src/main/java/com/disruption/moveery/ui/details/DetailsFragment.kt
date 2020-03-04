@@ -5,24 +5,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.MainActivity
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentDetailsBinding
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
-
+import dagger.android.support.DaggerFragment
+import kotlinx.android.synthetic.main.fragment_details.view.*
+import javax.inject.Inject
 
 /**
  * A fragment to show the details of the movie
  */
-class DetailsFragment : Fragment() {
+class DetailsFragment : DaggerFragment() {
 
     private lateinit var binding: FragmentDetailsBinding
     private val args: DetailsFragmentArgs by navArgs()
+
+    @Inject
+    lateinit var requestManager: RequestManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,12 +49,16 @@ class DetailsFragment : Fragment() {
     private fun displayMovieDetails() {
         val movie = args.movie
         val posterUrl = Constants.IMAGE_BASE_URL + movie.poster_path
-        Glide.with(requireContext())
+//        Glide.with(requireContext())
+//            .load(posterUrl)
+//            .centerCrop()
+//            .error(R.drawable.ic_broken_image)
+//            .diskCacheStrategy(DiskCacheStrategy.ALL)
+//            .placeholder(R.drawable.movie_loading_animation)
+//            .into(binding.ivMoviePoster)
+
+        requestManager
             .load(posterUrl)
-            .centerCrop()
-            .error(R.drawable.ic_broken_image)
-            .diskCacheStrategy(DiskCacheStrategy.ALL)
-            .placeholder(R.drawable.movie_loading_animation)
             .into(binding.ivMoviePoster)
 
         val average = ((movie.vote_average)!! * 10).toInt()

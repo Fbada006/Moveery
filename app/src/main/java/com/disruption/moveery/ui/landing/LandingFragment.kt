@@ -14,9 +14,10 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentLandingBinding
 import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.LandingHelper.listenToUserScrolls
+import dagger.android.support.DaggerFragment
 
 /**The fragment that is first launched when the user opens the app*/
-class LandingFragment : Fragment() {
+class LandingFragment : DaggerFragment() {
 
     /**
      * Lazily initialize our [LandingViewModel].

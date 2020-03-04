@@ -3,8 +3,7 @@ package com.disruption.moveery.data
 import androidx.paging.PagedList
 import com.disruption.moveery.models.Movie
 import com.disruption.moveery.network.MovieApi
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 /**This class listens to when zero items were returned from the initial data request or
  * because we've reached the end of the data from the DataSource requests for more data from the

@@ -24,7 +24,7 @@ class MovieApplication : DaggerApplication() {
     }
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder().application(this).build();
+        return DaggerAppComponent.factory().create(this)
     }
 
     private fun setNightMode() {
@@ -44,7 +44,7 @@ class MovieApplication : DaggerApplication() {
             }.build()
 
             val repeatingMovieRefreshRequest =
-                PeriodicWorkRequestBuilder<RefreshMovieWork>(15, TimeUnit.MINUTES)
+                PeriodicWorkRequestBuilder<RefreshMovieWork>(1, TimeUnit.DAYS)
                     .setConstraints(constraints)
                     .build()
 
