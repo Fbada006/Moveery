@@ -108,4 +108,13 @@ dependencies {
 
     //Preference
     implementation "androidx.preference:preference-ktx:$preferenceVersion"
+
+    // Dagger2 core
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    // Dagger Android
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 }

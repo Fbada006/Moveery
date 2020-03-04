@@ -3,14 +3,17 @@ package com.disruption.moveery
 import android.app.Application
 import androidx.preference.PreferenceManager
 import androidx.work.*
+import com.disruption.moveery.di.DaggerAppComponent
 import com.disruption.moveery.utils.ThemeHelper
 import com.disruption.moveery.work.RefreshMovieWork
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
-class MovieApplication : Application() {
+class MovieApplication : DaggerApplication() {
 
     private val applicationScope = CoroutineScope(Dispatchers.Default)
 
@@ -18,6 +21,10 @@ class MovieApplication : Application() {
         super.onCreate()
         setUpMovieRefreshWork()
         setNightMode()
+    }
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent.builder().application(this).build();
     }
 
     private fun setNightMode() {
