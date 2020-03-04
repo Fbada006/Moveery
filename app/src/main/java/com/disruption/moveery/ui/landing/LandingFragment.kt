@@ -26,7 +26,7 @@ class LandingFragment : DaggerFragment() {
         Injection.provideViewModelFactory(requireContext(), lifecycleScope)
     }
 
-    /**Called when the fragment is created*/
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

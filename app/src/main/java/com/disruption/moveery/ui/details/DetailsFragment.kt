@@ -39,8 +39,6 @@ class DetailsFragment : DaggerFragment() {
 
         showAndHandleBackButton()
 
-        //  activity!!.window.statusBarColor = Color.TRANSPARENT
-
         // Inflate the layout for this fragment
         return binding.root
     }
