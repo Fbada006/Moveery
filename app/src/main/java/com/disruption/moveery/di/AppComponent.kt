@@ -1,30 +1,31 @@
 package com.disruption.moveery.di
 
-import android.content.Context
 import com.disruption.moveery.MovieApplication
-import com.disruption.moveery.di.details.DetailsBuildersModule
-import com.disruption.moveery.di.landing.LandingBuildersModule
 import com.disruption.moveery.di.viewmodelfactory.ViewModelFactoryModule
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjector
-import dagger.android.support.AndroidSupportInjectionModule
+import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
-        AndroidSupportInjectionModule::class,
+        AndroidInjectionModule::class,
         AppModule::class,
-        ViewModelFactoryModule::class,
-        LandingBuildersModule::class,
-        DetailsBuildersModule::class
+        ActivityBuildersModule::class,
+        ViewModelFactoryModule::class
     ]
 )
-interface AppComponent : AndroidInjector<MovieApplication> {
+interface AppComponent {
 
-    @Component.Factory
-    interface Factory {
-        fun create(@BindsInstance applicationContext: Context): AppComponent
+    @Component.Builder
+    interface Builder {
+
+        @BindsInstance
+        fun application(application: MovieApplication): Builder
+
+        fun build(): AppComponent
     }
+
+    fun inject(application: MovieApplication)
 }

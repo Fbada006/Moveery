@@ -2,12 +2,16 @@ package com.disruption.moveery.di.viewmodelfactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import dagger.Binds
+import dagger.Module
 import javax.inject.Inject
 import javax.inject.Provider
+import javax.inject.Singleton
 
 /**
  * ViewModelFactory which uses Dagger to create the instances.
  */
+@Singleton
 class ViewModelFactory @Inject constructor(
     private val creators: @JvmSuppressWildcards Map<Class<out ViewModel>, Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
@@ -31,6 +35,13 @@ class ViewModelFactory @Inject constructor(
             throw RuntimeException(e)
         }
     }
+}
+
+@Module
+internal abstract class ViewModelFactoryModule {
+
+    @Binds
+    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }
 
 

@@ -6,16 +6,20 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.disruption.moveery.MovieApplication
 import com.disruption.moveery.R
+import com.disruption.moveery.data.MovieBoundaryCallBack
+import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.MovieRoomDatabase
+import com.disruption.moveery.di.viewmodelfactory.ViewModelsModule
 import com.disruption.moveery.network.MovieApiService
-import com.disruption.moveery.repo.MovieRepo
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -24,11 +28,24 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module(includes = [AppModuleBinds::class])
-object AppModule {
+@Module(includes = [ViewModelsModule::class])
+class AppModule {
+
+    @Provides
+    fun providesBoundaryCallBack(
+        localCache: MovieLocalCache,
+        coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO),
+        movieRetrofitService: MovieApiService
+    ): MovieBoundaryCallBack =
+        MovieBoundaryCallBack(localCache, coroutineScope, movieRetrofitService)
+
 
     @Singleton
-    @JvmStatic
+    @Provides
+    fun provideLocalCache(movieRoomDatabase: MovieRoomDatabase): MovieLocalCache =
+        MovieLocalCache(movieRoomDatabase)
+
+    @Singleton
     @Provides
     fun provideGlideInstance(
         context: Context,
@@ -39,7 +56,6 @@ object AppModule {
     }
 
     @Singleton
-    @JvmStatic
     @Provides
     fun provideRequestOptions(): RequestOptions {
         return RequestOptions
@@ -50,42 +66,35 @@ object AppModule {
     }
 
     @Singleton
-    @JvmStatic
     @Provides
-    fun providesMovieApi(retrofit: Retrofit): MovieApiService = retrofit.create(MovieApiService::class.java)
+    fun providesMovieApi(retrofit: Retrofit): MovieApiService =
+        retrofit.create(MovieApiService::class.java)
 
     @Singleton
-    @JvmStatic
     @Provides
     fun provideRetrofitInstance(
         moshi: Moshi,
-        okHttpClient: OkHttpClient,
-        @Named("baseUrl") baseUrl: String
+        okHttpClient: OkHttpClient
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl("https://api.themoviedb.org/4/")
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()
     }
 
-    @Singleton
-    @JvmStatic
+
     @Provides
     fun providesMoshi(): Moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory()).build()
 
 
-    @Singleton
-    @JvmStatic
     @Provides
     fun providesLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
 
 
-    @Singleton
-    @JvmStatic
     @Provides
     fun providesOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
@@ -98,12 +107,10 @@ object AppModule {
     }
 
     @Singleton
-    @JvmStatic
     @Provides
     @Named("baseUrl")
     fun provideBaseUrl(): String = "https://api.themoviedb.org/4/"
 
-    @JvmStatic
     @Singleton
     @Provides
     fun provideDataBase(context: Context): MovieRoomDatabase {
@@ -115,12 +122,14 @@ object AppModule {
             .fallbackToDestructiveMigration()
             .build()
     }
-}
-
-@Module
-abstract class AppModuleBinds {
 
     @Singleton
-    @Binds
-    abstract fun bindRepository(repo: MovieRepo): MovieRepo
+    @Provides
+    fun provideContext(application: MovieApplication): Context {
+        return application.applicationContext
+    }
+
+    @Provides
+    fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
 }
+

@@ -2,8 +2,11 @@ package com.disruption.moveery
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
+import com.disruption.moveery.data.MovieBoundaryCallBack
 import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.MovieRoomDatabase
+import com.disruption.moveery.network.MovieApi
+import com.disruption.moveery.network.MovieApiService
 import com.disruption.moveery.repo.MovieRepo
 import com.disruption.moveery.utils.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope
@@ -19,25 +22,39 @@ object Injection {
         return MovieLocalCache(database)
     }
 
-    /**
+/*    *//**
      * Creates an instance of [MovieRepo] based on the [MovieLocalCache] and a
      * [CoroutineScope]
-     */
+     *//*
     private fun provideMovieRepository(
         context: Context,
-        coroutineScope: CoroutineScope
+        boundaryCallBack: MovieBoundaryCallBack,
+        coroutineScope: CoroutineScope,
+        movieRetrofitService: MovieApiService
     ): MovieRepo {
-        return MovieRepo(providesCache(context), coroutineScope)
+        val cache = providesCache(context)
+        return MovieRepo(
+            cache,
+            provideBoundaryCallBack(context, coroutineScope, MovieApi.movieRetrofitService)
+        )
     }
 
-    /**
+    private fun provideBoundaryCallBack(
+        context: Context,
+        coroutineScope: CoroutineScope,
+        movieRetrofitService: MovieApiService
+    ): MovieBoundaryCallBack {
+        val cache = providesCache(context)
+        return MovieBoundaryCallBack(cache, coroutineScope, movieRetrofitService)
+    }
+
+    *//**
      * Provides the [ViewModelProvider.Factory] that is then used to get a reference to
      * ViewModel objects.
-     */
+     *//*
     fun provideViewModelFactory(
-        context: Context,
-        coroutineScope: CoroutineScope
+        context: Context
     ): ViewModelProvider.Factory {
-        return ViewModelFactory(provideMovieRepository(context, coroutineScope))
-    }
+        return ViewModelFactory(provideMovieRepository(context))
+    }*/
 }
