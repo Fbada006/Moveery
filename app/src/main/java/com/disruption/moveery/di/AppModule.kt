@@ -28,6 +28,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
 
+/**The main module to inject dependencies*/
 @Module(includes = [ViewModelsModule::class])
 class AppModule {
 

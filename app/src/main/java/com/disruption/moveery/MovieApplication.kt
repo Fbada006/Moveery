@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
+/**The Application class*/
 class MovieApplication : Application(), HasActivityInjector {
 
     @Inject

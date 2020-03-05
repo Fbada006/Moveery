@@ -7,6 +7,7 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
+/**The main component for di*/
 @Singleton
 @Component(
     modules = [
@@ -18,14 +19,17 @@ import javax.inject.Singleton
 )
 interface AppComponent {
 
+    /**Interface to handle building the [AppComponent]*/
     @Component.Builder
     interface Builder {
 
         @BindsInstance
         fun application(application: MovieApplication): Builder
 
+        /**Build the component*/
         fun build(): AppComponent
     }
 
+    /**Injecting the [MovieApplication]*/
     fun inject(application: MovieApplication)
 }
