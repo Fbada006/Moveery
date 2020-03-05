@@ -14,14 +14,14 @@ enum class MovieApiStatus { LOADING, ERROR, DONE }
 /**The view model that handles the UI and logic for the [LandingFragment]*/
 class LandingViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
 
-    /** The internal MutableLiveData that stores the status of the most recent request */
+    /* The internal MutableLiveData that stores the status of the most recent request */
     private val _status = MutableLiveData<MovieApiStatus>()
 
     /**The external immutable LiveData for the request status*/
     val status: LiveData<MovieApiStatus>
         get() = _status
 
-    /** The internal MutableLiveData that stores the event of a click input */
+    /* The internal MutableLiveData that stores the event of a click input */
     private val _navigateToSelectedMovie = MutableLiveData<Event<Movie>>()
 
     /**The external immutable LiveData for the click event*/

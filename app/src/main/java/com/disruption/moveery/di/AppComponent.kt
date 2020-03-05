@@ -23,6 +23,7 @@ interface AppComponent {
     @Component.Builder
     interface Builder {
 
+        /**Bind the [MovieApplication] to be supplied when needed*/
         @BindsInstance
         fun application(application: MovieApplication): Builder
 

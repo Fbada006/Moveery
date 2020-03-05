@@ -2,6 +2,7 @@ package com.disruption.moveery.models
 
 import com.squareup.moshi.Json
 
+/**The result that comes back from the API call with the list of [Movie] objects*/
 data class Result(
     val page: Int,
     @Json(name = "results")

@@ -15,6 +15,7 @@ import com.disruption.moveery.R
 import com.disruption.moveery.models.Movie
 import com.disruption.moveery.utils.Constants
 
+/**Adapter to handle displaying [Movie] objects in the [LandingFragment]*/
 class LandingPageAdapter(
     private val context: Context,
     private val onClickListener: OnMovieClickListener
@@ -33,6 +34,7 @@ class LandingPageAdapter(
         holder.bind(context, movie)
     }
 
+    /**The [RecyclerView.ViewHolder] for the [Movie] objects*/
     class MovieViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val movieTitle =
             itemView.findViewById<TextView>(R.id.tv_movie_title)

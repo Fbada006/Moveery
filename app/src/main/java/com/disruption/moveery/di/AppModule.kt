@@ -32,6 +32,7 @@ import javax.inject.Singleton
 @Module(includes = [ViewModelsModule::class])
 class AppModule {
 
+    /**Provide the boundary callback*/
     @Provides
     fun providesBoundaryCallBack(
         localCache: MovieLocalCache,
@@ -41,11 +42,13 @@ class AppModule {
         MovieBoundaryCallBack(localCache, coroutineScope, movieRetrofitService)
 
 
+    /**Provide the local movie cache*/
     @Singleton
     @Provides
     fun provideLocalCache(movieRoomDatabase: MovieRoomDatabase): MovieLocalCache =
         MovieLocalCache(movieRoomDatabase)
 
+    /**Provide the Glide instance*/
     @Singleton
     @Provides
     fun provideGlideInstance(
@@ -56,6 +59,7 @@ class AppModule {
             .setDefaultRequestOptions(requestOptions)
     }
 
+    /**Provide the request options for Glide*/
     @Singleton
     @Provides
     fun provideRequestOptions(): RequestOptions {
@@ -66,11 +70,13 @@ class AppModule {
             .error(R.drawable.ic_broken_image)
     }
 
+    /**Provide the api for network calls*/
     @Singleton
     @Provides
     fun providesMovieApi(retrofit: Retrofit): MovieApiService =
         retrofit.create(MovieApiService::class.java)
 
+    /**Provide the retrofit instance*/
     @Singleton
     @Provides
     fun provideRetrofitInstance(
@@ -85,17 +91,18 @@ class AppModule {
             .build()
     }
 
-
+    /**Provide moshi*/
     @Provides
     fun providesMoshi(): Moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory()).build()
 
-
+    /**Provide the interceptor*/
     @Provides
     fun providesLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
 
 
+    /**Provide the client*/
     @Provides
     fun providesOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
@@ -107,11 +114,13 @@ class AppModule {
             .build()
     }
 
+    /**Provide the base url of retrofit*/
     @Singleton
     @Provides
     @Named("baseUrl")
     fun provideBaseUrl(): String = "https://api.themoviedb.org/4/"
 
+    /**Provide the [MovieRoomDatabase]*/
     @Singleton
     @Provides
     fun provideDataBase(context: Context): MovieRoomDatabase {
@@ -124,12 +133,14 @@ class AppModule {
             .build()
     }
 
+    /**Provide the [Context]*/
     @Singleton
     @Provides
     fun provideContext(application: MovieApplication): Context {
         return application.applicationContext
     }
 
+    /**Provide the [CoroutineScope]*/
     @Provides
     fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
 }

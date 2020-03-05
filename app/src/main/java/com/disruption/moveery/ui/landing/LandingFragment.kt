@@ -22,9 +22,6 @@ class LandingFragment : Fragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    /**
-     * Lazily initialize our [LandingViewModel].
-     */
     private val viewModel by viewModels<LandingViewModel> { viewModelFactory }
 
     override fun onCreateView(

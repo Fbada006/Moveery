@@ -1,5 +1,6 @@
 package com.disruption.moveery.utils
 
+/**Helper object for app constants*/
 object Constants {
     const val BASE_URL = "https://api.themoviedb.org/4/"
     const val API_KEY = "9ed751698b8b5963444886c285a5afb1"

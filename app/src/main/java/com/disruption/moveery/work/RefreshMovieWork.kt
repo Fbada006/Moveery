@@ -10,6 +10,7 @@ import com.disruption.moveery.network.MovieApi
 import com.disruption.moveery.utils.NotificationUtils
 import retrofit2.HttpException
 
+/**Worker for the movies to refresh*/
 class RefreshMovieWork(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
 
