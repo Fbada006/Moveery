@@ -70,8 +70,6 @@ class LandingPageAdapter(
  * list of update operations that converts the first list into the second one.*/
 class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
     override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-        //TODO: Confirm that your id variable matches this one or change this one to match
-        //the one in your model
         return oldItem.id == newItem.id
     }
 

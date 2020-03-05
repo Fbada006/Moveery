@@ -13,8 +13,12 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.pref_settings)
 
-        val pref = findPreference<ListPreference>(getString(R.string.pref_night_mode_key))
-        pref?.setOnPreferenceChangeListener { _, newValue ->
+        setSelectedTheme()
+    }
+
+    private fun setSelectedTheme() {
+        val themePref = findPreference<ListPreference>(getString(R.string.pref_night_mode_key))
+        themePref?.setOnPreferenceChangeListener { _, newValue ->
             val themeOption = newValue as String
             ThemeHelper.applyTheme(themeOption)
             true

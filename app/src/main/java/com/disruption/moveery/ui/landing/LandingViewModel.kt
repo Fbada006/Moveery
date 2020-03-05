@@ -8,18 +8,8 @@ import com.disruption.moveery.repo.MovieRepo
 import com.disruption.moveery.utils.Event
 import javax.inject.Inject
 
-/**The class holding the loading status of the API call*/
-enum class MovieApiStatus { LOADING, ERROR, DONE }
-
 /**The view model that handles the UI and logic for the [LandingFragment]*/
 class LandingViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
-
-    /* The internal MutableLiveData that stores the status of the most recent request */
-    private val _status = MutableLiveData<MovieApiStatus>()
-
-    /**The external immutable LiveData for the request status*/
-    val status: LiveData<MovieApiStatus>
-        get() = _status
 
     /* The internal MutableLiveData that stores the event of a click input */
     private val _navigateToSelectedMovie = MutableLiveData<Event<Movie>>()
