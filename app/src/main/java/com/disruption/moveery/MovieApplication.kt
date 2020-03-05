@@ -1,21 +1,35 @@
 package com.disruption.moveery
 
+import android.app.Activity
 import android.app.Application
 import androidx.preference.PreferenceManager
 import androidx.work.*
+import com.disruption.moveery.di.AppComponent
+import com.disruption.moveery.di.AppInjector
+import com.disruption.moveery.di.DaggerAppComponent
 import com.disruption.moveery.utils.ThemeHelper
 import com.disruption.moveery.work.RefreshMovieWork
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
-class MovieApplication : Application() {
+class MovieApplication : Application(), HasActivityInjector {
+
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     private val applicationScope = CoroutineScope(Dispatchers.Default)
 
     override fun onCreate() {
         super.onCreate()
+
+        AppInjector.init(this)
+
         setUpMovieRefreshWork()
         setNightMode()
     }
@@ -37,7 +51,7 @@ class MovieApplication : Application() {
             }.build()
 
             val repeatingMovieRefreshRequest =
-                PeriodicWorkRequestBuilder<RefreshMovieWork>(15, TimeUnit.MINUTES)
+                PeriodicWorkRequestBuilder<RefreshMovieWork>(1, TimeUnit.DAYS)
                     .setConstraints(constraints)
                     .build()
 
@@ -48,4 +62,6 @@ class MovieApplication : Application() {
             )
         }
     }
+
+    override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector
 }

@@ -2,16 +2,19 @@ package com.disruption.moveery.data
 
 import androidx.paging.PagedList
 import com.disruption.moveery.models.Movie
-import com.disruption.moveery.network.MovieApi
+import com.disruption.moveery.network.MovieApiService
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**This class listens to when zero items were returned from the initial data request or
  * because we've reached the end of the data from the DataSource requests for more data from the
  * API such that the user has a seemingly endless scrolling feature*/
-class MovieBoundaryCallBack(
+class MovieBoundaryCallBack @Inject constructor(
     private val localCache: MovieLocalCache,
-    private val coroutineScope: CoroutineScope
+    private val coroutineScope: CoroutineScope,
+    private val movieRetrofitService: MovieApiService
 ) :
     PagedList.BoundaryCallback<Movie>() {
 
@@ -39,7 +42,7 @@ class MovieBoundaryCallBack(
 
         isRequestInProgress = true
         val result =
-            MovieApi.movieRetrofitService.getDiscoverMoviesAsync(page = lastRequestedPage).await()
+            movieRetrofitService.getDiscoverMoviesAsync(page = lastRequestedPage).await()
         localCache.refreshMoviesCache(result)
         lastRequestedPage++
         isRequestInProgress = false

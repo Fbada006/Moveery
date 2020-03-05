@@ -6,26 +6,27 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.disruption.moveery.Injection
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentLandingBinding
+import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.LandingHelper.listenToUserScrolls
+import javax.inject.Inject
 
 /**The fragment that is first launched when the user opens the app*/
-class LandingFragment : Fragment() {
+class LandingFragment : Fragment(), Injectable {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     /**
      * Lazily initialize our [LandingViewModel].
      */
-    private val viewModel by viewModels<LandingViewModel> {
-        Injection.provideViewModelFactory(requireContext(), lifecycleScope)
-    }
+    private val viewModel by viewModels<LandingViewModel> { viewModelFactory }
 
-    /**Called when the fragment is created*/
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
