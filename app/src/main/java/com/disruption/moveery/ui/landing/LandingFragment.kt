@@ -8,13 +8,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.azoft.carousellayoutmanager.CarouselLayoutManager
+import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
+import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentLandingBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.LandingHelper.listenToUserScrolls
 import javax.inject.Inject
+
 
 /**The fragment that is first launched when the user opens the app*/
 class LandingFragment : Fragment(), Injectable {
@@ -37,9 +40,17 @@ class LandingFragment : Fragment(), Injectable {
             viewModel.displayMovieDetails(it)
         })
 
-        binding.moviesList.adapter = adapter
-        binding.moviesList.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val carouselManager = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL)
+        carouselManager.setPostLayoutListener(CarouselZoomPostLayoutListener())
+
+        binding.moviesList.apply {
+            this.adapter = adapter
+            layoutManager = carouselManager
+            addOnScrollListener(CenterScrollListener())
+
+        }
+
+        //LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         //The list of movies to display
         viewModel.movieList.observe(viewLifecycleOwner, Observer {

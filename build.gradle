@@ -24,6 +24,7 @@ buildscript {
         preferenceVersion = '1.1.0'
         materialVersion = '1.2.0-alpha05'
         daggerVersion = '2.22'
+        carouselVersion = '1.2.4'
     }
 
     repositories {
