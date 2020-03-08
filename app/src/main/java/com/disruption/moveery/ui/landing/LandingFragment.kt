@@ -50,8 +50,6 @@ class LandingFragment : Fragment(), Injectable {
 
         }
 
-        //LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
         //The list of movies to display
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
