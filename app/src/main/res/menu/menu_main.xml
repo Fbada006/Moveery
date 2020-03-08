@@ -7,4 +7,10 @@
         android:icon="@drawable/ic_settings"
         android:title="@string/label_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/label_search"
+        app:showAsAction="ifRoom" />
 </menu>

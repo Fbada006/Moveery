@@ -14,6 +14,7 @@
             android:id="@+id/action_dest_landing_fragment_to_detailsFragment"
             app:destination="@id/detailsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.disruption.moveery.ui.details.DetailsFragment"

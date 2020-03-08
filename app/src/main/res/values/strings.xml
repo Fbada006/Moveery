@@ -25,6 +25,7 @@
 
     <!--Menus-->
     <string name="label_settings">Settings</string>
+    <string name="label_search">Search</string>
 
     <!--Preferences-->
     <string name="pref_night_mode_title">Night Mode</string>
@@ -48,5 +49,8 @@
     <string name="movie_refresh_successful">Movie refresh successful.</string>
     <string name="movie_refresh_failed">Movie refresh failed. Retrying.</string>
     <string name="movie_refresh_title">Refreshing movies</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
