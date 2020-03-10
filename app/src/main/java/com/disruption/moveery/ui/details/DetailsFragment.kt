@@ -52,11 +52,11 @@ class DetailsFragment : Fragment(), Injectable {
     /**Display the passed in movie from the [args]*/
     private fun displayMovieDetails() {
         val movie = args.movie
-        val posterUrl = Constants.IMAGE_BASE_URL + movie.poster_path
+        val posterUrl = Constants.IMAGE_BASE_URL + movie?.poster_path
 
         setMoviePoster(posterUrl)
 
-        val average = ((movie.vote_average)!! * 10).toInt()
+        val average = ((movie?.vote_average)!! * 10).toInt()
 
         binding.tvMovieTitle.text = movie.original_title
         binding.tvMovieGenre.text = DetailsHelper.getGenres(movie.genre_ids, requireContext())

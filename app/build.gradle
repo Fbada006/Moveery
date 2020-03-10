@@ -10,7 +10,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion = '29.0.3'
     defaultConfig {
-        applicationId "com.kotlininjas1.moviesninja1"
+        applicationId "com.disruption.moveery"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -84,9 +84,10 @@ dependencies {
     //OKHttp3
     implementation "com.squareup.okhttp3:logging-interceptor:$version_okHttp3_logging"
 
-    // Retrofit with Moshi Converter
+    // Retrofit with Moshi Converter and Gson
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$version_retrofit"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"

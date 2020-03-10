@@ -25,12 +25,21 @@
         tools:layout="@layout/fragment_details">
         <argument
             android:name="movie"
-            app:argType="com.disruption.moveery.models.Movie" />
+            app:argType="com.disruption.moveery.models.Movie"
+            app:nullable="true" />
+        <argument
+            android:name="searchedMovie"
+            app:argType="com.disruption.moveery.models.SearchedMovie"
+            app:nullable="true" />
     </fragment>
 
     <fragment
         android:id="@+id/dest_search_fragment"
         android:name="com.disruption.moveery.ui.search.SearchFragment"
         android:label="@string/label_search_frag"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_dest_search_fragment_to_dest_details_fragment"
+            app:destination="@id/dest_details_fragment" />
+    </fragment>
 </navigation>

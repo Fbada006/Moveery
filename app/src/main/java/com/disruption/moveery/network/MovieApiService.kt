@@ -1,24 +1,19 @@
 package com.disruption.moveery.network
 
 import com.disruption.moveery.models.Result
+import com.disruption.moveery.models.SearchedResult
 import com.disruption.moveery.utils.Constants
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
-
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
 
 /**OkHttp for basic retrofit setup*/
 //TODO: Get rid of this logging
@@ -31,12 +26,12 @@ val client = OkHttpClient.Builder()
     .connectTimeout(30, TimeUnit.SECONDS)
     .readTimeout(30, TimeUnit.SECONDS)
     .addInterceptor(interceptor)
+    .retryOnConnectionFailure(true)
     .writeTimeout(30, TimeUnit.SECONDS)
     .build()
 
-
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addConverterFactory(GsonConverterFactory.create())
     .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(Constants.BASE_URL)
     .client(client)
@@ -58,12 +53,12 @@ interface MovieApiService {
 
     /**Searches the movie*/
     @GET("search/movie")
-    fun getMoviesByKeyword(
+    suspend fun getMoviesByKeyword(
         @Query("query") query: String,
         @Query("page") page: Int,
         @Query("include_adult") boolean: Boolean = false,
         @Query("api_key") apiKey: String = Constants.API_KEY
-    ): Response<Result>
+    ): Response<SearchedResult>
 }
 
 /**

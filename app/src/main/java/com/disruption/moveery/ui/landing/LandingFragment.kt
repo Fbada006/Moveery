@@ -58,7 +58,7 @@ class LandingFragment : Fragment(), Injectable {
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { movie ->
                 findNavController().navigate(
-                    LandingFragmentDirections.actionDestLandingFragmentToDetailsFragment(movie)
+                    LandingFragmentDirections.actionDestLandingFragmentToDetailsFragment(movie, null)
                 )
             }
         })

@@ -6,6 +6,9 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.disruption.moveery.data.search.MovieDataSource
 import com.disruption.moveery.models.Movie
+import com.disruption.moveery.models.SearchedMovie
+import com.disruption.moveery.utils.Event
+import javax.inject.Inject
 
 /**[ViewModel] to supply data to the [SearchFragment]*/
 class SearchViewModel : ViewModel() {
@@ -23,18 +26,18 @@ class SearchViewModel : ViewModel() {
     }
 
     // The external LiveData interface to the list is immutable, so only this class can modify
-    val pagedMovieList: LiveData<PagedList<Movie>?>
+    val movieList: LiveData<PagedList<SearchedMovie>?>
         get() = _pagedMovieList
 
     private fun initializedPagedListBuilder(config: PagedList.Config, query: String):
-            LivePagedListBuilder<Int, Movie> {
+            LivePagedListBuilder<Int, SearchedMovie> {
 
-        val dataSourceFactory = object : DataSource.Factory<Int, Movie>() {
-            override fun create(): DataSource<Int, Movie> {
+        val dataSourceFactory = object : DataSource.Factory<Int, SearchedMovie>() {
+            override fun create(): DataSource<Int, SearchedMovie> {
                 return MovieDataSource(viewModelScope, query)
             }
         }
-        return LivePagedListBuilder<Int, Movie>(dataSourceFactory, config)
+        return LivePagedListBuilder(dataSourceFactory, config)
     }
 
     /**
@@ -42,5 +45,17 @@ class SearchViewModel : ViewModel() {
      */
     fun searchMovie(queryString: String) {
         queryLiveData.postValue(queryString)
+    }
+
+    /* The internal MutableLiveData that stores the event of a click input */
+    private val _navigateToSelectedMovie = MutableLiveData<Event<SearchedMovie>>()
+
+    /**The external immutable LiveData for the click event*/
+    val navigateToSelectedMovie: LiveData<Event<SearchedMovie>>
+        get() = _navigateToSelectedMovie
+
+    /**Called when a user clicks on a movie*/
+    fun displayMovieDetails(movie: SearchedMovie) {
+        _navigateToSelectedMovie.value = Event(movie)
     }
 }
