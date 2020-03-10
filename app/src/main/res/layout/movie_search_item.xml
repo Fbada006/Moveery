@@ -4,7 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="90dp">
+    android:layout_height="90dp"
+    android:layout_margin="4dp"
+    android:background="#fbfbfb"
+    android:elevation="16dp"
+    android:padding="4dp"
+    app:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,6 +30,8 @@
             android:id="@+id/movie_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
             android:textColor="?android:textColorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/movie_poster"
@@ -33,38 +40,46 @@
 
         <TextView
             android:id="@+id/movie_overview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/movie_poster"
-            app:layout_constraintTop_toBottomOf="@+id/movie_title"
-            tools:text="A collection of samples to discuss and showcase different architectural tools and patterns for Android apps." />
-
-        <TextView
-            android:id="@+id/movie_language"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/movie_overview"
-            tools:ignore="RtlCompat" />
-
-        <TextView
-            android:id="@+id/movie_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@+id/movie_year"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="80%" />
+            android:layout_marginEnd="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintStart_toStartOf="@id/movie_title"
+            app:layout_constraintTop_toBottomOf="@+id/movie_title"
+            tools:text="A collection of samples to discuss and showcase different architectural tools and patterns for Android apps." />
 
         <TextView
             android:id="@+id/movie_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/movie_poster"
+            app:layout_constraintEnd_toStartOf="@+id/movie_language"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@+id/movie_poster"
+            app:layout_constraintStart_toStartOf="@id/movie_title"
             app:layout_constraintTop_toBottomOf="@+id/movie_overview"
             tools:text="2007" />
+
+        <TextView
+            android:id="@+id/movie_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/movie_rating"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movie_year"
+            app:layout_constraintTop_toBottomOf="@+id/movie_overview"
+            tools:text="en" />
+
+        <TextView
+            android:id="@+id/movie_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/movie_year"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/movie_language"
+            tools:text="80%" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
