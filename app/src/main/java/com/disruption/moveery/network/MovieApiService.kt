@@ -8,6 +8,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -54,6 +55,15 @@ interface MovieApiService {
         @Query("sort_by") sortBy: String? = "popularity.desc",
         @Query("api_key") apiKey: String = Constants.API_KEY
     ): Deferred<Result>
+
+    /**Searches the movie*/
+    @GET("search/movie")
+    fun getMoviesByKeyword(
+        @Query("query") query: String,
+        @Query("page") page: Int,
+        @Query("include_adult") boolean: Boolean = false,
+        @Query("api_key") apiKey: String = Constants.API_KEY
+    ): Response<Result>
 }
 
 /**

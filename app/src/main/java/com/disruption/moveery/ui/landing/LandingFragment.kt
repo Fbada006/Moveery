@@ -47,7 +47,6 @@ class LandingFragment : Fragment(), Injectable {
             this.adapter = adapter
             layoutManager = carouselManager
             addOnScrollListener(CenterScrollListener())
-
         }
 
         //The list of movies to display
@@ -79,6 +78,10 @@ class LandingFragment : Fragment(), Injectable {
         return when (item.itemId) {
             R.id.action_settings -> {
                 startActivity(Intent(requireContext(), SettingsActivity::class.java))
+                true
+            }
+            R.id.action_search -> {
+                findNavController().navigate(LandingFragmentDirections.actionDestLandingFragmentToDestSearchFragment())
                 true
             }
             else -> super.onOptionsItemSelected(item)

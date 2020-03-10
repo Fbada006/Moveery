@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Moveery</string>
+
+    <!--Fragment labels-->
     <string name="label_discover_frag">Discover</string>
+    <string name="label_search_frag">Search</string>
 
     <!--Genres based on the movie IDs-->
     <string name="genre_action">Action, </string>

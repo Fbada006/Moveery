@@ -39,7 +39,11 @@ class AppModule {
         coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO),
         movieRetrofitService: MovieApiService
     ): MovieBoundaryCallBack =
-        MovieBoundaryCallBack(localCache, coroutineScope, movieRetrofitService)
+        MovieBoundaryCallBack(
+            localCache,
+            coroutineScope,
+            movieRetrofitService
+        )
 
 
     /**Provide the local movie cache*/

@@ -22,8 +22,6 @@ class MovieRepo @Inject constructor(
     fun getAllMovies(): LiveData<PagedList<Movie>> {
         val dataSourceFactory = movieLocalCache.getMovieData()
 
-        //val boundaryCallBack = MovieBoundaryCallBack(movieLocalCache, coroutineScope)
-
         return LivePagedListBuilder(dataSourceFactory, Constants.DATABASE_PAGE_SIZE)
             .setBoundaryCallback(boundaryCallBack)
             .build()

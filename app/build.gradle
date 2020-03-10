@@ -55,6 +55,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.palette:palette:$palleteVersion"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version_kotlin"
@@ -107,7 +108,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
 
     //Paging
-    implementation "androidx.paging:paging-runtime:$pagingVersion"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 
     //Gson
     implementation "com.google.code.gson:gson:$gsonVersion"

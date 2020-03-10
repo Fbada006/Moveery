@@ -12,11 +12,14 @@
         tools:layout="@layout/fragment_landing">
         <action
             android:id="@+id/action_dest_landing_fragment_to_detailsFragment"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/dest_details_fragment" />
+        <action
+            android:id="@+id/action_dest_landing_fragment_to_dest_search_fragment"
+            app:destination="@id/dest_search_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/detailsFragment"
+        android:id="@+id/dest_details_fragment"
         android:name="com.disruption.moveery.ui.details.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details">
@@ -24,4 +27,10 @@
             android:name="movie"
             app:argType="com.disruption.moveery.models.Movie" />
     </fragment>
+
+    <fragment
+        android:id="@+id/dest_search_fragment"
+        android:name="com.disruption.moveery.ui.search.SearchFragment"
+        android:label="@string/label_search_frag"
+        tools:layout="@layout/fragment_search" />
 </navigation>
