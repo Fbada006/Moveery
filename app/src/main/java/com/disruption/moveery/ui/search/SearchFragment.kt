@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
+import com.disruption.moveery.MainActivity
+import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentSearchBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.utils.LandingHelper.listenToUserScrolls
@@ -20,13 +22,14 @@ import com.disruption.moveery.utils.LandingHelper.listenToUserScrolls
 class SearchFragment : Fragment(), Injectable {
 
     private val viewModel by viewModels<SearchViewModel>()
+    private lateinit var binding: FragmentSearchBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentSearchBinding.inflate(inflater)
+        binding = FragmentSearchBinding.inflate(inflater)
 
         val adapter = SearchPageAdapter(requireContext(), OnSearchedMovieClickListener {
             viewModel.displayMovieDetails(it)
@@ -57,11 +60,33 @@ class SearchFragment : Fragment(), Injectable {
             }
         })
 
+        showAndHandleBackButton()
+
         viewModel.searchMovie("bond")
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         listenToUserScrolls(binding.moviesList)
 
         return binding.root
+    }
+
+    private fun showAndHandleBackButton() {
+        val toolbar = binding.toolbarSearch
+        toolbar.apply {
+            setNavigationIcon(R.drawable.ic_arrow_back)
+            setNavigationOnClickListener {
+                activity?.onBackPressed()
+            }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity?)!!.supportActionBar!!.hide()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity?)!!.supportActionBar!!.show()
     }
 }

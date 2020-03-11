@@ -18,7 +18,6 @@ import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.LandingHelper.listenToUserScrolls
 import javax.inject.Inject
 
-
 /**The fragment that is first launched when the user opens the app*/
 class LandingFragment : Fragment(), Injectable {
 
@@ -33,7 +32,6 @@ class LandingFragment : Fragment(), Injectable {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentLandingBinding.inflate(inflater)
-
         setHasOptionsMenu(true)
 
         val adapter = LandingPageAdapter(requireContext(), OnMovieClickListener {
@@ -58,7 +56,10 @@ class LandingFragment : Fragment(), Injectable {
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { movie ->
                 findNavController().navigate(
-                    LandingFragmentDirections.actionDestLandingFragmentToDetailsFragment(movie, null)
+                    LandingFragmentDirections.actionDestLandingFragmentToDetailsFragment(
+                        movie,
+                        null
+                    )
                 )
             }
         })
