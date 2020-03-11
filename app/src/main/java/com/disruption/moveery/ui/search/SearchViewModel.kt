@@ -5,14 +5,11 @@ import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.disruption.moveery.data.search.MovieDataSource
-import com.disruption.moveery.models.Movie
 import com.disruption.moveery.models.SearchedMovie
 import com.disruption.moveery.utils.Event
-import javax.inject.Inject
 
 /**[ViewModel] to supply data to the [SearchFragment]*/
 class SearchViewModel : ViewModel() {
-    val TAG = "SearchViewModel"
 
     private val queryLiveData = MutableLiveData<String>()
 
@@ -21,13 +18,9 @@ class SearchViewModel : ViewModel() {
         .setEnablePlaceholders(false)
         .build()
 
-    private val _pagedMovieList = Transformations.switchMap(queryLiveData) {
+    val movieList =  Transformations.switchMap(queryLiveData) {
         initializedPagedListBuilder(config, it).build()
     }
-
-    // The external LiveData interface to the list is immutable, so only this class can modify
-    val movieList: LiveData<PagedList<SearchedMovie>?>
-        get() = _pagedMovieList
 
     private fun initializedPagedListBuilder(config: PagedList.Config, query: String):
             LivePagedListBuilder<Int, SearchedMovie> {
@@ -41,7 +34,7 @@ class SearchViewModel : ViewModel() {
     }
 
     /**
-     * Search a repository based on a query string.
+     * Search a movie based on a query string.
      */
     fun searchMovie(queryString: String) {
         queryLiveData.postValue(queryString)

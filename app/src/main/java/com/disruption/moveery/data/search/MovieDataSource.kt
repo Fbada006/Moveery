@@ -24,6 +24,7 @@ class MovieDataSource(private val scope: CoroutineScope, private val query: Stri
                 val response = movieApiService.getMoviesByKeyword(query = query, page = 1)
 
                 if (response.isSuccessful) {
+                    Log.e(TAG, "Response from search ---------------: ${response.body()} ");
                     val result = response.body()
                     val movieList = result?.movieList
                     callback.onResult(movieList ?: listOf(), null, 2)

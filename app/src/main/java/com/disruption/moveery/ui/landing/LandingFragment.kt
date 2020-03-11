@@ -15,7 +15,7 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentLandingBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.settings.SettingsActivity
-import com.disruption.moveery.utils.LandingHelper.listenToUserScrolls
+import com.disruption.moveery.utils.FragmentHelper.listenToUserScrolls
 import javax.inject.Inject
 
 /**The fragment that is first launched when the user opens the app*/

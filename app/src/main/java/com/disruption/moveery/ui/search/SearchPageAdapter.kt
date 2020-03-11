@@ -51,7 +51,13 @@ class SearchPageAdapter(
         fun bind(context: Context, item: SearchedMovie) {
             movieTitle.text = item.title
             movieOverview.text = item.overview
-            movieYear.text = item.release_date?.substring(0, 4)
+            movieYear.text =
+                try {
+                    item.release_date?.substring(0, 4)
+                } catch (ex: Exception) {
+                    "N/A"
+                }
+
             movieLang.text = item.original_language
 
             val posterUrl = Constants.IMAGE_BASE_URL + item.poster_path

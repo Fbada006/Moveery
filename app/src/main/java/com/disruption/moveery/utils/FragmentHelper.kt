@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-/**Helper methods used in the LandingFragment*/
-object LandingHelper {
+/**Helper methods used in the Fragments*/
+object FragmentHelper {
 
     /**This method listens to scrolls and determines if Glide should load images*/
     fun Fragment.listenToUserScrolls(recyclerView: RecyclerView) {
