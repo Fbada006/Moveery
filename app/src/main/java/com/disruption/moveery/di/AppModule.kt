@@ -32,20 +32,6 @@ import javax.inject.Singleton
 @Module(includes = [ViewModelsModule::class])
 class AppModule {
 
-    /**Provide the boundary callback*/
-    @Provides
-    fun providesBoundaryCallBack(
-        localCache: MovieLocalCache,
-        coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO),
-        movieRetrofitService: MovieApiService
-    ): MovieBoundaryCallBack =
-        MovieBoundaryCallBack(
-            localCache,
-            coroutineScope,
-            movieRetrofitService
-        )
-
-
     /**Provide the local movie cache*/
     @Singleton
     @Provides
