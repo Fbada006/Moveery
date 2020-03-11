@@ -86,16 +86,6 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
         }
     }
 
-//    override fun onResume() {
-//        super.onResume()
-//        (activity as MainActivity?)!!.supportActionBar!!.hide()
-//    }
-//
-//    override fun onStop() {
-//        super.onStop()
-//        (activity as MainActivity?)!!.supportActionBar!!.show()
-//    }
-
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query!!.isNotEmpty()) {
             viewModel.searchMovie(query)
