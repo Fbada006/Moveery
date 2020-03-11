@@ -3,6 +3,7 @@ package com.disruption.moveery.ui.landing
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,6 +18,7 @@ import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.FragmentHelper.listenToUserScrolls
 import javax.inject.Inject
+
 
 /**The fragment that is first launched when the user opens the app*/
 class LandingFragment : Fragment(), Injectable {
@@ -33,6 +35,7 @@ class LandingFragment : Fragment(), Injectable {
     ): View? {
         val binding = FragmentLandingBinding.inflate(inflater)
         setHasOptionsMenu(true)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
 
         val adapter = LandingPageAdapter(requireContext(), OnMovieClickListener {
             viewModel.displayMovieDetails(it)

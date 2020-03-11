@@ -14,6 +14,8 @@ import com.disruption.moveery.MainActivity
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentDetailsBinding
 import com.disruption.moveery.di.Injectable
+import com.disruption.moveery.models.Movie
+import com.disruption.moveery.models.SearchedMovie
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
 import javax.inject.Inject
@@ -35,7 +37,10 @@ class DetailsFragment : Fragment(), Injectable {
     ): View? {
         binding = FragmentDetailsBinding.inflate(inflater)
 
-        displayMovieDetails()
+        val movie = args.movie
+        val searchedMovie = args.searchedMovie
+        if (movie != null) displayMovieDetails(movie)
+        if (searchedMovie != null) displaySearchedMovieDetails(searchedMovie)
 
         showAndHandleBackButton()
 
@@ -44,8 +49,27 @@ class DetailsFragment : Fragment(), Injectable {
     }
 
     /**Display the passed in movie from the [args]*/
-    private fun displayMovieDetails() {
-        val movie = args.movie
+    private fun displayMovieDetails(movie: Movie?) {
+        val posterUrl = Constants.IMAGE_BASE_URL + movie?.poster_path
+
+        setMoviePoster(posterUrl)
+
+        val average = ((movie?.vote_average)!! * 10).toInt()
+
+        binding.tvMovieTitle.text = movie.original_title
+        binding.tvMovieGenre.text = DetailsHelper.getGenres(movie.genre_ids, requireContext())
+        binding.tvMovieYear.text = movie.release_date?.substring(0, 4)
+        binding.tvMovieOverview.text = movie.overview
+        binding.tvMovieRating.text = average.toString().plus("%")
+        binding.ratingCustomView.apply {
+            setValue(average)
+            setFillColor(DetailsHelper.getRatingColor(average, requireContext()))
+            setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
+        }
+    }
+
+    /**Display the passed in movie from the [args]*/
+    private fun displaySearchedMovieDetails(movie: SearchedMovie?) {
         val posterUrl = Constants.IMAGE_BASE_URL + movie?.poster_path
 
         setMoviePoster(posterUrl)
@@ -114,15 +138,5 @@ class DetailsFragment : Fragment(), Injectable {
             activity?.window?.statusBarColor =
                 ContextCompat.getColor(requireContext(), darkVibrantColor!!)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        (activity as MainActivity?)!!.supportActionBar!!.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as MainActivity?)!!.supportActionBar!!.show()
     }
 }

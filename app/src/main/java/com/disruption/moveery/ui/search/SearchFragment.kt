@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -33,6 +34,7 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
     ): View? {
 
         binding = FragmentSearchBinding.inflate(inflater)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbarSearch)
 
         val adapter = SearchPageAdapter(requireContext(), OnSearchedMovieClickListener {
             viewModel.displayMovieDetails(it)
@@ -84,15 +86,15 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as MainActivity?)!!.supportActionBar!!.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as MainActivity?)!!.supportActionBar!!.show()
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        (activity as MainActivity?)!!.supportActionBar!!.hide()
+//    }
+//
+//    override fun onStop() {
+//        super.onStop()
+//        (activity as MainActivity?)!!.supportActionBar!!.show()
+//    }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (query!!.isNotEmpty()) {
