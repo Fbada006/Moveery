@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
+import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.disruption.moveery.MainActivity
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentSearchBinding
@@ -43,6 +44,7 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
         binding.moviesList.apply {
             this.adapter = adapter
             layoutManager = carouselManager
+            addOnScrollListener(CenterScrollListener())
         }
 
         //The list of movies to display
@@ -101,6 +103,7 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
 
     override fun onQueryTextChange(newText: String?): Boolean {
         //Do nothing for now
+        //TODO: Show some animation
         return false
     }
 }

@@ -44,6 +44,8 @@ class SearchPageAdapter(
             itemView.findViewById<TextView>(R.id.tv_movie_year)
         private val movieLang =
             itemView.findViewById<TextView>(R.id.tv_movie_language)
+        private val movieRating =
+            itemView.findViewById<TextView>(R.id.tv_movie_rating)
         private val movieImage =
             itemView.findViewById<AppCompatImageView>(R.id.iv_movie_poster)
 
@@ -59,6 +61,7 @@ class SearchPageAdapter(
                 }
 
             movieLang.text = item.original_language
+            movieRating.text = ((item.vote_average)!! * 10).toInt().toString().plus("%")
 
             val posterUrl = Constants.IMAGE_BASE_URL + item.poster_path
             Glide.with(context)
