@@ -71,10 +71,11 @@ class AppModule {
     @Provides
     fun provideRetrofitInstance(
         moshi: Moshi,
-        okHttpClient: OkHttpClient
+        okHttpClient: OkHttpClient,
+        @Named("baseUrl") baseUrl: String
     ): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/4/")
+            .baseUrl(baseUrl)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
