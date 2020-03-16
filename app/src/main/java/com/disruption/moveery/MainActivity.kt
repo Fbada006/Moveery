@@ -16,7 +16,6 @@ import javax.inject.Inject
  * Navigation Host.
  */
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
-
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
     private lateinit var navController: NavController

@@ -16,7 +16,8 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".ui.settings.SettingsActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/label_setting"/>
 
         <activity android:name=".MainActivity">
             <intent-filter>

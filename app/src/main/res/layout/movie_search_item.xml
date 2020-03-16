@@ -19,7 +19,7 @@
         <ImageView
             android:id="@+id/iv_movie_poster"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:contentDescription="Image of the movie"
             app:layout_constraintBottom_toTopOf="@id/tv_movie_title"
             app:layout_constraintStart_toStartOf="parent"

@@ -18,6 +18,7 @@ import com.disruption.moveery.models.Movie
 import com.disruption.moveery.models.SearchedMovie
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
+import com.disruption.moveery.utils.FragmentHelper.makeStatusBarTransparent
 import javax.inject.Inject
 
 /**
@@ -43,6 +44,8 @@ class DetailsFragment : Fragment(), Injectable {
         if (searchedMovie != null) displaySearchedMovieDetails(searchedMovie)
 
         showAndHandleBackButton()
+
+        makeStatusBarTransparent()
 
         // Inflate the layout for this fragment
         return binding.root

@@ -34,7 +34,7 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
     ): View? {
 
         binding = FragmentSearchBinding.inflate(inflater)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbarSearch)
+        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
 
         val adapter = SearchPageAdapter(requireContext(), OnSearchedMovieClickListener {
             viewModel.displayMovieDetails(it)
@@ -77,7 +77,7 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
     }
 
     private fun showAndHandleBackButton() {
-        val toolbar = binding.toolbarSearch
+        val toolbar = binding.toolbar
         toolbar.apply {
             setNavigationIcon(R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
