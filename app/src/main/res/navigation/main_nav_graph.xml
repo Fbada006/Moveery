@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_landing">
         <action
             android:id="@+id/action_dest_landing_fragment_to_detailsFragment"
-            app:destination="@id/dest_details_fragment" />
+            app:destination="@id/dest_details_fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_dest_landing_fragment_to_dest_search_fragment"
             app:destination="@id/dest_search_fragment" />
@@ -37,9 +41,13 @@
         android:id="@+id/dest_search_fragment"
         android:name="com.disruption.moveery.ui.search.SearchFragment"
         android:label="@string/label_search_frag"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_dest_search_fragment_to_dest_details_fragment"
-            app:destination="@id/dest_details_fragment" />
+            app:destination="@id/dest_details_fragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>
