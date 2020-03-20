@@ -45,7 +45,7 @@ class DetailsFragment : Fragment(), Injectable {
 
         showAndHandleBackButton()
 
-        makeStatusBarTransparent()
+        //makeStatusBarTransparent()
 
         // Inflate the layout for this fragment
         return binding.root
