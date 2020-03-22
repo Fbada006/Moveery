@@ -17,7 +17,6 @@ import com.disruption.moveery.models.Movie
 import com.disruption.moveery.models.SearchedMovie
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
-import com.disruption.moveery.utils.FragmentHelper.makeStatusBarTransparent
 import com.disruption.moveery.utils.makeStatusBarTransparent
 import javax.inject.Inject
 
