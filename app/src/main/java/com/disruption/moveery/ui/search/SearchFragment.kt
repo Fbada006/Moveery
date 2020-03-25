@@ -13,11 +13,10 @@ import androidx.navigation.fragment.findNavController
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
-import com.disruption.moveery.MainActivity
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentSearchBinding
 import com.disruption.moveery.di.Injectable
-import com.disruption.moveery.utils.FragmentHelper.listenToUserScrolls
+import com.disruption.moveery.utils.listenToUserScrolls
 
 /**
  * A simple [Fragment] subclass to handle searching [Movie] objects.

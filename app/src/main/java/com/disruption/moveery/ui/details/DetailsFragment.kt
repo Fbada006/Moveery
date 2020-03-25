@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
@@ -18,13 +19,14 @@ import com.disruption.moveery.models.SearchedMovie
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
 import com.disruption.moveery.utils.makeStatusBarTransparent
+import com.disruption.moveery.utils.setMarginTop
 import javax.inject.Inject
 
 /**
  * A fragment to show the details of the movie
  */
 class DetailsFragment : Fragment(), Injectable {
-
+    val TAG = "DetailsFragment"
     private lateinit var binding: FragmentDetailsBinding
     private val args: DetailsFragmentArgs by navArgs()
 
@@ -43,8 +45,6 @@ class DetailsFragment : Fragment(), Injectable {
         if (searchedMovie != null) displaySearchedMovieDetails(searchedMovie)
 
         showAndHandleBackButton()
-
-        makeStatusBarTransparent()
 
         // Inflate the layout for this fragment
         return binding.root
@@ -93,28 +93,6 @@ class DetailsFragment : Fragment(), Injectable {
     private fun setMoviePoster(posterUrl: String) {
         requestManager
             .load(posterUrl)
-//            .listener(object : RequestListener<Drawable> {
-//                override fun onLoadFailed(
-//                    e: GlideException?,
-//                    model: Any?,
-//                    target: Target<Drawable>?,
-//                    isFirstResource: Boolean
-//                ): Boolean {
-//                    return false
-//                }
-//
-//                override fun onResourceReady(
-//                    resource: Drawable?,
-//                    model: Any?,
-//                    target: Target<Drawable>?,
-//                    dataSource: DataSource?,
-//                    isFirstResource: Boolean
-//                ): Boolean {
-//                    val bitmap = (resource as BitmapDrawable).bitmap
-//                    setStatusBarColorFromPoster(bitmap)
-//                    return false
-//                }
-//            })
             .into(binding.ivMoviePoster)
     }
 

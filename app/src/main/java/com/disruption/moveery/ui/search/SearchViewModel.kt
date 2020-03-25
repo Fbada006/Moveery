@@ -18,7 +18,7 @@ class SearchViewModel : ViewModel() {
         .setEnablePlaceholders(false)
         .build()
 
-    val movieList =  Transformations.switchMap(queryLiveData) {
+    val movieList = Transformations.switchMap(queryLiveData) {
         initializedPagedListBuilder(config, it).build()
     }
 

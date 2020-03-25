@@ -3,6 +3,7 @@ package com.disruption.moveery.utils
 import android.graphics.Color
 import android.os.Build
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -39,4 +40,11 @@ fun Fragment.makeStatusBarTransparent() {
         }
         statusBarColor = Color.TRANSPARENT
     }
+}
+
+/**Apply margin top for views at the top of the screen like the toolbar*/
+fun View.setMarginTop(marginTop: Int) {
+    val menuLayoutParams = this.layoutParams as ViewGroup.MarginLayoutParams
+    menuLayoutParams.setMargins(0, marginTop, 0, 0)
+    this.layoutParams = menuLayoutParams
 }
