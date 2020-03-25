@@ -1,12 +1,18 @@
 package com.disruption.moveery.repo
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.disruption.moveery.data.MovieBoundaryCallBack
 import com.disruption.moveery.data.MovieLocalCache
+import com.disruption.moveery.data.search.MovieDataSource
 import com.disruption.moveery.models.Movie
+import com.disruption.moveery.models.SearchedMovie
 import com.disruption.moveery.utils.Constants
+import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 
 /**
@@ -25,5 +31,35 @@ class MovieRepo @Inject constructor(
         return LivePagedListBuilder(dataSourceFactory, Constants.DATABASE_PAGE_SIZE)
             .setBoundaryCallback(boundaryCallBack)
             .build()
+    }
+
+    fun getSearchedMovieList(
+        queryLiveData: MutableLiveData<String>,
+        scope: CoroutineScope
+    ): LiveData<PagedList<SearchedMovie>> {
+
+        val config = PagedList.Config.Builder()
+            .setPageSize(20)
+            .setEnablePlaceholders(false)
+            .build()
+
+        return Transformations.switchMap(queryLiveData) {
+            initializedPagedListBuilder(config, it, scope).build()
+        }
+    }
+
+    private fun initializedPagedListBuilder(
+        config: PagedList.Config,
+        query: String,
+        scope: CoroutineScope
+    ):
+            LivePagedListBuilder<Int, SearchedMovie> {
+
+        val dataSourceFactory = object : DataSource.Factory<Int, SearchedMovie>() {
+            override fun create(): DataSource<Int, SearchedMovie> {
+                return MovieDataSource(scope, query)
+            }
+        }
+        return LivePagedListBuilder(dataSourceFactory, config)
     }
 }

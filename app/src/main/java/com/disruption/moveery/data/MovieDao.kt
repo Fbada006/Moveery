@@ -18,4 +18,8 @@ interface MovieDao {
     /**Uses coroutines to insert the data into the db on a different thread*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllMovies(movies: List<Movie>)
+//
+//    /**Empty the database if we are getting new generalArticles*/
+//    @Query("DELETE FROM movies")
+//    suspend fun clearMoviesTable()
 }

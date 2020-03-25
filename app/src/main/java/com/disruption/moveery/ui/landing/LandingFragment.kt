@@ -18,7 +18,6 @@ import com.disruption.moveery.databinding.FragmentLandingBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.listenToUserScrolls
-import com.disruption.moveery.utils.setMarginTop
 import javax.inject.Inject
 
 

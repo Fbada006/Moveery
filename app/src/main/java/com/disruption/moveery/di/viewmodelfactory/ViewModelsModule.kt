@@ -1,9 +1,9 @@
 package com.disruption.moveery.di.viewmodelfactory
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.disruption.moveery.di.ViewModelKey
 import com.disruption.moveery.ui.landing.LandingViewModel
+import com.disruption.moveery.ui.search.SearchViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -17,5 +17,11 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(LandingViewModel::class)
     abstract fun bindLandingViewModel(viewModel: LandingViewModel): ViewModel
+
+    /**Create the [SearchViewModel]*/
+    @Binds
+    @IntoMap
+    @ViewModelKey(SearchViewModel::class)
+    abstract fun bindSearchViewModel(viewModel: SearchViewModel): ViewModel
 
 }

@@ -1,15 +1,12 @@
 package com.disruption.moveery.ui.details
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import androidx.palette.graphics.Palette
 import com.bumptech.glide.RequestManager
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentDetailsBinding
@@ -18,8 +15,6 @@ import com.disruption.moveery.models.Movie
 import com.disruption.moveery.models.SearchedMovie
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
-import com.disruption.moveery.utils.makeStatusBarTransparent
-import com.disruption.moveery.utils.setMarginTop
 import javax.inject.Inject
 
 /**
@@ -106,17 +101,17 @@ class DetailsFragment : Fragment(), Injectable {
         }
     }
 
-    private fun setStatusBarColorFromPoster(posterBitmap: Bitmap) {
-        Palette.from(posterBitmap).generate { palette ->
-            val darkVibrantColor = palette?.getDarkVibrantColor(
-                ContextCompat.getColor(
-                    requireContext(),
-                    R.color.colorPrimaryDark
-                )
-            )
-
-            activity?.window?.statusBarColor =
-                ContextCompat.getColor(requireContext(), darkVibrantColor!!)
-        }
-    }
+//    private fun setStatusBarColorFromPoster(posterBitmap: Bitmap) {
+//        Palette.from(posterBitmap).generate { palette ->
+//            val darkVibrantColor = palette?.getDarkVibrantColor(
+//                ContextCompat.getColor(
+//                    requireContext(),
+//                    R.color.colorPrimaryDark
+//                )
+//            )
+//
+//            activity?.window?.statusBarColor =
+//                ContextCompat.getColor(requireContext(), darkVibrantColor!!)
+//        }
+//    }
 }

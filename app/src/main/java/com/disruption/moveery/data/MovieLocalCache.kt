@@ -6,7 +6,7 @@ import com.disruption.moveery.models.Result
 import javax.inject.Inject
 
 /**This class gets the data from the API and saves it to the offline db*/
-class MovieLocalCache @Inject constructor (private val movieRoomDatabase: MovieRoomDatabase) {
+class MovieLocalCache @Inject constructor(private val movieRoomDatabase: MovieRoomDatabase) {
 
     /**Room executes all queries on a separate thread.*/
     fun getMovieData(): DataSource.Factory<Int, Movie> = movieRoomDatabase.movieDao.getAllMovies()

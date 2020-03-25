@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
@@ -17,13 +18,15 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentSearchBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.utils.listenToUserScrolls
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass to handle searching [Movie] objects.
  */
 class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
-    val TAG = "SearchFragment"
-    private val viewModel by viewModels<SearchViewModel>()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel by viewModels<SearchViewModel> { viewModelFactory }
     private lateinit var binding: FragmentSearchBinding
     private lateinit var adapter: SearchPageAdapter
 
