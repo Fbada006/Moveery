@@ -23,7 +23,6 @@ class SearchViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
         queryLiveData.postValue(queryString)
     }
 
-    /* The internal MutableLiveData that stores the event of a click input */
     private val _navigateToSelectedMovie = MutableLiveData<Event<SearchedMovie>>()
 
     /**The external immutable LiveData for the click event*/
