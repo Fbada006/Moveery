@@ -1,10 +1,12 @@
-package com.disruption.moveery.models
+package com.disruption.moveery.models.altmovie
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
+/**This is the alternative POJO using GSON and handles searched movies as well as
+ * similar movies*/
 @Parcelize
-data class SearchedMovie(
+data class AltMovie(
     val adult: Boolean?,
     val backdrop_path: String?,
     val genre_ids: List<Int>?,

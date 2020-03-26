@@ -2,7 +2,7 @@ package com.disruption.moveery.data
 
 import android.util.Log
 import androidx.paging.PagedList
-import com.disruption.moveery.models.Movie
+import com.disruption.moveery.models.movie.Movie
 import com.disruption.moveery.network.MovieApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch

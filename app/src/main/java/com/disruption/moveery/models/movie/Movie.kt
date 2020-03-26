@@ -1,4 +1,4 @@
-package com.disruption.moveery.models
+package com.disruption.moveery.models.movie
 
 import android.os.Parcelable
 import androidx.room.Entity

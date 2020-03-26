@@ -11,8 +11,8 @@ import com.bumptech.glide.RequestManager
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentDetailsBinding
 import com.disruption.moveery.di.Injectable
-import com.disruption.moveery.models.Movie
-import com.disruption.moveery.models.SearchedMovie
+import com.disruption.moveery.models.movie.Movie
+import com.disruption.moveery.models.altmovie.AltMovie
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
 import javax.inject.Inject
@@ -35,7 +35,7 @@ class DetailsFragment : Fragment(), Injectable {
         binding = FragmentDetailsBinding.inflate(inflater)
 
         val movie = args.movie
-        val searchedMovie = args.searchedMovie
+        val searchedMovie = args.altMovie
         if (movie != null) displayMovieDetails(movie)
         if (searchedMovie != null) displaySearchedMovieDetails(searchedMovie)
 
@@ -66,7 +66,7 @@ class DetailsFragment : Fragment(), Injectable {
     }
 
     /**Display the passed in movie from the [args]*/
-    private fun displaySearchedMovieDetails(movie: SearchedMovie?) {
+    private fun displaySearchedMovieDetails(movie: AltMovie?) {
         val posterUrl = Constants.IMAGE_BASE_URL + movie?.poster_path
 
         setMoviePoster(posterUrl)

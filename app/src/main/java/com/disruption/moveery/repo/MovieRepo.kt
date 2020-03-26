@@ -8,9 +8,9 @@ import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.disruption.moveery.data.MovieBoundaryCallBack
 import com.disruption.moveery.data.MovieLocalCache
-import com.disruption.moveery.data.search.MovieDataSource
-import com.disruption.moveery.models.Movie
-import com.disruption.moveery.models.SearchedMovie
+import com.disruption.moveery.data.search.SearchedMovieDataSource
+import com.disruption.moveery.models.movie.Movie
+import com.disruption.moveery.models.altmovie.AltMovie
 import com.disruption.moveery.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
@@ -36,7 +36,7 @@ class MovieRepo @Inject constructor(
     fun getSearchedMovieList(
         queryLiveData: MutableLiveData<String>,
         scope: CoroutineScope
-    ): LiveData<PagedList<SearchedMovie>> {
+    ): LiveData<PagedList<AltMovie>> {
 
         val config = PagedList.Config.Builder()
             .setPageSize(20)
@@ -53,11 +53,11 @@ class MovieRepo @Inject constructor(
         query: String,
         scope: CoroutineScope
     ):
-            LivePagedListBuilder<Int, SearchedMovie> {
+            LivePagedListBuilder<Int, AltMovie> {
 
-        val dataSourceFactory = object : DataSource.Factory<Int, SearchedMovie>() {
-            override fun create(): DataSource<Int, SearchedMovie> {
-                return MovieDataSource(scope, query)
+        val dataSourceFactory = object : DataSource.Factory<Int, AltMovie>() {
+            override fun create(): DataSource<Int, AltMovie> {
+                return SearchedMovieDataSource(scope, query)
             }
         }
         return LivePagedListBuilder(dataSourceFactory, config)

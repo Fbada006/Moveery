@@ -2,22 +2,23 @@ package com.disruption.moveery.data.search
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
-import com.disruption.moveery.models.SearchedMovie
+import com.disruption.moveery.models.altmovie.AltMovie
 import com.disruption.moveery.network.MovieApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
-class MovieDataSource(private val scope: CoroutineScope, private val query: String) :
-    PageKeyedDataSource<Int, SearchedMovie>() {
-    val TAG = "MovieDataSource"
+//TODO: Use Firebase logging here
+class SearchedMovieDataSource(private val scope: CoroutineScope, private val query: String) :
+    PageKeyedDataSource<Int, AltMovie>() {
+    private val TAG = "SearchedMovieDataSource"
 
     private val movieApiService = MovieApi.movieRetrofitService
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, SearchedMovie>
+        callback: LoadInitialCallback<Int, AltMovie>
     ) {
         scope.launch {
             try {
@@ -27,6 +28,8 @@ class MovieDataSource(private val scope: CoroutineScope, private val query: Stri
                     val result = response.body()
                     val movieList = result?.movieList
                     callback.onResult(movieList ?: listOf(), null, 2)
+                } else {
+                    Log.e(TAG, "Response is not successful----------- ")
                 }
 
             } catch (ex: Exception) {
@@ -35,7 +38,7 @@ class MovieDataSource(private val scope: CoroutineScope, private val query: Stri
         }
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, SearchedMovie>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, AltMovie>) {
         scope.launch {
             try {
                 val response = movieApiService.getMoviesByKeyword(query = query, page = params.key)
@@ -44,6 +47,8 @@ class MovieDataSource(private val scope: CoroutineScope, private val query: Stri
                     val result = response.body()
                     val movieList = result?.movieList
                     callback.onResult(movieList ?: listOf(), params.key + 1)
+                } else {
+                    Log.e(TAG, "Response is not successful----------- ")
                 }
             } catch (ex: Exception) {
                 Log.e(
@@ -54,13 +59,7 @@ class MovieDataSource(private val scope: CoroutineScope, private val query: Stri
         }
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, SearchedMovie>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, AltMovie>) {
         //Ignore this shite for now
-    }
-
-    @ExperimentalCoroutinesApi
-    override fun invalidate() {
-        super.invalidate()
-        scope.cancel()
     }
 }

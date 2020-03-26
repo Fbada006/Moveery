@@ -29,11 +29,11 @@
         tools:layout="@layout/fragment_details">
         <argument
             android:name="movie"
-            app:argType="com.disruption.moveery.models.Movie"
+            app:argType="com.disruption.moveery.models.movie.Movie"
             app:nullable="true" />
         <argument
-            android:name="searchedMovie"
-            app:argType="com.disruption.moveery.models.SearchedMovie"
+            android:name="altMovie"
+            app:argType="com.disruption.moveery.models.altmovie.AltMovie"
             app:nullable="true" />
     </fragment>
 

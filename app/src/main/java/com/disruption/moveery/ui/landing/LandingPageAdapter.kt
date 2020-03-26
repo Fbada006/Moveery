@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
-import com.disruption.moveery.models.Movie
+import com.disruption.moveery.models.movie.Movie
 import com.disruption.moveery.utils.Constants
 
 /**Adapter to handle displaying [Movie] objects in the [LandingFragment]*/

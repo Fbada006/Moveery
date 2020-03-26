@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
-import com.disruption.moveery.models.SearchedMovie
+import com.disruption.moveery.models.altmovie.AltMovie
 import com.disruption.moveery.utils.Constants
 
-/**Adapter to handle displaying [SearchedMovie] objects in the [SearchFragment]*/
+/**Adapter to handle displaying [AltMovie] objects in the [SearchFragment]*/
 class SearchPageAdapter(
     private val context: Context,
     private val onClickListener: OnSearchedMovieClickListener
 ) :
-    PagedListAdapter<SearchedMovie, SearchPageAdapter.MovieViewHolder>(MovieDiffCallback()) {
+    PagedListAdapter<AltMovie, SearchPageAdapter.MovieViewHolder>(MovieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder.from(parent)
@@ -34,7 +34,7 @@ class SearchPageAdapter(
         holder.bind(context, movie)
     }
 
-    /**The [RecyclerView.ViewHolder] for the [SearchedMovie] objects*/
+    /**The [RecyclerView.ViewHolder] for the [AltMovie] objects*/
     class MovieViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val movieTitle =
             itemView.findViewById<TextView>(R.id.tv_movie_title)
@@ -50,7 +50,7 @@ class SearchPageAdapter(
             itemView.findViewById<AppCompatImageView>(R.id.iv_movie_poster)
 
         /**Binds data to the [MovieViewHolder]*/
-        fun bind(context: Context, item: SearchedMovie) {
+        fun bind(context: Context, item: AltMovie) {
             movieTitle.text = item.title
             movieOverview.text = item.overview
             movieYear.text =
@@ -87,18 +87,18 @@ class SearchPageAdapter(
 
 /** DiffUtil is a utility class that calculates the difference between two lists and outputs a
  * list of update operations that converts the first list into the second one.*/
-class MovieDiffCallback : DiffUtil.ItemCallback<SearchedMovie>() {
-    override fun areItemsTheSame(oldItem: SearchedMovie, newItem: SearchedMovie): Boolean {
+class MovieDiffCallback : DiffUtil.ItemCallback<AltMovie>() {
+    override fun areItemsTheSame(oldItem: AltMovie, newItem: AltMovie): Boolean {
         return oldItem.id == newItem.id
     }
 
-    override fun areContentsTheSame(oldItem: SearchedMovie, newItem: SearchedMovie): Boolean {
+    override fun areContentsTheSame(oldItem: AltMovie, newItem: AltMovie): Boolean {
         return oldItem == newItem
     }
 }
 
-/**The click listener for the RV passing the clicked [SearchedMovie] in a lambda*/
-class OnSearchedMovieClickListener(val clickListener: (movie: SearchedMovie) -> Unit) {
+/**The click listener for the RV passing the clicked [AltMovie] in a lambda*/
+class OnSearchedMovieClickListener(val clickListener: (movie: AltMovie) -> Unit) {
     /**Called when a movie is clicked*/
-    fun onClick(movie: SearchedMovie) = clickListener(movie)
+    fun onClick(movie: AltMovie) = clickListener(movie)
 }
