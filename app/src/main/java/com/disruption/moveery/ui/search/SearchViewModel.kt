@@ -15,7 +15,7 @@ class SearchViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
     private val queryLiveData = MutableLiveData<String>()
 
     val movieList =
-        repo.getSearchedMovieList(queryLiveData, viewModelScope)
+        repo.getSearchedMovieList(queryLiveData)
 
     /**
      * Search a movie based on a query string.

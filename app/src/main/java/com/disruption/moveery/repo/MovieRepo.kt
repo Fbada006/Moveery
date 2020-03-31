@@ -9,8 +9,9 @@ import androidx.paging.PagedList
 import com.disruption.moveery.data.MovieBoundaryCallBack
 import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.search.SearchedMovieDataSource
-import com.disruption.moveery.models.movie.Movie
+import com.disruption.moveery.data.similar.SimilarMovieDataSource
 import com.disruption.moveery.models.altmovie.AltMovie
+import com.disruption.moveery.models.movie.Movie
 import com.disruption.moveery.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
@@ -21,8 +22,14 @@ import javax.inject.Inject
  */
 class MovieRepo @Inject constructor(
     private val movieLocalCache: MovieLocalCache,
-    private val boundaryCallBack: MovieBoundaryCallBack
+    private val boundaryCallBack: MovieBoundaryCallBack,
+    private val scope: CoroutineScope
 ) {
+
+    private val config = PagedList.Config.Builder()
+        .setPageSize(20)
+        .setEnablePlaceholders(false)
+        .build()
 
     /**Get all the movies to from the local storage*/
     fun getAllMovies(): LiveData<PagedList<Movie>> {
@@ -33,23 +40,27 @@ class MovieRepo @Inject constructor(
             .build()
     }
 
+    /**Returns the searched movie with paging involved*/
     fun getSearchedMovieList(
-        queryLiveData: MutableLiveData<String>,
-        scope: CoroutineScope
+        queryLiveData: MutableLiveData<String>
     ): LiveData<PagedList<AltMovie>> {
 
-        val config = PagedList.Config.Builder()
-            .setPageSize(20)
-            .setEnablePlaceholders(false)
-            .build()
-
         return Transformations.switchMap(queryLiveData) {
-            initializedPagedListBuilder(config, it, scope).build()
+            initializeSearchPagedListBuilder(it, scope).build()
         }
     }
 
-    private fun initializedPagedListBuilder(
-        config: PagedList.Config,
+    /**Returns similar movies with paging to the [DetailsFragment]*/
+    fun getSimilarMovieList(
+        movieIdLiveData: MutableLiveData<Int>
+    ): LiveData<PagedList<AltMovie>> {
+
+        return Transformations.switchMap(movieIdLiveData) {
+            initializeSimilarPagedListBuilder(it, scope).build()
+        }
+    }
+
+    private fun initializeSearchPagedListBuilder(
         query: String,
         scope: CoroutineScope
     ):
@@ -58,6 +69,20 @@ class MovieRepo @Inject constructor(
         val dataSourceFactory = object : DataSource.Factory<Int, AltMovie>() {
             override fun create(): DataSource<Int, AltMovie> {
                 return SearchedMovieDataSource(scope, query)
+            }
+        }
+        return LivePagedListBuilder(dataSourceFactory, config)
+    }
+
+    private fun initializeSimilarPagedListBuilder(
+        movieId: Int,
+        scope: CoroutineScope
+    ):
+            LivePagedListBuilder<Int, AltMovie> {
+
+        val dataSourceFactory = object : DataSource.Factory<Int, AltMovie>() {
+            override fun create(): DataSource<Int, AltMovie> {
+                return SimilarMovieDataSource(scope, movieId)
             }
         }
         return LivePagedListBuilder(dataSourceFactory, config)

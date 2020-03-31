@@ -5,12 +5,12 @@ import androidx.paging.PageKeyedDataSource
 import com.disruption.moveery.models.altmovie.AltMovie
 import com.disruption.moveery.network.MovieApi
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 //TODO: Use Firebase logging here
-class SearchedMovieDataSource(private val scope: CoroutineScope, private val query: String) :
+class SearchedMovieDataSource(private val scope: CoroutineScope,
+                              private val query: String) :
     PageKeyedDataSource<Int, AltMovie>() {
     private val TAG = "SearchedMovieDataSource"
 
@@ -28,8 +28,10 @@ class SearchedMovieDataSource(private val scope: CoroutineScope, private val que
                     val result = response.body()
                     val movieList = result?.movieList
                     callback.onResult(movieList ?: listOf(), null, 2)
+                    Log.e(TAG, "Load initial for search a success: -----------$movieList")
+
                 } else {
-                    Log.e(TAG, "Response is not successful----------- ")
+                    Log.e(TAG, "Response is not successful----------- ${response.message()} ")
                 }
 
             } catch (ex: Exception) {
@@ -48,7 +50,7 @@ class SearchedMovieDataSource(private val scope: CoroutineScope, private val que
                     val movieList = result?.movieList
                     callback.onResult(movieList ?: listOf(), params.key + 1)
                 } else {
-                    Log.e(TAG, "Response is not successful----------- ")
+                    Log.e(TAG, "Response is not successful----------- ${response.errorBody()}")
                 }
             } catch (ex: Exception) {
                 Log.e(
@@ -61,5 +63,10 @@ class SearchedMovieDataSource(private val scope: CoroutineScope, private val que
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, AltMovie>) {
         //Ignore this shite for now
+    }
+
+    override fun invalidate() {
+        super.invalidate()
+        scope.cancel()
     }
 }

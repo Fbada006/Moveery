@@ -4,29 +4,40 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentDetailsBinding
 import com.disruption.moveery.di.Injectable
-import com.disruption.moveery.models.movie.Movie
 import com.disruption.moveery.models.altmovie.AltMovie
+import com.disruption.moveery.models.movie.Movie
+import com.disruption.moveery.utils.AltMovieClickListener
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
+import com.disruption.moveery.utils.listenToUserScrolls
 import javax.inject.Inject
 
 /**
  * A fragment to show the details of the movie
  */
 class DetailsFragment : Fragment(), Injectable {
-    val TAG = "DetailsFragment"
-    private lateinit var binding: FragmentDetailsBinding
-    private val args: DetailsFragmentArgs by navArgs()
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var requestManager: RequestManager
+
+    private lateinit var binding: FragmentDetailsBinding
+    private val args: DetailsFragmentArgs by navArgs()
+    private val viewModel by viewModels<DetailsViewModel>{viewModelFactory}
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +47,33 @@ class DetailsFragment : Fragment(), Injectable {
 
         val movie = args.movie
         val searchedMovie = args.altMovie
-        if (movie != null) displayMovieDetails(movie)
-        if (searchedMovie != null) displaySearchedMovieDetails(searchedMovie)
+
+        if (movie != null) {
+            displayMovieDetails(movie)
+            viewModel.getSimilarMovies(movie.id)
+        }
+
+        if (searchedMovie != null) {
+            displaySearchedMovieDetails(searchedMovie)
+            viewModel.getSimilarMovies(searchedMovie.id)
+        }
+
+        val adapter = SimilarMovieAdapter(requireContext(), AltMovieClickListener {
+            //Do nothing for now
+        })
+
+        binding.similarMoviesList.adapter = adapter
+
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        binding.similarMoviesList.layoutManager = layoutManager
+
+        viewModel.movieList.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
+
+        //Listen to the scrolls appropriately for efficient loading with user data in mind
+        listenToUserScrolls(binding.similarMoviesList)
 
         showAndHandleBackButton()
 

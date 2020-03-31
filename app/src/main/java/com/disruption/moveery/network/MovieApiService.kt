@@ -24,15 +24,15 @@ interface MovieApiService {
     ): Deferred<Result>
 
     /**Returns similar movies on the details page*/
-    @GET("/movie/{movie_id}/similar")
-    suspend fun getSimilarMoviesAsync(
+    @GET("3/movie/{movie_id}/similar")
+    suspend fun getSimilarMovies(
         @Path("movie_id") movieId: Int,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = Constants.API_KEY
-    ): Response<Result>
+    ): Response<AltResult>
 
     /**Searches the movie*/
-    @GET("search/movie")
+    @GET("4/search/movie")
     suspend fun getMoviesByKeyword(
         @Query("query") query: String,
         @Query("page") page: Int,

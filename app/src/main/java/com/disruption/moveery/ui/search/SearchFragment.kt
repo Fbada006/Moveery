@@ -17,6 +17,7 @@ import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentSearchBinding
 import com.disruption.moveery.di.Injectable
+import com.disruption.moveery.utils.AltMovieClickListener
 import com.disruption.moveery.utils.listenToUserScrolls
 import javax.inject.Inject
 
@@ -28,7 +29,6 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel by viewModels<SearchViewModel> { viewModelFactory }
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var adapter: SearchPageAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +38,7 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
         binding = FragmentSearchBinding.inflate(inflater)
         (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
 
-        val adapter = SearchPageAdapter(requireContext(), OnSearchedMovieClickListener {
+        val adapter = SearchedMoviePageAdapter(requireContext(), AltMovieClickListener {
             viewModel.displayMovieDetails(it)
         })
 

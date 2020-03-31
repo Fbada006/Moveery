@@ -30,7 +30,6 @@
             android:maxLines="1"
             android:padding="4dp"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-
             tools:text="This is the movie title" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

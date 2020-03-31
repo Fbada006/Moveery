@@ -92,7 +92,6 @@ class AppModule {
     fun providesLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC)
 
-
     /**Provide the client*/
     @Provides
     fun providesOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient {

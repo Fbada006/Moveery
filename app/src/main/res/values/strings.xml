@@ -55,6 +55,7 @@
     <string name="movie_refresh_title">Refreshing movies</string>
 
     <string name="search">Search here</string>
+    <string name="similar_movies">Similar Movies</string>
 
 
 </resources>

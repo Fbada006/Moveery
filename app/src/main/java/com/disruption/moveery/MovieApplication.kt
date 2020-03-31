@@ -4,9 +4,7 @@ import android.app.Activity
 import android.app.Application
 import androidx.preference.PreferenceManager
 import androidx.work.*
-import com.disruption.moveery.di.AppComponent
 import com.disruption.moveery.di.AppInjector
-import com.disruption.moveery.di.DaggerAppComponent
 import com.disruption.moveery.utils.ThemeHelper
 import com.disruption.moveery.work.RefreshMovieWork
 import dagger.android.AndroidInjector

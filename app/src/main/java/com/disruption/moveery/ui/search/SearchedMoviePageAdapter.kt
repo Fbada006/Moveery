@@ -7,26 +7,29 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
 import com.disruption.moveery.models.altmovie.AltMovie
+import com.disruption.moveery.utils.AltMovieDiffCallback
 import com.disruption.moveery.utils.Constants
+import com.disruption.moveery.utils.AltMovieClickListener
 
 /**Adapter to handle displaying [AltMovie] objects in the [SearchFragment]*/
-class SearchPageAdapter(
+class SearchedMoviePageAdapter(
     private val context: Context,
-    private val onClickListener: OnSearchedMovieClickListener
+    private val onClickListener: AltMovieClickListener
 ) :
-    PagedListAdapter<AltMovie, SearchPageAdapter.MovieViewHolder>(MovieDiffCallback()) {
+    PagedListAdapter<AltMovie, SearchedMoviePageAdapter.SearchedMovieViewHolder>(
+        AltMovieDiffCallback()
+    ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        return MovieViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchedMovieViewHolder {
+        return SearchedMovieViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchedMovieViewHolder, position: Int) {
         val movie = getItem(position)!!
         holder.itemView.setOnClickListener {
             onClickListener.onClick(movie)
@@ -35,7 +38,7 @@ class SearchPageAdapter(
     }
 
     /**The [RecyclerView.ViewHolder] for the [AltMovie] objects*/
-    class MovieViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class SearchedMovieViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val movieTitle =
             itemView.findViewById<TextView>(R.id.tv_movie_title)
         private val movieOverview =
@@ -49,7 +52,7 @@ class SearchPageAdapter(
         private val movieImage =
             itemView.findViewById<AppCompatImageView>(R.id.iv_movie_poster)
 
-        /**Binds data to the [MovieViewHolder]*/
+        /**Binds data to the [SearchedMovieViewHolder]*/
         fun bind(context: Context, item: AltMovie) {
             movieTitle.text = item.title
             movieOverview.text = item.overview
@@ -75,30 +78,13 @@ class SearchPageAdapter(
 
         companion object {
             /**For inflating the layout in [onCreateViewHolder]*/
-            fun from(parent: ViewGroup): MovieViewHolder {
+            fun from(parent: ViewGroup): SearchedMovieViewHolder {
                 val view =
                     LayoutInflater.from(parent.context)
                         .inflate(R.layout.movie_search_item, parent, false)
-                return MovieViewHolder(view)
+                return SearchedMovieViewHolder(view)
             }
         }
     }
 }
 
-/** DiffUtil is a utility class that calculates the difference between two lists and outputs a
- * list of update operations that converts the first list into the second one.*/
-class MovieDiffCallback : DiffUtil.ItemCallback<AltMovie>() {
-    override fun areItemsTheSame(oldItem: AltMovie, newItem: AltMovie): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: AltMovie, newItem: AltMovie): Boolean {
-        return oldItem == newItem
-    }
-}
-
-/**The click listener for the RV passing the clicked [AltMovie] in a lambda*/
-class OnSearchedMovieClickListener(val clickListener: (movie: AltMovie) -> Unit) {
-    /**Called when a movie is clicked*/
-    fun onClick(movie: AltMovie) = clickListener(movie)
-}
