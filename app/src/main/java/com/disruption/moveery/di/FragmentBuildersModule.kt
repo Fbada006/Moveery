@@ -1,8 +1,8 @@
 package com.disruption.moveery.di
 
-import com.disruption.moveery.ui.details.DetailsFragment
-import com.disruption.moveery.ui.landing.LandingFragment
-import com.disruption.moveery.ui.search.SearchFragment
+import com.disruption.moveery.ui.details.movies.MovieDetailsFragment
+import com.disruption.moveery.ui.landing.movies.MoviesLandingFragment
+import com.disruption.moveery.ui.search.movies.MovieSearchFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -10,15 +10,15 @@ import dagger.android.ContributesAndroidInjector
 @Module
 abstract class FragmentBuildersModule {
 
-    /**Inject [LandingFragment]*/
+    /**Inject [MoviesLandingFragment]*/
     @ContributesAndroidInjector
-    abstract fun contributesLandingFragment(): LandingFragment
+    abstract fun contributesLandingFragment(): MoviesLandingFragment
 
-    /**Inject [DetailsFragment]*/
+    /**Inject [MovieDetailsFragment]*/
     @ContributesAndroidInjector
-    abstract fun contributesDetailsFragment(): DetailsFragment
+    abstract fun contributesDetailsFragment(): MovieDetailsFragment
 
-    /**Inject [SearchFragment]*/
+    /**Inject [MovieSearchFragment]*/
     @ContributesAndroidInjector
-    abstract fun contributesSearchFragment(): SearchFragment
+    abstract fun contributesSearchFragment(): MovieSearchFragment
 }

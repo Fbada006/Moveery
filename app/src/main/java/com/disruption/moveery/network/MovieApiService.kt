@@ -1,7 +1,7 @@
 package com.disruption.moveery.network
 
-import com.disruption.moveery.models.movie.Result
-import com.disruption.moveery.models.altmovie.AltResult
+import com.disruption.moveery.models.movies.altmovie.AltResult
+import com.disruption.moveery.models.movies.movie.Result
 import com.disruption.moveery.utils.Constants
 import kotlinx.coroutines.Deferred
 import retrofit2.Response

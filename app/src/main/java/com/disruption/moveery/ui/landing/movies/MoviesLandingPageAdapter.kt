@@ -1,4 +1,4 @@
-package com.disruption.moveery.ui.landing
+package com.disruption.moveery.ui.landing.movies
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,18 +12,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
-import com.disruption.moveery.models.movie.Movie
+import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.utils.Constants
 
-/**Adapter to handle displaying [Movie] objects in the [LandingFragment]*/
+/**Adapter to handle displaying [Movie] objects in the [MoviesLandingFragment]*/
 class LandingPageAdapter(
     private val context: Context,
     private val onClickListener: OnMovieClickListener
 ) :
-    PagedListAdapter<Movie, LandingPageAdapter.MovieViewHolder>(MovieDiffCallback()) {
+    PagedListAdapter<Movie, LandingPageAdapter.MovieViewHolder>(
+        MovieDiffCallback()
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        return MovieViewHolder.from(parent)
+        return MovieViewHolder.from(
+            parent
+        )
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
@@ -60,7 +64,9 @@ class LandingPageAdapter(
             fun from(parent: ViewGroup): MovieViewHolder {
                 val view =
                     LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
-                return MovieViewHolder(view)
+                return MovieViewHolder(
+                    view
+                )
             }
         }
     }

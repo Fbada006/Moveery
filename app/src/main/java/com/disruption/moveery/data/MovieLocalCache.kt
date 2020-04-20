@@ -1,8 +1,8 @@
 package com.disruption.moveery.data
 
 import androidx.paging.DataSource
-import com.disruption.moveery.models.movie.Movie
-import com.disruption.moveery.models.movie.Result
+import com.disruption.moveery.models.movies.movie.Movie
+import com.disruption.moveery.models.movies.movie.Result
 import javax.inject.Inject
 
 /**This class gets the data from the API and saves it to the offline db*/

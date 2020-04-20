@@ -1,10 +1,9 @@
-package com.disruption.moveery.ui.landing
+package com.disruption.moveery.ui.landing.movies
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -14,33 +13,34 @@ import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.disruption.moveery.R
-import com.disruption.moveery.databinding.FragmentLandingBinding
+import com.disruption.moveery.databinding.FragmentLandingMoviesBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.listenToUserScrolls
 import javax.inject.Inject
 
-
 /**The fragment that is first launched when the user opens the app*/
-class LandingFragment : Fragment(), Injectable {
+class MoviesLandingFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private val viewModel by viewModels<LandingViewModel> { viewModelFactory }
+    private val viewModel by viewModels<MoviesLandingViewModel> { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentLandingBinding.inflate(inflater)
+        val binding = FragmentLandingMoviesBinding.inflate(inflater)
         setHasOptionsMenu(true)
         (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
 
-        val adapter = LandingPageAdapter(requireContext(), OnMovieClickListener {
-            viewModel.displayMovieDetails(it)
-        })
+        val adapter = LandingPageAdapter(
+            requireContext(),
+            OnMovieClickListener {
+                viewModel.displayMovieDetails(it)
+            })
 
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL)
         carouselManager.setPostLayoutListener(CarouselZoomPostLayoutListener())
@@ -60,7 +60,7 @@ class LandingFragment : Fragment(), Injectable {
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { movie ->
                 findNavController().navigate(
-                    LandingFragmentDirections.actionDestLandingFragmentToDetailsFragment(
+                    MoviesLandingFragmentDirections.actionDestLandingFragmentToDetailsFragment(
                         movie,
                         null
                     )
@@ -86,7 +86,7 @@ class LandingFragment : Fragment(), Injectable {
                 true
             }
             R.id.action_search -> {
-                findNavController().navigate(LandingFragmentDirections.actionDestLandingFragmentToDestSearchFragment())
+                findNavController().navigate(MoviesLandingFragmentDirections.actionDestLandingFragmentToDestSearchFragment())
                 true
             }
             else -> super.onOptionsItemSelected(item)

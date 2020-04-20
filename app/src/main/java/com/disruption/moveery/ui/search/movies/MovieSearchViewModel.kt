@@ -1,16 +1,15 @@
-package com.disruption.moveery.ui.search
+package com.disruption.moveery.ui.search.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.disruption.moveery.models.altmovie.AltMovie
+import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.repo.MovieRepo
 import com.disruption.moveery.utils.Event
 import javax.inject.Inject
 
-/**[ViewModel] to supply data to the [SearchFragment]*/
-class SearchViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
+/**[ViewModel] to supply data to the [MovieSearchFragment]*/
+class MovieSearchViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
 
     private val queryLiveData = MutableLiveData<String>()
 

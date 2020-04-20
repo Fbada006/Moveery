@@ -2,9 +2,9 @@ package com.disruption.moveery.di.viewmodelfactory
 
 import androidx.lifecycle.ViewModel
 import com.disruption.moveery.di.ViewModelKey
-import com.disruption.moveery.ui.details.DetailsViewModel
-import com.disruption.moveery.ui.landing.LandingViewModel
-import com.disruption.moveery.ui.search.SearchViewModel
+import com.disruption.moveery.ui.details.movies.MovieDetailsViewModel
+import com.disruption.moveery.ui.landing.movies.MoviesLandingViewModel
+import com.disruption.moveery.ui.search.movies.MovieSearchViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -13,21 +13,21 @@ import dagger.multibindings.IntoMap
 @Module
 abstract class ViewModelsModule {
 
-    /**Create the [LandingViewModel]*/
+    /**Create the [MoviesLandingViewModel]*/
     @Binds
     @IntoMap
-    @ViewModelKey(LandingViewModel::class)
-    abstract fun bindLandingViewModel(viewModel: LandingViewModel): ViewModel
+    @ViewModelKey(MoviesLandingViewModel::class)
+    abstract fun bindLandingViewModel(viewModelMovies: MoviesLandingViewModel): ViewModel
 
-    /**Create the [SearchViewModel]*/
+    /**Create the [MovieSearchViewModel]*/
     @Binds
     @IntoMap
-    @ViewModelKey(SearchViewModel::class)
-    abstract fun bindSearchViewModel(viewModel: SearchViewModel): ViewModel
+    @ViewModelKey(MovieSearchViewModel::class)
+    abstract fun bindSearchViewModel(viewModelMovie: MovieSearchViewModel): ViewModel
 
-    /**Create the [DetailsViewModel]*/
+    /**Create the [MovieDetailsViewModel]*/
     @Binds
     @IntoMap
-    @ViewModelKey(DetailsViewModel::class)
-    abstract fun bindDetailsViewModel(viewModel: DetailsViewModel): ViewModel
+    @ViewModelKey(MovieDetailsViewModel::class)
+    abstract fun bindDetailsViewModel(viewModelMovie: MovieDetailsViewModel): ViewModel
 }
