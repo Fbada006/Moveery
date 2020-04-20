@@ -1,10 +1,9 @@
-package com.disruption.moveery.ui.details
+package com.disruption.moveery.ui.details.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,10 +13,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
 import com.disruption.moveery.R
-import com.disruption.moveery.databinding.FragmentDetailsBinding
+import com.disruption.moveery.databinding.FragmentMovieDetailsBinding
 import com.disruption.moveery.di.Injectable
-import com.disruption.moveery.models.altmovie.AltMovie
-import com.disruption.moveery.models.movie.Movie
+import com.disruption.moveery.models.movies.altmovie.AltMovie
+import com.disruption.moveery.models.movies.movie.Movie
+
 import com.disruption.moveery.utils.AltMovieClickListener
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
@@ -27,7 +27,7 @@ import javax.inject.Inject
 /**
  * A fragment to show the details of the movie
  */
-class DetailsFragment : Fragment(), Injectable {
+class MovieDetailsFragment : Fragment(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -35,15 +35,15 @@ class DetailsFragment : Fragment(), Injectable {
     @Inject
     lateinit var requestManager: RequestManager
 
-    private lateinit var binding: FragmentDetailsBinding
-    private val args: DetailsFragmentArgs by navArgs()
-    private val viewModel by viewModels<DetailsViewModel>{viewModelFactory}
+    private lateinit var binding: FragmentMovieDetailsBinding
+    private val args: MovieDetailsFragmentArgs by navArgs()
+    private val viewModel by viewModels<MovieDetailsViewModel> { viewModelFactory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDetailsBinding.inflate(inflater)
+        binding = FragmentMovieDetailsBinding.inflate(inflater)
 
         val movie = args.movie
         val searchedMovie = args.altMovie
@@ -58,9 +58,12 @@ class DetailsFragment : Fragment(), Injectable {
             viewModel.getSimilarMovies(searchedMovie.id)
         }
 
-        val adapter = SimilarMovieAdapter(requireContext(), AltMovieClickListener {
-            //Do nothing for now
-        })
+        val adapter =
+            MovieSimilarMovieAdapter(
+                requireContext(),
+                AltMovieClickListener {
+                    //Do nothing for now
+                })
 
         binding.similarMoviesList.adapter = adapter
 

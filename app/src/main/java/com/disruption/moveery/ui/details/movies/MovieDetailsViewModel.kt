@@ -1,15 +1,15 @@
-package com.disruption.moveery.ui.details
+package com.disruption.moveery.ui.details.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
-import com.disruption.moveery.models.altmovie.AltMovie
+import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.repo.MovieRepo
 import javax.inject.Inject
 
-/**The viewModel to display data in the [DetailsFragment]*/
-class DetailsViewModel @Inject constructor(private val repo: MovieRepo) : ViewModel() {
+/**The viewModel to display data in the [MovieDetailsFragment]*/
+class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : ViewModel() {
     val TAG = "DetailsViewModel"
 
     private val movieIdLiveData = MutableLiveData<Int>()

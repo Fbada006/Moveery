@@ -1,17 +1,7 @@
 package com.disruption.moveery.utils
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.disruption.moveery.R
-import com.disruption.moveery.models.altmovie.AltMovie
+import com.disruption.moveery.models.movies.altmovie.AltMovie
 
 /** DiffUtil is a utility class that calculates the difference between two lists and outputs a
  * list of update operations that converts the first list into the second one.*/

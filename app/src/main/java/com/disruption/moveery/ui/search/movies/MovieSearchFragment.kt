@@ -1,4 +1,4 @@
-package com.disruption.moveery.ui.search
+package com.disruption.moveery.ui.search.movies
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,7 +15,7 @@ import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.disruption.moveery.R
-import com.disruption.moveery.databinding.FragmentSearchBinding
+import com.disruption.moveery.databinding.FragmentMovieSearchBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.utils.AltMovieClickListener
 import com.disruption.moveery.utils.listenToUserScrolls
@@ -24,23 +24,27 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass to handle searching [Movie] objects.
  */
-class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
+class MovieSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel by viewModels<SearchViewModel> { viewModelFactory }
-    private lateinit var binding: FragmentSearchBinding
+    private val viewModel by viewModels<MovieSearchViewModel> { viewModelFactory }
+    private lateinit var binding: FragmentMovieSearchBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentSearchBinding.inflate(inflater)
+        binding = FragmentMovieSearchBinding.inflate(inflater)
         (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
 
-        val adapter = SearchedMoviePageAdapter(requireContext(), AltMovieClickListener {
-            viewModel.displayMovieDetails(it)
-        })
+        val adapter =
+            SearchedMoviePageAdapter(
+                requireContext(),
+                AltMovieClickListener {
+                    viewModel.displayMovieDetails(it)
+                })
 
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.VERTICAL)
         carouselManager.setPostLayoutListener(CarouselZoomPostLayoutListener())
@@ -60,7 +64,7 @@ class SearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListener {
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { movie ->
                 findNavController().navigate(
-                    SearchFragmentDirections.actionDestSearchFragmentToDestDetailsFragment(
+                    MovieSearchFragmentDirections.actionDestSearchFragmentToDestDetailsFragment(
                         null,
                         movie
                     )

@@ -1,4 +1,4 @@
-package com.disruption.moveery.models.altmovie
+package com.disruption.moveery.models.movies.altmovie
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

@@ -10,8 +10,8 @@ import com.disruption.moveery.data.MovieBoundaryCallBack
 import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.search.SearchedMovieDataSource
 import com.disruption.moveery.data.similar.SimilarMovieDataSource
-import com.disruption.moveery.models.altmovie.AltMovie
-import com.disruption.moveery.models.movie.Movie
+import com.disruption.moveery.models.movies.altmovie.AltMovie
+import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
