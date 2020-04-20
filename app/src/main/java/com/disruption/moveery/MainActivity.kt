@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         navController = findNavController(R.id.main_nav_host_fragment)
         navController.addOnDestinationChangedListener { _: NavController?, destination: NavDestination, _: Bundle? ->
             if (destination.id == R.id.dest_details_fragment){
-
+                //TODO
             }
         }
     }

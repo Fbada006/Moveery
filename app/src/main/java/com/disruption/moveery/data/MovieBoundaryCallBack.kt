@@ -17,7 +17,7 @@ class MovieBoundaryCallBack @Inject constructor(
     private val movieRetrofitService: MovieApiService
 ) :
     PagedList.BoundaryCallback<Movie>() {
-    val TAG = "MovieBoundaryCallBack"
+    private val TAG = "MovieBoundaryCallBack"
 
     // keep the last requested page. When the request is successful, increment the page number.
     private var lastRequestedPage = 1

@@ -9,7 +9,7 @@ import com.disruption.moveery.repo.MovieRepo
 import javax.inject.Inject
 
 /**The viewModel to display data in the [MovieDetailsFragment]*/
-class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : ViewModel() {
+class MovieDetailsViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
     val TAG = "DetailsViewModel"
 
     private val movieIdLiveData = MutableLiveData<Int>()
