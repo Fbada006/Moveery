@@ -8,14 +8,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.disruption.moveery.MovieApplication
 import com.disruption.moveery.R
-import com.disruption.moveery.data.MovieBoundaryCallBack
 import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.MovieRoomDatabase
 import com.disruption.moveery.di.viewmodelfactory.ViewModelsModule
 import com.disruption.moveery.network.MovieApiService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineScope
@@ -23,7 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
@@ -70,22 +67,16 @@ class AppModule {
     @Singleton
     @Provides
     fun provideRetrofitInstance(
-        moshi: Moshi,
         okHttpClient: OkHttpClient,
         @Named("baseUrl") baseUrl: String
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
     }
-
-    /**Provide moshi*/
-    @Provides
-    fun providesMoshi(): Moshi = Moshi.Builder()
-        .add(KotlinJsonAdapterFactory()).build()
 
     /**Provide the interceptor*/
     @Provides
@@ -115,10 +106,10 @@ class AppModule {
     @Provides
     fun provideDataBase(context: Context): MovieRoomDatabase {
         return Room.databaseBuilder(
-                context.applicationContext,
-                MovieRoomDatabase::class.java,
-                "movies_database"
-            )
+            context.applicationContext,
+            MovieRoomDatabase::class.java,
+            "movies_database"
+        )
             .fallbackToDestructiveMigration()
             .build()
     }
