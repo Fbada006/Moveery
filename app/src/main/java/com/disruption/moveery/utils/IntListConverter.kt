@@ -4,8 +4,8 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-/**A [TypeConverter] to help with storing a [List] with Room*/
-class ListConverter {
+/**A [TypeConverter] to help with storing a [List] of Ints with Room*/
+class IntListConverter {
 
     /**Convert string to list*/
     @TypeConverter
