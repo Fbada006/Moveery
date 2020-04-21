@@ -17,17 +17,17 @@ abstract class ViewModelsModule {
     @Binds
     @IntoMap
     @ViewModelKey(MoviesLandingViewModel::class)
-    abstract fun bindLandingViewModel(viewModelMovies: MoviesLandingViewModel): ViewModel
+    abstract fun bindLandingViewModel(viewModel: MoviesLandingViewModel): ViewModel
 
     /**Create the [MovieSearchViewModel]*/
     @Binds
     @IntoMap
     @ViewModelKey(MovieSearchViewModel::class)
-    abstract fun bindSearchViewModel(viewModelMovie: MovieSearchViewModel): ViewModel
+    abstract fun bindSearchViewModel(viewModel: MovieSearchViewModel): ViewModel
 
     /**Create the [MovieDetailsViewModel]*/
     @Binds
     @IntoMap
     @ViewModelKey(MovieDetailsViewModel::class)
-    abstract fun bindDetailsViewModel(viewModelMovie: MovieDetailsViewModel): ViewModel
+    abstract fun bindDetailsViewModel(viewModel: MovieDetailsViewModel): ViewModel
 }

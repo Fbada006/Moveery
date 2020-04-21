@@ -20,7 +20,8 @@ abstract class MovieRoomDatabase : RoomDatabase() {
         /**Returns a database instance if it does not exist*/
         fun getDatabase(context: Context): MovieRoomDatabase {
             synchronized(this) {
-                var instance = INSTANCE
+                var instance =
+                    INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,

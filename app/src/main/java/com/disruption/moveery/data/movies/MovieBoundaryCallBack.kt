@@ -1,4 +1,4 @@
-package com.disruption.moveery.data
+package com.disruption.moveery.data.movies
 
 import android.util.Log
 import androidx.paging.PagedList

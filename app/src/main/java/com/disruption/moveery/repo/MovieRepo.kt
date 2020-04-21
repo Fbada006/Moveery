@@ -6,10 +6,10 @@ import androidx.lifecycle.Transformations
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.disruption.moveery.data.MovieBoundaryCallBack
-import com.disruption.moveery.data.MovieLocalCache
-import com.disruption.moveery.data.search.SearchedMovieDataSource
-import com.disruption.moveery.data.similar.SimilarMovieDataSource
+import com.disruption.moveery.data.movies.MovieBoundaryCallBack
+import com.disruption.moveery.data.movies.MovieLocalCache
+import com.disruption.moveery.data.movies.search.SearchedMovieDataSource
+import com.disruption.moveery.data.movies.similar.SimilarMovieDataSource
 import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.utils.Constants
