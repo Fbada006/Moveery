@@ -6,10 +6,11 @@ import androidx.lifecycle.Transformations
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.movies.MovieBoundaryCallBack
-import com.disruption.moveery.data.movies.MovieLocalCache
 import com.disruption.moveery.data.movies.search.SearchedMovieDataSource
 import com.disruption.moveery.data.movies.similar.SimilarMovieDataSource
+import com.disruption.moveery.data.shows.ShowBoundaryCallBack
 import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.models.shows.TvShow
@@ -24,6 +25,7 @@ import javax.inject.Inject
 class MovieRepo @Inject constructor(
     private val movieLocalCache: MovieLocalCache,
     private val movieBoundaryCallBack: MovieBoundaryCallBack,
+    private val showBoundaryCallBack: ShowBoundaryCallBack,
     private val scope: CoroutineScope
 ) {
 
@@ -46,7 +48,7 @@ class MovieRepo @Inject constructor(
         val factory = movieLocalCache.getShowsData()
 
         return LivePagedListBuilder(factory, Constants.DATABASE_PAGE_SIZE)
-            //.setBoundaryCallback(movieBoundaryCallBack)
+            .setBoundaryCallback(showBoundaryCallBack)
             .build()
     }
 

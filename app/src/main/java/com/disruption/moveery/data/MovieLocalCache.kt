@@ -1,7 +1,6 @@
-package com.disruption.moveery.data.movies
+package com.disruption.moveery.data
 
 import androidx.paging.DataSource
-import com.disruption.moveery.data.MovieRoomDatabase
 import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.models.movies.movie.MovieResult
 import com.disruption.moveery.models.shows.TvShow

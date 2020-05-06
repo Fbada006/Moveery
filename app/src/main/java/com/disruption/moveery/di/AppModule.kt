@@ -8,8 +8,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.disruption.moveery.MovieApplication
 import com.disruption.moveery.R
+import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.MovieRoomDatabase
-import com.disruption.moveery.data.movies.MovieLocalCache
 import com.disruption.moveery.di.viewmodelfactory.ViewModelsModule
 import com.disruption.moveery.network.MovieApiService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory

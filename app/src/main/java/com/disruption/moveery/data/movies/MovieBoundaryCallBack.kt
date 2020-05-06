@@ -1,7 +1,7 @@
 package com.disruption.moveery.data.movies
 
-import android.util.Log
 import androidx.paging.PagedList
+import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.network.MovieApiService
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +17,6 @@ class MovieBoundaryCallBack @Inject constructor(
     private val movieRetrofitService: MovieApiService
 ) :
     PagedList.BoundaryCallback<Movie>() {
-    private val TAG = "MovieBoundaryCallBack"
 
     // keep the last requested page. When the request is successful, increment the page number.
     private var lastRequestedPage = 1
@@ -50,7 +49,6 @@ class MovieBoundaryCallBack @Inject constructor(
             isRequestInProgress = false
         } catch (ex: Exception) {
             isRequestInProgress = false
-            Log.e(TAG, "Exception in boundary callback:========== $ex ")
         }
     }
 }

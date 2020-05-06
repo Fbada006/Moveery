@@ -31,7 +31,7 @@ class LandingPageAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = getItem(position)!!
+        val movie = getItem(position)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(movie)
         }
@@ -46,10 +46,10 @@ class LandingPageAdapter(
             itemView.findViewById<AppCompatImageView>(R.id.iv_movie_poster)
 
         /**Binds data to the [MovieViewHolder]*/
-        fun bind(context: Context, item: Movie) {
-            movieTitle.text = item.title
+        fun bind(context: Context, item: Movie?) {
+            movieTitle.text = item?.title
 
-            val posterUrl = Constants.IMAGE_BASE_URL + item.poster_path
+            val posterUrl = Constants.IMAGE_BASE_URL + item?.poster_path
             Glide.with(context)
                 .load(posterUrl)
                 .centerCrop()
@@ -85,7 +85,7 @@ class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
 }
 
 /**The click listener for the RV passing the clicked [Movie] in a lambda*/
-class OnMovieClickListener(val clickListener: (movie: Movie) -> Unit) {
+class OnMovieClickListener(val clickListener: (movie: Movie?) -> Unit) {
     /**Called when a movie is clicked*/
-    fun onClick(movie: Movie) = clickListener(movie)
+    fun onClick(movie: Movie?) = clickListener(movie)
 }

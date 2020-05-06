@@ -1,8 +1,8 @@
 package com.disruption.moveery
 
 import android.content.Context
+import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.MovieRoomDatabase
-import com.disruption.moveery.data.movies.MovieLocalCache
 
 /**Provides dependencies*/
 object Injection {
