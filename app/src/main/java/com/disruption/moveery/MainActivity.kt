@@ -1,7 +1,9 @@
 package com.disruption.moveery
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -30,6 +32,9 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         val host = supportFragmentManager
             .findFragmentById(R.id.main_nav_host_fragment) as NavHostFragment? ?: return
 
@@ -41,6 +46,15 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
             setOf(R.id.dest_movies_landing_fragment, R.id.dest_shows_landing_fragment),
             drawerLayout
         )
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.dest_movie_details_fragment ||
+                destination.id == R.id.dest_movie_search_fragment
+            ) {
+                //Hide the toolbar
+                toolbar.visibility = View.GONE
+            } else toolbar.visibility = View.VISIBLE
+        }
 
         setupActionBar(navController, appBarConfiguration)
         setupNavigationMenu(navController)

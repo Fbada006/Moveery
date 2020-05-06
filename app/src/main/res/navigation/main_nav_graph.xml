@@ -20,9 +20,6 @@
         <action
             android:id="@+id/action_dest_movies_landing_fragment_to_dest_search_fragment"
             app:destination="@id/dest_movie_search_fragment" />
-        <action
-            android:id="@+id/action_dest_movies_landing_fragment_to_dest_shows_landing_fragment"
-            app:destination="@id/dest_shows_landing_fragment" />
     </fragment>
 
     <fragment
@@ -52,6 +49,9 @@
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_dest_movie_search_fragment_to_dest_movies_landing_fragment"
+            app:destination="@id/dest_movies_landing_fragment" />
     </fragment>
 
     <fragment
