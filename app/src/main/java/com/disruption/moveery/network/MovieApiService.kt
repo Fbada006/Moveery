@@ -40,6 +40,7 @@ interface MovieApiService {
         @Query("api_key") apiKey: String = Constants.API_KEY
     ): Response<AltResult>
 
+    /**Gets movies on the [ShowsLandingPage]*/
     @GET("discover/tv")
     fun getDiscoverTvShowsAsync(
         @Query("page") page: Int,

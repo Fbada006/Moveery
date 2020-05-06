@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -37,7 +36,6 @@ class MovieSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListen
     ): View? {
 
         binding = FragmentMovieSearchBinding.inflate(inflater)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
 
         val adapter =
             SearchedMoviePageAdapter(

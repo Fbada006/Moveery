@@ -3,7 +3,6 @@ package com.disruption.moveery.ui.landing.movies
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -35,7 +34,7 @@ class MoviesLandingFragment : Fragment(), Injectable {
     ): View? {
         binding = FragmentLandingMoviesBinding.inflate(inflater)
         setHasOptionsMenu(true)
-        (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
+
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -67,7 +66,7 @@ class MoviesLandingFragment : Fragment(), Injectable {
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
             it.getContentIfNotHandled()?.let { movie ->
                 findNavController().navigate(
-                    MoviesLandingFragmentDirections.actionDestLandingFragmentToDetailsFragment(
+                    MoviesLandingFragmentDirections.actionDestMoviesLandingFragmentToDetailsFragment(
                         movie,
                         null
                     )
@@ -90,11 +89,7 @@ class MoviesLandingFragment : Fragment(), Injectable {
                 true
             }
             R.id.action_search -> {
-                findNavController().navigate(MoviesLandingFragmentDirections.actionDestLandingFragmentToDestSearchFragment())
-                true
-            }
-            R.id.dest_shows -> {
-                findNavController().navigate(MoviesLandingFragmentDirections.actionDestLandingFragmentToDestShowsLandingFragment())
+                findNavController().navigate(MoviesLandingFragmentDirections.actionDestMoviesLandingFragmentToDestSearchFragment())
                 true
             }
             else -> super.onOptionsItemSelected(item)

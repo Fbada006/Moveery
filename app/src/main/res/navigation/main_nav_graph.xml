@@ -3,30 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/dest_landing_fragment">
+    app:startDestination="@id/dest_movies_landing_fragment">
 
     <fragment
-        android:id="@+id/dest_landing_fragment"
+        android:id="@+id/dest_movies_landing_fragment"
         android:name="com.disruption.moveery.ui.landing.movies.MoviesLandingFragment"
         android:label="@string/label_discover_frag"
         tools:layout="@layout/fragment_landing_movies">
         <action
-            android:id="@+id/action_dest_landing_fragment_to_detailsFragment"
-            app:destination="@id/dest_details_fragment"
+            android:id="@+id/action_dest_movies_landing_fragment_to_detailsFragment"
+            app:destination="@id/dest_movie_details_fragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_dest_landing_fragment_to_dest_search_fragment"
-            app:destination="@id/dest_search_fragment" />
-        <action
-            android:id="@+id/action_dest_landing_fragment_to_dest_shows_landing_fragment"
-            app:destination="@id/dest_shows_landing_fragment" />
+            android:id="@+id/action_dest_movies_landing_fragment_to_dest_search_fragment"
+            app:destination="@id/dest_movie_search_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/dest_details_fragment"
+        android:id="@+id/dest_movie_details_fragment"
         android:name="com.disruption.moveery.ui.details.movies.MovieDetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_movie_details">
@@ -41,13 +38,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/dest_search_fragment"
+        android:id="@+id/dest_movie_search_fragment"
         android:name="com.disruption.moveery.ui.search.movies.MovieSearchFragment"
         android:label="@string/label_search_frag"
         tools:layout="@layout/fragment_movie_search">
         <action
             android:id="@+id/action_dest_search_fragment_to_dest_details_fragment"
-            app:destination="@id/dest_details_fragment"
+            app:destination="@id/dest_movie_details_fragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
