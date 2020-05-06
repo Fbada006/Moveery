@@ -3,7 +3,7 @@
     <string name="label_setting">Settings</string>
 
     <!--Fragment labels-->
-    <string name="label_discover_frag">Discover</string>
+    <string name="label_discover_frag">Discover Movies</string>
     <string name="label_search_frag">Search</string>
 
     <!--Genres based on the movie IDs-->
@@ -56,6 +56,4 @@
 
     <string name="search">Search here</string>
     <string name="similar_movies">Similar Movies</string>
-
-
 </resources>

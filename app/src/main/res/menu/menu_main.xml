@@ -13,10 +13,4 @@
         android:icon="@drawable/ic_search"
         android:title="@string/label_search"
         app:showAsAction="ifRoom" />
-
-    <item
-        android:id="@+id/dest_shows"
-        android:icon="@drawable/ic_search"
-        android:title="Landing"
-        app:showAsAction="never" />
 </menu>
