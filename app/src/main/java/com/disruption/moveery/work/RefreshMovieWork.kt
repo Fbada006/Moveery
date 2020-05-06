@@ -1,6 +1,7 @@
 package com.disruption.moveery.work
 
 import android.content.Context
+import android.util.Log
 import androidx.preference.PreferenceManager
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -13,6 +14,7 @@ import retrofit2.HttpException
 /**Worker for the movies to refresh*/
 class RefreshMovieWork(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
+    val TAG = "RefreshMovieWork"
 
     /**This object has the tag for this work*/
     companion object {
@@ -38,6 +40,7 @@ class RefreshMovieWork(appContext: Context, params: WorkerParameters) :
             //We want fresh data so the page will always be set to 1
             val result =
                 MovieApi.movieRetrofitService.getDiscoverMoviesAsync(page = 1).await()
+            Log.e(TAG, "Result is -------------------: ${result.movieList}")
             movieLocalCache.refreshMoviesCache(result)
 
             if (areNotificationsEnabled) {

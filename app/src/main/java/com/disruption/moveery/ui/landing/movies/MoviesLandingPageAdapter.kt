@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
 import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.utils.Constants
+import kotlinx.android.synthetic.main.movie_item.view.*
 
 /**Adapter to handle displaying [Movie] objects in the [MoviesLandingFragment]*/
 class LandingPageAdapter(
@@ -31,7 +30,7 @@ class LandingPageAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val movie = getItem(position)!!
+        val movie = getItem(position)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(movie)
         }
@@ -40,23 +39,18 @@ class LandingPageAdapter(
 
     /**The [RecyclerView.ViewHolder] for the [Movie] objects*/
     class MovieViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val movieTitle =
-            itemView.findViewById<TextView>(R.id.tv_movie_title)
-        private val movieImage =
-            itemView.findViewById<AppCompatImageView>(R.id.iv_movie_poster)
-
         /**Binds data to the [MovieViewHolder]*/
-        fun bind(context: Context, item: Movie) {
-            movieTitle.text = item.title
+        fun bind(context: Context, item: Movie?) {
+            itemView.tv_movie_title.text = item?.title
 
-            val posterUrl = Constants.IMAGE_BASE_URL + item.poster_path
+            val posterUrl = Constants.IMAGE_BASE_URL + item?.poster_path
             Glide.with(context)
                 .load(posterUrl)
                 .centerCrop()
                 .error(R.drawable.ic_broken_image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.movie_loading_animation)
-                .into(movieImage)
+                .into(itemView.iv_movie_poster)
         }
 
         companion object {
@@ -85,7 +79,7 @@ class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
 }
 
 /**The click listener for the RV passing the clicked [Movie] in a lambda*/
-class OnMovieClickListener(val clickListener: (movie: Movie) -> Unit) {
+class OnMovieClickListener(val clickListener: (movie: Movie?) -> Unit) {
     /**Called when a movie is clicked*/
-    fun onClick(movie: Movie) = clickListener(movie)
+    fun onClick(movie: Movie?) = clickListener(movie)
 }

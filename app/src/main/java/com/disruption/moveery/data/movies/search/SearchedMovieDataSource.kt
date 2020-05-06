@@ -1,4 +1,4 @@
-package com.disruption.moveery.data.search
+package com.disruption.moveery.data.movies.search
 
 import android.util.Log
 import androidx.paging.PageKeyedDataSource
