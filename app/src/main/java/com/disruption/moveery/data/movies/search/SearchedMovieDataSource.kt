@@ -8,14 +8,12 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-//TODO: Use Firebase logging here
 /**The DataSource that supplies the searched list*/
 class SearchedMovieDataSource(
     private val scope: CoroutineScope,
     private val query: String
 ) :
     PageKeyedDataSource<Int, AltMovie>() {
-    private val TAG = "SearchedMovieDataSource"
 
     private val movieApiService = MovieApi.movieRetrofitService
 
