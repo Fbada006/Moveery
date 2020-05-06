@@ -26,20 +26,27 @@ class MoviesLandingFragment : Fragment(), Injectable {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by viewModels<MoviesLandingViewModel> { viewModelFactory }
+    private lateinit var binding: FragmentLandingMoviesBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentLandingMoviesBinding.inflate(inflater)
+        binding = FragmentLandingMoviesBinding.inflate(inflater)
         setHasOptionsMenu(true)
         (activity as AppCompatActivity?)!!.setSupportActionBar(binding.toolbar)
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val adapter = LandingPageAdapter(
             requireContext(),
             OnMovieClickListener {
-                viewModel.displayMovieDetails(it)
+                viewModel.displayMovieDetails(it!!)
             })
 
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL)
@@ -70,9 +77,6 @@ class MoviesLandingFragment : Fragment(), Injectable {
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         listenToUserScrolls(binding.moviesList)
-
-        // Inflate the layout for this fragment
-        return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
