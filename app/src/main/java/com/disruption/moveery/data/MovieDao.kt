@@ -29,7 +29,7 @@ interface MovieDao {
     suspend fun insertAllShows(shows: List<TvShow>)
 
 //
-//    /**Empty the database if we are getting new generalArticles*/
+//    /**Empty the database if we are getting new data*/
 //    @Query("DELETE FROM movies")
 //    suspend fun clearMoviesTable()
 }

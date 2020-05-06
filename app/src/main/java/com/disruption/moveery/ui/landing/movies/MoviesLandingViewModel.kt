@@ -11,7 +11,7 @@ import javax.inject.Inject
 /**The view model that handles the UI and logic for the [MoviesLandingFragment]*/
 class MoviesLandingViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
 
-    /* The internal MutableLiveData that stores the event of a click input */
+    /** The internal MutableLiveData that stores the event of a click input */
     private val _navigateToSelectedMovie = MutableLiveData<Event<Movie>>()
 
     /**The external immutable LiveData for the click event*/

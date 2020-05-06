@@ -12,6 +12,7 @@ import com.disruption.moveery.data.movies.search.SearchedMovieDataSource
 import com.disruption.moveery.data.movies.similar.SimilarMovieDataSource
 import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.movies.movie.Movie
+import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
@@ -22,7 +23,7 @@ import javax.inject.Inject
  */
 class MovieRepo @Inject constructor(
     private val movieLocalCache: MovieLocalCache,
-    private val boundaryCallBack: MovieBoundaryCallBack,
+    private val movieBoundaryCallBack: MovieBoundaryCallBack,
     private val scope: CoroutineScope
 ) {
 
@@ -36,7 +37,16 @@ class MovieRepo @Inject constructor(
         val dataSourceFactory = movieLocalCache.getMovieData()
 
         return LivePagedListBuilder(dataSourceFactory, Constants.DATABASE_PAGE_SIZE)
-            .setBoundaryCallback(boundaryCallBack)
+            .setBoundaryCallback(movieBoundaryCallBack)
+            .build()
+    }
+
+    /**Get all the movies from the local storage*/
+    fun getAllShows(): LiveData<PagedList<TvShow>> {
+        val factory = movieLocalCache.getShowsData()
+
+        return LivePagedListBuilder(factory, Constants.DATABASE_PAGE_SIZE)
+            //.setBoundaryCallback(movieBoundaryCallBack)
             .build()
     }
 
@@ -50,7 +60,7 @@ class MovieRepo @Inject constructor(
         }
     }
 
-    /**Returns similar movies with paging to the [DetailsFragment]*/
+    /**Returns similar movies with paging to the [MovieDetailsFragment]*/
     fun getSimilarMovieList(
         movieIdLiveData: MutableLiveData<Int>
     ): LiveData<PagedList<AltMovie>> {

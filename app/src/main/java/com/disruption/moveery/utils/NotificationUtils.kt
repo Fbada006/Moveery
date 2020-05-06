@@ -35,7 +35,7 @@ object NotificationUtils {
         val notificationBuilder =
             NotificationCompat.Builder(context, MOVIE_REFRESH_NOTIFICATION_CHANNEL_ID)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(context.getString(R.string.movie_refresh_title))
                 .setContentText(message)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
