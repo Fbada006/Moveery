@@ -14,6 +14,7 @@ import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants
 import kotlinx.android.synthetic.main.tv_show_item.view.*
 
+/**Handle displaying a paged list of [TvShow] objects on the [ShowsLandingFragment]*/
 class ShowsLandingPageAdapter(private val context: Context) :
     PagedListAdapter<TvShow, ShowsLandingPageAdapter.TvShowViewHolder>(TvShowDiffCallback()) {
 
@@ -41,6 +42,7 @@ class ShowsLandingPageAdapter(private val context: Context) :
         }
 
         companion object {
+            /**For inflating the item layout*/
             fun from(parent: ViewGroup): TvShowViewHolder {
                 val view = LayoutInflater.from(parent.context)
                     .inflate(R.layout.tv_show_item, parent, false)
@@ -50,6 +52,8 @@ class ShowsLandingPageAdapter(private val context: Context) :
     }
 }
 
+/** DiffUtil is a utility class that calculates the difference between two lists and outputs a
+ * list of update operations that converts the first list into the second one.*/
 class TvShowDiffCallback : DiffUtil.ItemCallback<TvShow>() {
     override fun areItemsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
         return oldItem.id == newItem.id

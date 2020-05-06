@@ -9,6 +9,9 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
+/**This class listens to when zero items were returned from the initial data request or
+ * because we've reached the end of the data from the DataSource requests for more data from the
+ * API such that the user has a seemingly endless scrolling feature*/
 class ShowBoundaryCallBack @Inject constructor(
     private val localCache: MovieLocalCache,
     private val coroutineScope: CoroutineScope,

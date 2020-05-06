@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
+/**The Pojo denoting a TvShow and doubles up as the Entity for Room*/
 @Entity(tableName = "shows")
 @Parcelize
 data class TvShow(

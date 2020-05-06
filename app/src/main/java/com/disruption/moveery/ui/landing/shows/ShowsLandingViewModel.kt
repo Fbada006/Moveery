@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class ShowsLandingViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
 
-    /** The internal MutableLiveData that stores the event of a click input */
+    /* The internal MutableLiveData that stores the event of a click input */
     private val _navigateToSelectedShow = MutableLiveData<Event<TvShow>>()
 
     /**The external immutable LiveData for the click event*/

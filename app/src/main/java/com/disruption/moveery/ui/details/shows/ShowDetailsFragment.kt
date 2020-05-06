@@ -13,6 +13,7 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.ShowDetailsFragmentBinding
 import javax.inject.Inject
 
+/**Fragment to show details of a clicked [TvShow]*/
 class ShowDetailsFragment : Fragment() {
 
     @Inject

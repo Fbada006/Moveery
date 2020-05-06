@@ -17,6 +17,7 @@ import com.disruption.moveery.utils.listenToUserScrolls
 import timber.log.Timber
 import javax.inject.Inject
 
+/**Displays the shows on the Discover Shows screen*/
 class ShowsLandingFragment : Fragment(), Injectable {
 
     @Inject

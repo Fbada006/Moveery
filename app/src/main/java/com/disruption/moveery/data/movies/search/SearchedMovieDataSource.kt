@@ -1,16 +1,19 @@
 package com.disruption.moveery.data.movies.search
 
-import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.network.MovieApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 //TODO: Use Firebase logging here
-class SearchedMovieDataSource(private val scope: CoroutineScope,
-                              private val query: String) :
+/**The DataSource that supplies the searched list*/
+class SearchedMovieDataSource(
+    private val scope: CoroutineScope,
+    private val query: String
+) :
     PageKeyedDataSource<Int, AltMovie>() {
     private val TAG = "SearchedMovieDataSource"
 
@@ -28,14 +31,10 @@ class SearchedMovieDataSource(private val scope: CoroutineScope,
                     val result = response.body()
                     val movieList = result?.movieList
                     callback.onResult(movieList ?: listOf(), null, 2)
-                    Log.e(TAG, "Load initial for search a success: -----------$movieList")
-
-                } else {
-                    Log.e(TAG, "Response is not successful----------- ${response.message()} ")
                 }
 
             } catch (ex: Exception) {
-                Log.e(TAG, "Failed to fetch initial data with error: ------------ $ex")
+                Timber.e("Failed to fetch initial data with error: ------------ $ex")
             }
         }
     }
@@ -50,11 +49,10 @@ class SearchedMovieDataSource(private val scope: CoroutineScope,
                     val movieList = result?.movieList
                     callback.onResult(movieList ?: listOf(), params.key + 1)
                 } else {
-                    Log.e(TAG, "Response is not successful----------- ${response.errorBody()}")
+                    Timber.e("Response is not successful----------- ${response.errorBody()}")
                 }
             } catch (ex: Exception) {
-                Log.e(
-                    TAG,
+                Timber.e(
                     "Failed to fetch after data with error: ------------ ${ex.localizedMessage}"
                 )
             }
