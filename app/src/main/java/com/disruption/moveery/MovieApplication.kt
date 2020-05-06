@@ -13,8 +13,11 @@ import dagger.android.HasActivityInjector
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import timber.log.Timber.DebugTree
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+
 
 /**The Application class*/
 class MovieApplication : Application(), HasActivityInjector {
@@ -31,6 +34,13 @@ class MovieApplication : Application(), HasActivityInjector {
 
         setUpMovieRefreshWork()
         setNightMode()
+        initTimber()
+    }
+
+    private fun initTimber() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(DebugTree())
+        }
     }
 
     private fun setNightMode() {

@@ -89,6 +89,10 @@ class MoviesLandingFragment : Fragment(), Injectable {
                 findNavController().navigate(MoviesLandingFragmentDirections.actionDestLandingFragmentToDestSearchFragment())
                 true
             }
+            R.id.dest_shows -> {
+                findNavController().navigate(MoviesLandingFragmentDirections.actionDestLandingFragmentToDestShowsLandingFragment())
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

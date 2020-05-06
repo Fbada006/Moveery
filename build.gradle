@@ -25,6 +25,7 @@ buildscript {
         daggerVersion = '2.22'
         carouselVersion = '1.2.4'
         palleteVersion = '1.0.0'
+        timberVersion = '4.7.1'
     }
 
     repositories {

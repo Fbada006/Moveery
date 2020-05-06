@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_dest_landing_fragment_to_dest_search_fragment"
             app:destination="@id/dest_search_fragment" />
+        <action
+            android:id="@+id/action_dest_landing_fragment_to_dest_shows_landing_fragment"
+            app:destination="@id/dest_shows_landing_fragment" />
     </fragment>
 
     <fragment
