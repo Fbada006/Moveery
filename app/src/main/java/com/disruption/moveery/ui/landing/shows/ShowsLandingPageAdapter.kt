@@ -14,8 +14,12 @@ import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants
 import kotlinx.android.synthetic.main.tv_show_item.view.*
 
-/**Handle displaying a paged list of [TvShow] objects on the [ShowsLandingFragment]*/
-class ShowsLandingPageAdapter(private val context: Context) :
+/**Handle displaying a paged list of [TvShow] objects on the [ShowsLandingFragment]
+ * using paging for efficient loading from the API*/
+class ShowsLandingPageAdapter(
+    private val context: Context,
+    private val onClickListener: OnShowClickListener
+) :
     PagedListAdapter<TvShow, ShowsLandingPageAdapter.TvShowViewHolder>(TvShowDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowViewHolder {
@@ -23,7 +27,9 @@ class ShowsLandingPageAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: TvShowViewHolder, position: Int) {
-        holder.bind(context, getItem(position))
+        val tvShow = getItem(position)
+        holder.bind(context, tvShow)
+        holder.itemView.setOnClickListener { onClickListener.onClick(tvShow) }
     }
 
     class TvShowViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -62,4 +68,10 @@ class TvShowDiffCallback : DiffUtil.ItemCallback<TvShow>() {
     override fun areContentsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
         return oldItem == newItem
     }
+}
+
+/**The click listener for the RV passing the clicked [TvShow] in a lambda*/
+class OnShowClickListener(val clickListener: (show: TvShow?) -> Unit) {
+    /**Called when a show is clicked*/
+    fun onClick(show: TvShow?) = clickListener(show)
 }

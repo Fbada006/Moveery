@@ -17,11 +17,8 @@ import com.disruption.moveery.databinding.FragmentMovieDetailsBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.movies.movie.Movie
+import com.disruption.moveery.utils.*
 
-import com.disruption.moveery.utils.AltMovieClickListener
-import com.disruption.moveery.utils.Constants
-import com.disruption.moveery.utils.DetailsHelper
-import com.disruption.moveery.utils.listenToUserScrolls
 import javax.inject.Inject
 
 /**
@@ -88,7 +85,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
     private fun displayMovieDetails(movie: Movie?) {
         val posterUrl = Constants.IMAGE_BASE_URL + movie?.poster_path
 
-        setMoviePoster(posterUrl)
+        binding.ivMoviePoster.loadImage(posterUrl, requestManager)
 
         val average = ((movie?.vote_average)!! * 10).toInt()
 
@@ -108,7 +105,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
     private fun displaySearchedMovieDetails(movie: AltMovie?) {
         val posterUrl = Constants.IMAGE_BASE_URL + movie?.poster_path
 
-        setMoviePoster(posterUrl)
+        binding.ivMoviePoster.loadImage(posterUrl, requestManager)
 
         val average = ((movie?.vote_average)!! * 10).toInt()
 
@@ -122,12 +119,6 @@ class MovieDetailsFragment : Fragment(), Injectable {
             setFillColor(DetailsHelper.getRatingColor(average, requireContext()))
             setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
         }
-    }
-
-    private fun setMoviePoster(posterUrl: String) {
-        requestManager
-            .load(posterUrl)
-            .into(binding.ivMoviePoster)
     }
 
     private fun showAndHandleBackButton() {

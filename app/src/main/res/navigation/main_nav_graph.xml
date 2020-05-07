@@ -68,7 +68,12 @@
         android:id="@+id/dest_show_details_fragment"
         android:name="com.disruption.moveery.ui.details.shows.ShowDetailsFragment"
         android:label="Details"
-        tools:layout="@layout/show_details_fragment" />
+        tools:layout="@layout/show_details_fragment">
+        <argument
+            android:name="tvshow"
+            app:argType="com.disruption.moveery.models.shows.TvShow"
+            app:nullable="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/dest_shows_search_fragment"
