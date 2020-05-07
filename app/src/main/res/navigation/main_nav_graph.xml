@@ -58,10 +58,18 @@
         tools:layout="@layout/shows_landing_fragment">
         <action
             android:id="@+id/action_dest_shows_landing_fragment_to_dest_show_details_fragment"
-            app:destination="@id/dest_show_details_fragment" />
+            app:destination="@id/dest_show_details_fragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_dest_shows_landing_fragment_to_dest_shows_search_fragment"
-            app:destination="@id/dest_shows_search_fragment" />
+            app:destination="@id/dest_shows_search_fragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -82,6 +90,10 @@
         tools:layout="@layout/shows_search_fragment">
         <action
             android:id="@+id/action_dest_shows_search_fragment_to_dest_show_details_fragment"
-            app:destination="@id/dest_show_details_fragment" />
+            app:destination="@id/dest_show_details_fragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 </navigation>
