@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 /**The viewModel to display data in the [MovieDetailsFragment]*/
 class MovieDetailsViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
-    val TAG = "DetailsViewModel"
 
     private val movieIdLiveData = MutableLiveData<Int>()
 
@@ -26,5 +25,4 @@ class MovieDetailsViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
     fun getSimilarMovies(movieId: Int) {
         movieIdLiveData.postValue(movieId)
     }
-
 }

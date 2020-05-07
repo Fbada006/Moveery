@@ -58,7 +58,7 @@ class SearchedMovieDataSource(
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, AltMovie>) {
-        //Ignore this shite for now
+        //Ignore this for now
     }
 
     override fun invalidate() {

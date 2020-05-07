@@ -1,16 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.details.shows.ShowDetailsFragment">
+        android:layout_height="match_parent">
 
-        <TextView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Hello" />
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-    </FrameLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_show_poster"
+                    android:layout_width="match_parent"
+                    android:layout_height="450dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <TextView
+                    android:id="@+id/tv_show_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="4dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_show_poster"
+                    tools:text="This is the movie title" />
+
+                <TextView
+                    android:id="@+id/tv_show_year"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:padding="4dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    app:layout_constraintEnd_toStartOf="@id/layout_show_rating"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_show_title"
+                    tools:text="2020" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ic_circle"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_show_year"
+                    app:layout_constraintEnd_toStartOf="@id/layout_show_rating"
+                    app:layout_constraintStart_toEndOf="@id/tv_show_year"
+                    app:layout_constraintTop_toBottomOf="@id/tv_show_title" />
+
+                <LinearLayout
+                    android:id="@+id/layout_show_rating"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@id/tv_show_year"
+                    app:layout_constraintTop_toBottomOf="@id/tv_show_title">
+
+                    <TextView
+                        android:id="@+id/tv_show_rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="54dp"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                        tools:text="67%" />
+
+                    <com.disruption.moveery.utils.RatingCustomView
+                        android:id="@+id/rating_custom_view"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        custom:strokeWidth="@dimen/strokeWidth" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_show_genre"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center_horizontal"
+                    android:padding="4dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_show_year"
+                    tools:text="Adventure, Action, Comedy, Drama, Documentary." />
+
+                <TextView
+                    android:id="@+id/tv_show_overview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="center_horizontal"
+                    android:padding="4dp"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_show_year"
+                    app:layout_constraintTop_toBottomOf="@id/tv_show_genre"
+                    tools:text="As the Avengers and their allies have continued
+                to protect the world from threats too large for any one hero
+                to handle, a new danger has emerged from the cosmic shadows:
+                Thanos. A despot of intergalactic infamy, his goal is to
+                collect all six Infinity Stones, artifacts of unimaginable
+                power, and use them to inflict his twisted will on all of
+                reality. Everything the Avengers have fought for has led up
+                to this moment - the fate of Earth and existence itself has
+                never been more uncertain." />
+
+                <TextView
+                    android:id="@+id/tv_show_similar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="@string/similar_movies"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="serif"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_show_overview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/similar_shows_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:padding="6dp"
+                    android:scrollbars="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_show_similar"
+                    tools:itemCount="16"
+                    tools:listitem="@layout/movie_item" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
