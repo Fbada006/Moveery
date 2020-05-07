@@ -18,6 +18,7 @@ import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants
 import com.disruption.moveery.utils.DetailsHelper
 import com.disruption.moveery.utils.loadImage
+import com.disruption.moveery.utils.showAndHandleBackButton
 import javax.inject.Inject
 
 /**Fragment to show details of a clicked [TvShow]*/
@@ -49,6 +50,9 @@ class ShowDetailsFragment : Fragment(), Injectable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.toolbar.showAndHandleBackButton(activity)
+
         if (args.tvshow != null) displayShowDetails(args.tvshow)
     }
 

@@ -75,7 +75,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         listenToUserScrolls(binding.similarMoviesList)
 
-        showAndHandleBackButton()
+        binding.toolbar.showAndHandleBackButton(activity)
 
         // Inflate the layout for this fragment
         return binding.root
@@ -118,16 +118,6 @@ class MovieDetailsFragment : Fragment(), Injectable {
             setValue(average)
             setFillColor(DetailsHelper.getRatingColor(average, requireContext()))
             setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-        }
-    }
-
-    private fun showAndHandleBackButton() {
-        val toolbar = binding.toolbar
-        toolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back)
-            setNavigationOnClickListener {
-                activity?.onBackPressed()
-            }
         }
     }
 
