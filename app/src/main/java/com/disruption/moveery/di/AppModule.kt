@@ -10,7 +10,6 @@ import com.disruption.moveery.MovieApplication
 import com.disruption.moveery.R
 import com.disruption.moveery.data.MovieLocalCache
 import com.disruption.moveery.data.MovieRoomDatabase
-import com.disruption.moveery.di.viewmodelfactory.ViewModelsModule
 import com.disruption.moveery.network.MovieApiService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module

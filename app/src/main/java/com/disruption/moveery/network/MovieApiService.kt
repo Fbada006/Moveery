@@ -3,7 +3,7 @@ package com.disruption.moveery.network
 import com.disruption.moveery.models.movies.altmovie.AltResult
 import com.disruption.moveery.models.movies.movie.MovieResult
 import com.disruption.moveery.models.shows.TvShowResult
-import com.disruption.moveery.utils.Constants
+import com.disruption.moveery.utils.Constants.API_KEY
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
@@ -20,7 +20,7 @@ interface MovieApiService {
     fun getDiscoverMoviesAsync(
         @Query("page") page: Int,
         @Query("sort_by") sortBy: String? = "popularity.desc",
-        @Query("api_key") apiKey: String = Constants.API_KEY
+        @Query("api_key") apiKey: String = API_KEY
     ): Deferred<MovieResult>
 
     /**Returns similar movies on the details page*/
@@ -28,7 +28,7 @@ interface MovieApiService {
     suspend fun getSimilarMovies(
         @Path("movie_id") movieId: Int,
         @Query("page") page: Int,
-        @Query("api_key") apiKey: String = Constants.API_KEY
+        @Query("api_key") apiKey: String = API_KEY
     ): Response<AltResult>
 
     /**Searches the movie*/
@@ -37,7 +37,7 @@ interface MovieApiService {
         @Query("query") query: String,
         @Query("page") page: Int,
         @Query("include_adult") boolean: Boolean = false,
-        @Query("api_key") apiKey: String = Constants.API_KEY
+        @Query("api_key") apiKey: String = API_KEY
     ): Response<AltResult>
 
     /**Gets movies on the [ShowsLandingPage]*/
@@ -45,7 +45,7 @@ interface MovieApiService {
     fun getDiscoverTvShowsAsync(
         @Query("page") page: Int,
         @Query("sort_by") sortBy: String? = "popularity.desc",
-        @Query("api_key") apiKey: String = Constants.API_KEY
+        @Query("api_key") apiKey: String = API_KEY
     ): Deferred<TvShowResult>
 
     /**Returns similar TV shows on the details page*/
@@ -53,7 +53,7 @@ interface MovieApiService {
     suspend fun getSimilarTvShows(
         @Path("tv_id") showId: Int,
         @Query("page") page: Int,
-        @Query("api_key") apiKey: String = Constants.API_KEY
+        @Query("api_key") apiKey: String = API_KEY
     ): Response<TvShowResult>
 
     /**Searches the TV Show*/
@@ -62,6 +62,6 @@ interface MovieApiService {
         @Query("query") query: String,
         @Query("page") page: Int,
         @Query("include_adult") boolean: Boolean = false,
-        @Query("api_key") apiKey: String = Constants.API_KEY
+        @Query("api_key") apiKey: String = API_KEY
     ): Response<TvShowResult>
 }
