@@ -1,4 +1,4 @@
-package com.disruption.moveery.di
+package com.disruption.moveery.di.keys
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

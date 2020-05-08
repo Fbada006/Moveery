@@ -15,10 +15,11 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+            android:theme="@style/AppTheme.AppBarOverlay" />
 
         <fragment
             android:id="@+id/main_nav_host_fragment"

@@ -15,8 +15,7 @@ class MovieBoundaryCallBack @Inject constructor(
     private val localCache: MovieLocalCache,
     private val coroutineScope: CoroutineScope,
     private val movieRetrofitService: MovieApiService
-) :
-    PagedList.BoundaryCallback<Movie>() {
+) : PagedList.BoundaryCallback<Movie>() {
 
     // keep the last requested page. When the request is successful, increment the page number.
     private var lastRequestedPage = 1

@@ -1,7 +1,7 @@
-package com.disruption.moveery.di.viewmodelfactory
+package com.disruption.moveery.di
 
 import androidx.lifecycle.ViewModel
-import com.disruption.moveery.di.ViewModelKey
+import com.disruption.moveery.di.keys.ViewModelKey
 import com.disruption.moveery.ui.details.movies.MovieDetailsViewModel
 import com.disruption.moveery.ui.details.shows.ShowDetailsViewModel
 import com.disruption.moveery.ui.landing.movies.MoviesLandingViewModel

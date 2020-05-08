@@ -5,6 +5,7 @@ import android.app.Application
 import androidx.preference.PreferenceManager
 import androidx.work.*
 import com.disruption.moveery.di.AppInjector
+import com.disruption.moveery.di.DaggerAppComponent
 import com.disruption.moveery.utils.ThemeHelper
 import com.disruption.moveery.work.RefreshMovieWork
 import dagger.android.AndroidInjector
@@ -31,10 +32,22 @@ class MovieApplication : Application(), HasActivityInjector {
         super.onCreate()
 
         AppInjector.init(this)
+        initWorkManagerWithDagger()
 
         setUpMovieRefreshWork()
         setNightMode()
         initTimber()
+    }
+
+    private fun initWorkManagerWithDagger() {
+        val factory = DaggerAppComponent.builder()
+            .application(this)
+            .build().factory()
+        WorkManager.initialize(
+            this, Configuration.Builder()
+                .setWorkerFactory(factory)
+                .build()
+        )
     }
 
     private fun initTimber() {
