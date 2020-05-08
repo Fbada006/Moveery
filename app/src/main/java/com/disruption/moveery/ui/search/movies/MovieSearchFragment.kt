@@ -13,11 +13,11 @@ import androidx.navigation.fragment.findNavController
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
-import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentMovieSearchBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.utils.AltMovieClickListener
 import com.disruption.moveery.utils.listenToUserScrolls
+import com.disruption.moveery.utils.showAndHandleBackButton
 import javax.inject.Inject
 
 /**
@@ -36,6 +36,11 @@ class MovieSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListen
     ): View? {
 
         binding = FragmentMovieSearchBinding.inflate(inflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val adapter =
             SearchedMoviePageAdapter(
@@ -72,22 +77,10 @@ class MovieSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListen
 
         binding.searchView.setOnQueryTextListener(this)
 
-        showAndHandleBackButton()
+        binding.toolbar.showAndHandleBackButton(requireActivity())
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         listenToUserScrolls(binding.moviesList)
-
-        return binding.root
-    }
-
-    private fun showAndHandleBackButton() {
-        val toolbar = binding.toolbar
-        toolbar.apply {
-            setNavigationIcon(R.drawable.ic_arrow_back)
-            setNavigationOnClickListener {
-                activity?.onBackPressed()
-            }
-        }
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {

@@ -14,6 +14,7 @@ import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.disruption.moveery.databinding.ShowsLandingFragmentBinding
 import com.disruption.moveery.di.Injectable
+import com.disruption.moveery.utils.OnShowClickListener
 import com.disruption.moveery.utils.listenToUserScrolls
 import timber.log.Timber
 import javax.inject.Inject

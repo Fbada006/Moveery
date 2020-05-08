@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants
+import com.disruption.moveery.utils.TvShowDiffCallback
 import kotlinx.android.synthetic.main.show_item_similar.view.*
 
 class ShowSimilarPagedAdapter(private val context: Context) :
@@ -59,17 +59,5 @@ class ShowSimilarPagedAdapter(private val context: Context) :
                 return TvShowViewHolder(view)
             }
         }
-    }
-}
-
-/** DiffUtil is a utility class that calculates the difference between two lists and outputs a
- * list of update operations that converts the first list into the second one.*/
-class TvShowDiffCallback : DiffUtil.ItemCallback<TvShow>() {
-    override fun areItemsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: TvShow, newItem: TvShow): Boolean {
-        return oldItem == newItem
     }
 }

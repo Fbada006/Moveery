@@ -11,11 +11,12 @@ import com.disruption.moveery.data.movies.MovieBoundaryCallBack
 import com.disruption.moveery.data.movies.search.SearchedMovieDataSource
 import com.disruption.moveery.data.movies.similar.SimilarMovieDataSource
 import com.disruption.moveery.data.shows.ShowBoundaryCallBack
+import com.disruption.moveery.data.shows.search.SearchedShowDataSource
 import com.disruption.moveery.data.shows.similar.SimilarShowDataSource
 import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.models.shows.TvShow
-import com.disruption.moveery.utils.Constants
+import com.disruption.moveery.utils.Constants.DATABASE_PAGE_SIZE
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
 
@@ -40,7 +41,7 @@ class MovieRepo @Inject constructor(
     fun getAllMovies(): LiveData<PagedList<Movie>> {
         val dataSourceFactory = movieLocalCache.getMovieData()
 
-        return LivePagedListBuilder(dataSourceFactory, Constants.DATABASE_PAGE_SIZE)
+        return LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
             .setBoundaryCallback(movieBoundaryCallBack)
             .build()
     }
@@ -49,7 +50,7 @@ class MovieRepo @Inject constructor(
     fun getAllShows(): LiveData<PagedList<TvShow>> {
         val factory = movieLocalCache.getShowsData()
 
-        return LivePagedListBuilder(factory, Constants.DATABASE_PAGE_SIZE)
+        return LivePagedListBuilder(factory, DATABASE_PAGE_SIZE)
             .setBoundaryCallback(showBoundaryCallBack)
             .build()
     }
@@ -62,6 +63,28 @@ class MovieRepo @Inject constructor(
         return Transformations.switchMap(queryLiveData) {
             initializeSearchMoviePagedListBuilder(it, scope).build()
         }
+    }
+
+    /**Returns the searched show with paging involved*/
+    fun getSearchedShowList(
+        queryLiveData: MutableLiveData<String>
+    ): LiveData<PagedList<TvShow>> {
+
+        return Transformations.switchMap(queryLiveData) {
+            initializeSearchShowPagedListBuilder(it, scope).build()
+        }
+    }
+
+    private fun initializeSearchShowPagedListBuilder(
+        query: String,
+        scope: CoroutineScope
+    ): LivePagedListBuilder<Int, TvShow> {
+        val dataSourceFactory = object : DataSource.Factory<Int, TvShow>() {
+            override fun create(): DataSource<Int, TvShow> {
+                return SearchedShowDataSource(scope, query)
+            }
+        }
+        return LivePagedListBuilder(dataSourceFactory, config)
     }
 
     /**Returns similar movies with paging to the [MovieDetailsFragment]*/
@@ -99,8 +122,7 @@ class MovieRepo @Inject constructor(
     private fun initializeSearchMoviePagedListBuilder(
         query: String,
         scope: CoroutineScope
-    ):
-            LivePagedListBuilder<Int, AltMovie> {
+    ): LivePagedListBuilder<Int, AltMovie> {
 
         val dataSourceFactory = object : DataSource.Factory<Int, AltMovie>() {
             override fun create(): DataSource<Int, AltMovie> {
@@ -113,8 +135,7 @@ class MovieRepo @Inject constructor(
     private fun initializeSimilarMoviesPagedListBuilder(
         movieId: Int,
         scope: CoroutineScope
-    ):
-            LivePagedListBuilder<Int, AltMovie> {
+    ): LivePagedListBuilder<Int, AltMovie> {
 
         val dataSourceFactory = object : DataSource.Factory<Int, AltMovie>() {
             override fun create(): DataSource<Int, AltMovie> {
