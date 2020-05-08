@@ -8,8 +8,10 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.ShowDetailsFragmentBinding
@@ -50,10 +52,21 @@ class ShowDetailsFragment : Fragment(), Injectable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.toolbar.showAndHandleBackButton(activity)
+        val tvShow = args.tvshow
+        if (tvShow != null) {
+            displayShowDetails(tvShow)
+            viewModel.getSimilarShows(tvShow.id)
+        }
 
-        if (args.tvshow != null) displayShowDetails(args.tvshow)
+        val adapter = ShowSimilarPagedAdapter(requireContext())
+        binding.similarShowsList.adapter = adapter
+        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.similarShowsList.layoutManager = layoutManager
+
+        viewModel.showList.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
     }
 
     /**Display the passed in movie from the [args]*/

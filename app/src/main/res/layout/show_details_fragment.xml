@@ -135,7 +135,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp"
-                    android:text="@string/similar_movies"
+                    android:text="@string/similar_shows"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold"

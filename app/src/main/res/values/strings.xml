@@ -56,4 +56,8 @@
 
     <string name="search">Search here</string>
     <string name="similar_movies">Similar Movies</string>
+    <string name="similar_shows">Similar Shows</string>
+
+    <!--Contente descriptions-->
+    <string name="poster_image">Image poster</string>
 </resources>

@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentActivity
 import com.bumptech.glide.RequestManager
 import com.disruption.moveery.R
 
-/**Extension function on [ImageView] to load images with [Glide]*/
+/**Extension function on [ImageView] to load images with [RequestManager]*/
 fun ImageView.loadImage(url: String, requestManager: RequestManager) {
     requestManager
         .load(url)
@@ -22,3 +22,5 @@ fun Toolbar.showAndHandleBackButton(activity: FragmentActivity?) {
         }
     }
 }
+
+/***/

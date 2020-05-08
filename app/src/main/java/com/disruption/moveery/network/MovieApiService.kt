@@ -51,7 +51,7 @@ interface MovieApiService {
     /**Returns similar TV shows on the details page*/
     @GET("3/tv/{tv_id}/similar")
     suspend fun getSimilarTvShows(
-        @Path("tv_id") tvId: Int,
+        @Path("tv_id") showId: Int,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = Constants.API_KEY
     ): Response<TvShowResult>

@@ -1,12 +1,12 @@
 package com.disruption.moveery.data.movies.similar
 
-import android.util.Log
 import androidx.paging.PageKeyedDataSource
 import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.network.MovieApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**This class will provide the list of similar movies to be displayed in the DetailsFragment.
  * This information will not be cached with room*/
@@ -15,8 +15,6 @@ class SimilarMovieDataSource(
     private val movieId: Int
 ) :
     PageKeyedDataSource<Int, AltMovie>() {
-
-    private val TAG = "SimilarMovieDataSource"
 
     private val movieApiService = MovieApi.movieRetrofitService
 
@@ -37,7 +35,7 @@ class SimilarMovieDataSource(
                     callback.onResult(movieList ?: listOf(), null, 2)
                 }
             } catch (ex: Exception) {
-                Log.e(TAG, "Failed to fetch initial data with error: ------------ $ex")
+                Timber.e("Failed to fetch initial data with error: ------------ $ex")
             }
         }
     }
@@ -56,7 +54,7 @@ class SimilarMovieDataSource(
                     callback.onResult(movieList ?: listOf(), params.key + 1)
                 }
             } catch (ex: Exception) {
-                Log.e(TAG, "Failed to fetch initial data with error: ------------ $ex")
+                Timber.e("Failed to fetch initial data with error: ------------ $ex")
             }
         }
     }

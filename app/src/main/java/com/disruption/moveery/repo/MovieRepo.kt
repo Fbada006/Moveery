@@ -11,6 +11,7 @@ import com.disruption.moveery.data.movies.MovieBoundaryCallBack
 import com.disruption.moveery.data.movies.search.SearchedMovieDataSource
 import com.disruption.moveery.data.movies.similar.SimilarMovieDataSource
 import com.disruption.moveery.data.shows.ShowBoundaryCallBack
+import com.disruption.moveery.data.shows.similar.SimilarShowDataSource
 import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.models.shows.TvShow
@@ -22,6 +23,7 @@ import javax.inject.Inject
  * Repository class that works with local and remote data sources.
  * This class supplies data to the ViewModel to display
  */
+@Suppress("KDocUnresolvedReference")
 class MovieRepo @Inject constructor(
     private val movieLocalCache: MovieLocalCache,
     private val movieBoundaryCallBack: MovieBoundaryCallBack,
@@ -58,7 +60,7 @@ class MovieRepo @Inject constructor(
     ): LiveData<PagedList<AltMovie>> {
 
         return Transformations.switchMap(queryLiveData) {
-            initializeSearchPagedListBuilder(it, scope).build()
+            initializeSearchMoviePagedListBuilder(it, scope).build()
         }
     }
 
@@ -68,11 +70,33 @@ class MovieRepo @Inject constructor(
     ): LiveData<PagedList<AltMovie>> {
 
         return Transformations.switchMap(movieIdLiveData) {
-            initializeSimilarPagedListBuilder(it, scope).build()
+            initializeSimilarMoviesPagedListBuilder(it, scope).build()
         }
     }
 
-    private fun initializeSearchPagedListBuilder(
+    /**Returns similar shows with paging to the [ShowDetailsFragment]*/
+    fun getSimilarShowsList(
+        showIdLiveData: MutableLiveData<Int>
+    ): LiveData<PagedList<TvShow>> {
+
+        return Transformations.switchMap(showIdLiveData) {
+            initializeSimilarShowsPagedListBuilder(it, scope).build()
+        }
+    }
+
+    private fun initializeSimilarShowsPagedListBuilder(
+        showId: Int,
+        scope: CoroutineScope
+    ): LivePagedListBuilder<Int, TvShow> {
+        val factory = object : DataSource.Factory<Int, TvShow>() {
+            override fun create(): DataSource<Int, TvShow> {
+                return SimilarShowDataSource(scope, showId)
+            }
+        }
+        return LivePagedListBuilder(factory, config)
+    }
+
+    private fun initializeSearchMoviePagedListBuilder(
         query: String,
         scope: CoroutineScope
     ):
@@ -86,7 +110,7 @@ class MovieRepo @Inject constructor(
         return LivePagedListBuilder(dataSourceFactory, config)
     }
 
-    private fun initializeSimilarPagedListBuilder(
+    private fun initializeSimilarMoviesPagedListBuilder(
         movieId: Int,
         scope: CoroutineScope
     ):

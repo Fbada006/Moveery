@@ -15,7 +15,6 @@ data class TvShow(
     @PrimaryKey
     val id: Int,
     val name: String?,
-    //val origin_country: List<String>?,
     val original_language: String?,
     val original_name: String?,
     val overview: String?,

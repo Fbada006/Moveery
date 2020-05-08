@@ -56,7 +56,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
         }
 
         val adapter =
-            MovieSimilarMovieAdapter(
+            MovieSimilarPagedAdapter(
                 requireContext(),
                 AltMovieClickListener {
                     //Do nothing for now

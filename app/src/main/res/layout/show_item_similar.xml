@@ -16,17 +16,17 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_movie_poster"
+            android:id="@+id/iv_show_poster"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:contentDescription="@string/poster_image"
-            app:layout_constraintBottom_toTopOf="@id/tv_movie_title"
+            app:layout_constraintBottom_toTopOf="@id/tv_show_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/tv_movie_title"
+            android:id="@+id/tv_show_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -34,51 +34,51 @@
             android:textColor="?android:textColorPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_movie_poster"
-            tools:text="The Fast and Furious 9 (F9)" />
+            app:layout_constraintTop_toBottomOf="@id/iv_show_poster"
+            tools:text="Fear the walking dead" />
 
         <TextView
-            android:id="@+id/tv_movie_overview"
+            android:id="@+id/tv_show_overview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
             android:ellipsize="end"
             android:maxLines="2"
-            app:layout_constraintStart_toStartOf="@id/tv_movie_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_movie_title"
+            app:layout_constraintStart_toStartOf="@id/tv_show_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_show_title"
             tools:text="A collection of samples to discuss and showcase different architectural tools and patterns for Android apps." />
 
         <TextView
-            android:id="@+id/tv_movie_year"
+            android:id="@+id/tv_show_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/tv_movie_language"
+            app:layout_constraintEnd_toStartOf="@+id/tv_show_language"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toEndOf="@+id/iv_movie_poster"
-            app:layout_constraintStart_toStartOf="@id/tv_movie_title"
-            app:layout_constraintTop_toBottomOf="@+id/tv_movie_overview"
+            app:layout_constraintStart_toEndOf="@+id/iv_show_poster"
+            app:layout_constraintStart_toStartOf="@id/tv_show_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_show_overview"
             tools:text="2007" />
 
         <TextView
-            android:id="@+id/tv_movie_language"
+            android:id="@+id/tv_show_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toStartOf="@+id/tv_movie_rating"
+            app:layout_constraintEnd_toStartOf="@+id/tv_show_rating"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_movie_year"
-            app:layout_constraintTop_toBottomOf="@+id/tv_movie_overview"
+            app:layout_constraintStart_toEndOf="@+id/tv_show_year"
+            app:layout_constraintTop_toBottomOf="@+id/tv_show_overview"
             tools:text="en" />
 
         <TextView
-            android:id="@+id/tv_movie_rating"
+            android:id="@+id/tv_show_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tv_movie_year"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_show_year"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_movie_language"
+            app:layout_constraintStart_toEndOf="@+id/tv_show_language"
             tools:text="80%" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
