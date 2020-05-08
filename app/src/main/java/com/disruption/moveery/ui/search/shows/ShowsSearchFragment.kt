@@ -15,6 +15,7 @@ import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.disruption.moveery.databinding.ShowsSearchFragmentBinding
 import com.disruption.moveery.di.Injectable
+import com.disruption.moveery.utils.OnShowClickListener
 import com.disruption.moveery.utils.listenToUserScrolls
 import com.disruption.moveery.utils.showAndHandleBackButton
 import javax.inject.Inject
@@ -42,7 +43,8 @@ class ShowsSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListen
         super.onViewCreated(view, savedInstanceState)
 
         val adapter =
-            SearchedShowPageAdapter(requireContext())
+            SearchedShowPageAdapter(requireContext(),
+                OnShowClickListener { it?.let { tvShow -> viewModel.displayShowDetails(tvShow) } })
 
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.VERTICAL)
         carouselManager.setPostLayoutListener(CarouselZoomPostLayoutListener())

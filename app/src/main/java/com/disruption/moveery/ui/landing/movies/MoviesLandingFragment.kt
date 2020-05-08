@@ -34,7 +34,6 @@ class MoviesLandingFragment : Fragment(), Injectable {
     ): View? {
         binding = FragmentLandingMoviesBinding.inflate(inflater)
         setHasOptionsMenu(true)
-
         // Inflate the layout for this fragment
         return binding.root
     }

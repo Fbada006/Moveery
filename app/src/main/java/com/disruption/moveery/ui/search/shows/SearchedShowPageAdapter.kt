@@ -12,12 +12,14 @@ import com.disruption.moveery.R
 import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants.IMAGE_BASE_URL
+import com.disruption.moveery.utils.OnShowClickListener
 import com.disruption.moveery.utils.TvShowDiffCallback
 import kotlinx.android.synthetic.main.show_search_item.view.*
 
 /**Adapter to handle displaying [AltMovie] objects in the [ShowsSearchFragment]*/
 class SearchedShowPageAdapter(
-    private val context: Context
+    private val context: Context,
+    private val onClickListener: OnShowClickListener
 ) : PagedListAdapter<TvShow, SearchedShowPageAdapter.SearchedShowViewHolder>(
     TvShowDiffCallback()
 ) {
@@ -29,6 +31,7 @@ class SearchedShowPageAdapter(
     override fun onBindViewHolder(holder: SearchedShowViewHolder, position: Int) {
         val tvShow = getItem(position)
         holder.bind(context, tvShow)
+        holder.itemView.setOnClickListener { onClickListener.onClick(tvShow) }
     }
 
     /**The [RecyclerView.ViewHolder] for the [TvShow] objects*/
