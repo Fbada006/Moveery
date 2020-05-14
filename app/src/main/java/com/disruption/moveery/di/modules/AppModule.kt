@@ -1,6 +1,8 @@
 package com.disruption.moveery.di.modules
 
 import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
@@ -123,5 +125,10 @@ class AppModule {
     /**Provide the [CoroutineScope]*/
     @Provides
     fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
+
+    /**Provides the shared prefences*/
+    @Provides
+    fun provideSharedPreferences(context: Context): SharedPreferences =
+        PreferenceManager.getDefaultSharedPreferences(context)
 }
 

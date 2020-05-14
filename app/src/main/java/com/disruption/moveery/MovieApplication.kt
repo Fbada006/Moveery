@@ -2,7 +2,7 @@ package com.disruption.moveery
 
 import android.app.Activity
 import android.app.Application
-import androidx.preference.PreferenceManager
+import android.content.SharedPreferences
 import androidx.work.*
 import com.disruption.moveery.di.AppInjector
 import com.disruption.moveery.di.DaggerAppComponent
@@ -24,6 +24,9 @@ class MovieApplication : Application(), HasActivityInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     private val applicationScope = CoroutineScope(Dispatchers.Default)
 
@@ -56,7 +59,6 @@ class MovieApplication : Application(), HasActivityInjector {
     }
 
     private fun setNightMode() {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
         val themePref = sharedPreferences.getString(
             getString(R.string.pref_night_mode_key)
             , ThemeHelper.DEFAULT_MODE
