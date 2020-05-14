@@ -21,7 +21,7 @@ import javax.inject.Inject
 
 /**
  * Repository class that works with local and remote data sources.
- * This class supplies data to the ViewModel to display
+ * This class supplies data to the ViewModel to be displayed
  */
 @Suppress("KDocUnresolvedReference")
 class MovieRepo @Inject constructor(

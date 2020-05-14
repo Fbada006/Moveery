@@ -5,6 +5,7 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="universalWhite">#FFFFFF</color>
+    <color name="iconTintWhiteBlack">#FFFFFFFF</color>
 
     <color name="lessThan70OrEqual">#d2d531</color>
     <color name="lessThan40OrEqual">#db2360</color>

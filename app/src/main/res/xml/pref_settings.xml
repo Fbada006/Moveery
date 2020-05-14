@@ -4,16 +4,25 @@
 
     <SwitchPreference
         android:defaultValue="@bool/pref_show_notifications_default"
+        android:icon="@drawable/ic_notifications"
         android:key="@string/pref_show_notifications_key"
         android:summaryOff="@string/pref_show_notifications_summary_off"
         android:summaryOn="@string/pref_show_notifications_summary_on"
         android:title="@string/pref_notifications_label" />
 
     <ListPreference
+        android:icon="@drawable/ic_night"
         app:defaultValue="@string/pref_night_battery_set_value"
         app:entries="@array/night_mode_labels"
         app:entryValues="@array/night_mode_values"
         app:key="@string/pref_night_mode_key"
         app:title="@string/pref_night_mode_title" />
 
+    <SwitchPreference
+        android:defaultValue="@bool/pref_include_adult_default"
+        android:icon="@drawable/ic_adult"
+        android:key="@string/pref_include_adult_key"
+        android:summaryOff="@string/pref_include_adult_summary_off"
+        android:summaryOn="@string/pref_include_adult_summary_on"
+        android:title="@string/pref_include_adult_label" />
 </PreferenceScreen>
