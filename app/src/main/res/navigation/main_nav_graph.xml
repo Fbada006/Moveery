@@ -29,7 +29,7 @@
         tools:layout="@layout/fragment_movie_details">
         <argument
             android:name="movie"
-            app:argType="com.disruption.moveery.models.movies.movie.Movie"
+            app:argType="com.disruption.moveery.models.movies.Movie"
             app:nullable="true" />
     </fragment>
 

@@ -18,6 +18,7 @@ interface MovieApiService {
     @GET("discover/movie")
     fun getDiscoverMoviesAsync(
         @Query("page") page: Int,
+        @Query("include_adult") include_adult: Boolean,
         @Query("sort_by") sortBy: String? = "popularity.desc",
         @Query("api_key") apiKey: String = API_KEY
     ): Deferred<MovieResult>
@@ -27,6 +28,7 @@ interface MovieApiService {
     suspend fun getSimilarMovies(
         @Path("movie_id") movieId: Int,
         @Query("page") page: Int,
+        @Query("include_adult") include_adult: Boolean = false,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<MovieResult>
 
@@ -35,7 +37,7 @@ interface MovieApiService {
     suspend fun getMoviesByKeyword(
         @Query("query") query: String,
         @Query("page") page: Int,
-        @Query("include_adult") boolean: Boolean = false,
+        @Query("include_adult") include_adult: Boolean = false,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<MovieResult>
 
@@ -43,6 +45,7 @@ interface MovieApiService {
     @GET("discover/tv")
     fun getDiscoverTvShowsAsync(
         @Query("page") page: Int,
+        @Query("include_adult") include_adult: Boolean = false,
         @Query("sort_by") sortBy: String? = "popularity.desc",
         @Query("api_key") apiKey: String = API_KEY
     ): Deferred<TvShowResult>
@@ -52,6 +55,7 @@ interface MovieApiService {
     suspend fun getSimilarTvShows(
         @Path("tv_id") showId: Int,
         @Query("page") page: Int,
+        @Query("include_adult") include_adult: Boolean = false,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<TvShowResult>
 
@@ -60,7 +64,7 @@ interface MovieApiService {
     suspend fun getTvShowsByKeyword(
         @Query("query") query: String,
         @Query("page") page: Int,
-        @Query("include_adult") boolean: Boolean = false,
+        @Query("include_adult") include_adult: Boolean = false,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<TvShowResult>
 }

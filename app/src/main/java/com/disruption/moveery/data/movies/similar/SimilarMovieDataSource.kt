@@ -13,6 +13,8 @@ import timber.log.Timber
 class SimilarMovieDataSource(
     private val scope: CoroutineScope,
     private val movieId: Int
+//    ,
+//    private val includeAdult: Boolean
 ) : PageKeyedDataSource<Int, Movie>() {
 
     private val movieApiService = MovieApi.movieRetrofitService
@@ -26,6 +28,8 @@ class SimilarMovieDataSource(
                 val response = movieApiService.getSimilarMovies(
                     movieId = movieId,
                     page = 1
+//                    ,
+//                    include_adult = includeAdult
                 )
 
                 if (response.isSuccessful) {
