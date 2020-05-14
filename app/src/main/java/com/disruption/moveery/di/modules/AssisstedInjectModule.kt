@@ -1,5 +1,6 @@
-package com.disruption.moveery.di
+package com.disruption.moveery.di.modules
 
+import com.disruption.moveery.di.AssistedInject_AssistedInjectModule
 import com.squareup.inject.assisted.dagger2.AssistedModule
 import dagger.Module
 

@@ -1,4 +1,4 @@
-package com.disruption.moveery.di
+package com.disruption.moveery.di.modules
 
 import androidx.lifecycle.ViewModel
 import com.disruption.moveery.di.keys.ViewModelKey

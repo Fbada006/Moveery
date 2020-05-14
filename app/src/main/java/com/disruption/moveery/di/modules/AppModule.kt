@@ -1,4 +1,4 @@
-package com.disruption.moveery.di
+package com.disruption.moveery.di.modules
 
 import android.content.Context
 import androidx.room.Room

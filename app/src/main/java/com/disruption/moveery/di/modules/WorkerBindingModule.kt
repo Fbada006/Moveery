@@ -1,4 +1,4 @@
-package com.disruption.moveery.di
+package com.disruption.moveery.di.modules
 
 import com.disruption.moveery.di.keys.WorkerKey
 import com.disruption.moveery.di.workerfactory.ChildWorkerFactory

@@ -1,6 +1,10 @@
 package com.disruption.moveery.di
 
 import com.disruption.moveery.MovieApplication
+import com.disruption.moveery.di.modules.ActivityBuildersModule
+import com.disruption.moveery.di.modules.AppModule
+import com.disruption.moveery.di.modules.AssistedInjectModule
+import com.disruption.moveery.di.modules.WorkerBindingModule
 import com.disruption.moveery.di.viewmodelfactory.ViewModelFactoryModule
 import com.disruption.moveery.di.workerfactory.MyWorkerFactory
 import dagger.BindsInstance

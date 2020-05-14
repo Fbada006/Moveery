@@ -12,8 +12,7 @@ import timber.log.Timber
 class SearchedMovieDataSource(
     private val scope: CoroutineScope,
     private val query: String
-) :
-    PageKeyedDataSource<Int, Movie>() {
+) : PageKeyedDataSource<Int, Movie>() {
 
     private val movieApiService = MovieApi.movieRetrofitService
 

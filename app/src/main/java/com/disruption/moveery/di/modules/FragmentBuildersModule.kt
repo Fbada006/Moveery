@@ -1,4 +1,4 @@
-package com.disruption.moveery.di
+package com.disruption.moveery.di.modules
 
 import com.disruption.moveery.ui.details.movies.MovieDetailsFragment
 import com.disruption.moveery.ui.details.shows.ShowDetailsFragment
