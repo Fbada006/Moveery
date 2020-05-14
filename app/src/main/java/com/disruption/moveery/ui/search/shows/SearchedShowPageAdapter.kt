@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
-import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants.IMAGE_BASE_URL
 import com.disruption.moveery.utils.OnShowClickListener

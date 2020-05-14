@@ -15,7 +15,6 @@ import com.bumptech.glide.RequestManager
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentMovieDetailsBinding
 import com.disruption.moveery.di.Injectable
-import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.utils.*
 
@@ -95,25 +94,25 @@ class MovieDetailsFragment : Fragment(), Injectable {
         }
     }
 
-    /**Display the passed in movie from the [args]*/
-    private fun displaySearchedMovieDetails(movie: AltMovie?) {
-        val posterUrl = Constants.IMAGE_BASE_URL + movie?.poster_path
-
-        binding.ivMoviePoster.loadImage(posterUrl, requestManager)
-
-        val average = ((movie?.vote_average)!! * 10).toInt()
-
-        binding.tvMovieTitle.text = movie.original_title
-        binding.tvMovieGenre.text = DetailsHelper.getGenres(movie.genre_ids, requireContext())
-        binding.tvMovieYear.text = movie.release_date?.substring(0, 4)
-        binding.tvMovieOverview.text = movie.overview
-        binding.tvMovieRating.text = average.toString().plus("%")
-        binding.ratingCustomView.apply {
-            setValue(average)
-            setFillColor(DetailsHelper.getRatingColor(average, requireContext()))
-            setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
-        }
-    }
+//    /**Display the passed in movie from the [args]*/
+//    private fun displaySearchedMovieDetails(movie: AltMovie?) {
+//        val posterUrl = Constants.IMAGE_BASE_URL + movie?.poster_path
+//
+//        binding.ivMoviePoster.loadImage(posterUrl, requestManager)
+//
+//        val average = ((movie?.vote_average)!! * 10).toInt()
+//
+//        binding.tvMovieTitle.text = movie.original_title
+//        binding.tvMovieGenre.text = DetailsHelper.getGenres(movie.genre_ids, requireContext())
+//        binding.tvMovieYear.text = movie.release_date?.substring(0, 4)
+//        binding.tvMovieOverview.text = movie.overview
+//        binding.tvMovieRating.text = average.toString().plus("%")
+//        binding.ratingCustomView.apply {
+//            setValue(average)
+//            setFillColor(DetailsHelper.getRatingColor(average, requireContext()))
+//            setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
+//        }
+//    }
 
 //    private fun setStatusBarColorFromPoster(posterBitmap: Bitmap) {
 //        Palette.from(posterBitmap).generate { palette ->
