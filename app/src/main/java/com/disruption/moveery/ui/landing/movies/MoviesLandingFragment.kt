@@ -73,6 +73,8 @@ class MoviesLandingFragment : Fragment(), Injectable {
             }
         })
 
+        binding.landingMoviesViewModel = viewModel
+
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         listenToUserScrolls(binding.moviesList)
     }
