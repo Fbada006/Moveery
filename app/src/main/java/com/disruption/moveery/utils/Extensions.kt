@@ -22,5 +22,3 @@ fun Toolbar.showAndHandleBackButton(activity: FragmentActivity?) {
         }
     }
 }
-
-/***/

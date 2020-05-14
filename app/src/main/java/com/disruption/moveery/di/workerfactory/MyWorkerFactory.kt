@@ -8,7 +8,7 @@ import timber.log.Timber
 import javax.inject.Inject
 import javax.inject.Provider
 
-/**Every time a new worker is requested, [WorkManger] will request it from this class*/
+/**Every time a new worker is requested, [WorkManager] will request it from this class*/
 class MyWorkerFactory @Inject constructor(
     private val workerFactories: Map<Class<out ListenableWorker>, @JvmSuppressWildcards Provider<ChildWorkerFactory>>
 ) : WorkerFactory() {
