@@ -67,6 +67,8 @@ class ShowDetailsFragment : Fragment(), Injectable {
         viewModel.showList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
+
+        binding.showDetailsViewModel = viewModel
     }
 
     /**Display the passed in movie from the [args]*/

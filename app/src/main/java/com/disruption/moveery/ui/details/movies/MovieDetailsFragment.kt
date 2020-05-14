@@ -70,6 +70,8 @@ class MovieDetailsFragment : Fragment(), Injectable {
 
         binding.toolbar.showAndHandleBackButton(activity)
 
+        binding.movieDetailsViewModel = viewModel
+
         // Inflate the layout for this fragment
         return binding.root
     }
