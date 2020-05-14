@@ -13,8 +13,7 @@ import timber.log.Timber
 class SimilarShowDataSource(
     private val scope: CoroutineScope,
     private val showId: Int
-) :
-    PageKeyedDataSource<Int, TvShow>() {
+) : PageKeyedDataSource<Int, TvShow>() {
 
     private val movieApiService = MovieApi.movieRetrofitService
 

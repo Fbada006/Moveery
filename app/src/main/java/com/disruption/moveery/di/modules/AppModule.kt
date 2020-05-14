@@ -102,15 +102,6 @@ class AppModule {
     @Named("baseUrl")
     fun provideBaseUrl(): String = "https://api.themoviedb.org/4/"
 
-    /**Provides the include adult param from shared prefs*/
-    @Provides
-    fun provideIncludeAdult(context: Context, sharedPreferences: SharedPreferences): Boolean {
-        return sharedPreferences.getBoolean(
-            context.getString(R.string.pref_include_adult_key),
-            context.resources.getBoolean(R.bool.pref_include_adult_default)
-        )
-    }
-
     /**Provide the [MovieRoomDatabase]*/
     @Singleton
     @Provides

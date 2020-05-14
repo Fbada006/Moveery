@@ -12,8 +12,6 @@ import timber.log.Timber
 class SearchedMovieDataSource(
     private val scope: CoroutineScope,
     private val query: String
-//    ,
-//    private val includeAdult: Boolean
 ) : PageKeyedDataSource<Int, Movie>() {
 
     private val movieApiService = MovieApi.movieRetrofitService
@@ -27,8 +25,6 @@ class SearchedMovieDataSource(
                 val response = movieApiService.getMoviesByKeyword(
                     query = query,
                     page = 1
-//                    ,
-//                    include_adult = includeAdult
                 )
 
                 if (response.isSuccessful) {

@@ -18,7 +18,7 @@ interface MovieApiService {
     @GET("discover/movie")
     fun getDiscoverMoviesAsync(
         @Query("page") page: Int,
-        @Query("include_adult") include_adult: Boolean,
+        @Query("include_adult") include_adult: Boolean = false,
         @Query("sort_by") sortBy: String? = "popularity.desc",
         @Query("api_key") apiKey: String = API_KEY
     ): Deferred<MovieResult>

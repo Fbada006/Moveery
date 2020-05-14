@@ -19,8 +19,7 @@ class RefreshMovieWork @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted params: WorkerParameters,
     private val movieLocalCache: MovieLocalCache,
-    private val movieRetrofitService: MovieApiService,
-    private val includeAdult: Boolean
+    private val movieRetrofitService: MovieApiService
 ) :
     CoroutineWorker(appContext, params) {
 
@@ -47,8 +46,7 @@ class RefreshMovieWork @AssistedInject constructor(
                 //We want fresh data so the page will always be set to 1
                 val result =
                     movieRetrofitService.getDiscoverMoviesAsync(
-                        page = 1,
-                        include_adult = includeAdult
+                        page = 1
                     ).await()
                 Timber.e("Result is -------------------: ${result.movieList}")
                 movieLocalCache.refreshMoviesCache(result)

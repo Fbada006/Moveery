@@ -18,11 +18,4 @@
         app:key="@string/pref_night_mode_key"
         app:title="@string/pref_night_mode_title" />
 
-    <SwitchPreference
-        android:defaultValue="@bool/pref_include_adult_default"
-        android:icon="@drawable/ic_adult"
-        android:key="@string/pref_include_adult_key"
-        android:summaryOff="@string/pref_include_adult_summary_off"
-        android:summaryOn="@string/pref_include_adult_summary_on"
-        android:title="@string/pref_include_adult_label" />
 </PreferenceScreen>

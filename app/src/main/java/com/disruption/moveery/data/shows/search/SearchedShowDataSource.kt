@@ -9,12 +9,10 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 /**The DataSource that supplies the searched list*/
-class SearchedShowDataSource
-    (
+class SearchedShowDataSource(
     private val scope: CoroutineScope,
     private val query: String
-) :
-    PageKeyedDataSource<Int, TvShow>() {
+) : PageKeyedDataSource<Int, TvShow>() {
 
     private val movieApiService = MovieApi.movieRetrofitService
 
@@ -24,7 +22,10 @@ class SearchedShowDataSource
     ) {
         scope.launch {
             try {
-                val response = movieApiService.getTvShowsByKeyword(query = query, page = 1)
+                val response = movieApiService.getTvShowsByKeyword(
+                    query = query,
+                    page = 1
+                )
 
                 if (response.isSuccessful) {
                     val result = response.body()
@@ -40,7 +41,10 @@ class SearchedShowDataSource
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, TvShow>) {
         scope.launch {
             try {
-                val response = movieApiService.getTvShowsByKeyword(query = query, page = params.key)
+                val response = movieApiService.getTvShowsByKeyword(
+                    query = query,
+                    page = params.key
+                )
 
                 if (response.isSuccessful) {
                     val result = response.body()

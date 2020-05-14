@@ -15,8 +15,7 @@ import javax.inject.Inject
 class ShowBoundaryCallBack @Inject constructor(
     private val localCache: MovieLocalCache,
     private val coroutineScope: CoroutineScope,
-    private val movieRetrofitService: MovieApiService,
-    private val includeAdult: Boolean
+    private val movieRetrofitService: MovieApiService
 ) : PagedList.BoundaryCallback<TvShow>() {
 
     // keep the last requested page. When the request is successful, increment the page number.
@@ -45,8 +44,7 @@ class ShowBoundaryCallBack @Inject constructor(
             isRequestInProgress = true
             val result =
                 movieRetrofitService.getDiscoverTvShowsAsync(
-                    page = lastRequestedPage,
-                    include_adult = includeAdult
+                    page = lastRequestedPage
                 ).await()
 
             Timber.e("Result of the shows call ================= $result")

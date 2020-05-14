@@ -14,8 +14,7 @@ import javax.inject.Inject
 class MovieBoundaryCallBack @Inject constructor(
     private val localCache: MovieLocalCache,
     private val coroutineScope: CoroutineScope,
-    private val movieRetrofitService: MovieApiService,
-    private val includeAdult: Boolean
+    private val movieRetrofitService: MovieApiService
 ) : PagedList.BoundaryCallback<Movie>() {
 
     // keep the last requested page. When the request is successful, increment the page number.
@@ -44,8 +43,7 @@ class MovieBoundaryCallBack @Inject constructor(
             isRequestInProgress = true
             val result =
                 movieRetrofitService.getDiscoverMoviesAsync(
-                    page = lastRequestedPage,
-                    include_adult = includeAdult
+                    page = lastRequestedPage
                 ).await()
             localCache.refreshMoviesCache(result)
             lastRequestedPage++
