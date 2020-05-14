@@ -13,7 +13,6 @@ import com.disruption.moveery.data.movies.similar.SimilarMovieDataSource
 import com.disruption.moveery.data.shows.ShowBoundaryCallBack
 import com.disruption.moveery.data.shows.search.SearchedShowDataSource
 import com.disruption.moveery.data.shows.similar.SimilarShowDataSource
-import com.disruption.moveery.models.movies.altmovie.AltMovie
 import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants.DATABASE_PAGE_SIZE
@@ -58,7 +57,7 @@ class MovieRepo @Inject constructor(
     /**Returns the searched movie with paging involved*/
     fun getSearchedMovieList(
         queryLiveData: MutableLiveData<String>
-    ): LiveData<PagedList<AltMovie>> {
+    ): LiveData<PagedList<Movie>> {
 
         return Transformations.switchMap(queryLiveData) {
             initializeSearchMoviePagedListBuilder(it, scope).build()
@@ -90,7 +89,7 @@ class MovieRepo @Inject constructor(
     /**Returns similar movies with paging to the [MovieDetailsFragment]*/
     fun getSimilarMovieList(
         movieIdLiveData: MutableLiveData<Int>
-    ): LiveData<PagedList<AltMovie>> {
+    ): LiveData<PagedList<Movie>> {
 
         return Transformations.switchMap(movieIdLiveData) {
             initializeSimilarMoviesPagedListBuilder(it, scope).build()
@@ -122,10 +121,10 @@ class MovieRepo @Inject constructor(
     private fun initializeSearchMoviePagedListBuilder(
         query: String,
         scope: CoroutineScope
-    ): LivePagedListBuilder<Int, AltMovie> {
+    ): LivePagedListBuilder<Int, Movie> {
 
-        val dataSourceFactory = object : DataSource.Factory<Int, AltMovie>() {
-            override fun create(): DataSource<Int, AltMovie> {
+        val dataSourceFactory = object : DataSource.Factory<Int, Movie>() {
+            override fun create(): DataSource<Int, Movie> {
                 return SearchedMovieDataSource(scope, query)
             }
         }
@@ -135,10 +134,10 @@ class MovieRepo @Inject constructor(
     private fun initializeSimilarMoviesPagedListBuilder(
         movieId: Int,
         scope: CoroutineScope
-    ): LivePagedListBuilder<Int, AltMovie> {
+    ): LivePagedListBuilder<Int, Movie> {
 
-        val dataSourceFactory = object : DataSource.Factory<Int, AltMovie>() {
-            override fun create(): DataSource<Int, AltMovie> {
+        val dataSourceFactory = object : DataSource.Factory<Int, Movie>() {
+            override fun create(): DataSource<Int, Movie> {
                 return SimilarMovieDataSource(scope, movieId)
             }
         }

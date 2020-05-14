@@ -43,22 +43,16 @@ class MovieDetailsFragment : Fragment(), Injectable {
         binding = FragmentMovieDetailsBinding.inflate(inflater)
 
         val movie = args.movie
-        val searchedMovie = args.altMovie
 
         if (movie != null) {
             displayMovieDetails(movie)
             viewModel.getSimilarMovies(movie.id)
         }
 
-        if (searchedMovie != null) {
-            displaySearchedMovieDetails(searchedMovie)
-            viewModel.getSimilarMovies(searchedMovie.id)
-        }
-
         val adapter =
             MovieSimilarPagedAdapter(
                 requireContext(),
-                AltMovieClickListener {
+                OnMovieClickListener {
                     //Do nothing for now
                 })
 

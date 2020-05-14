@@ -15,6 +15,7 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentLandingMoviesBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.settings.SettingsActivity
+import com.disruption.moveery.utils.OnMovieClickListener
 import com.disruption.moveery.utils.listenToUserScrolls
 import javax.inject.Inject
 
@@ -66,8 +67,7 @@ class MoviesLandingFragment : Fragment(), Injectable {
             it.getContentIfNotHandled()?.let { movie ->
                 findNavController().navigate(
                     MoviesLandingFragmentDirections.actionDestMoviesLandingFragmentToDetailsFragment(
-                        movie,
-                        null
+                        movie
                     )
                 )
             }

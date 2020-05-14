@@ -1,6 +1,5 @@
 package com.disruption.moveery.network
 
-import com.disruption.moveery.models.movies.altmovie.AltResult
 import com.disruption.moveery.models.movies.movie.MovieResult
 import com.disruption.moveery.models.shows.TvShowResult
 import com.disruption.moveery.utils.Constants.API_KEY
@@ -29,7 +28,7 @@ interface MovieApiService {
         @Path("movie_id") movieId: Int,
         @Query("page") page: Int,
         @Query("api_key") apiKey: String = API_KEY
-    ): Response<AltResult>
+    ): Response<MovieResult>
 
     /**Searches the movie*/
     @GET("4/search/movie")
@@ -38,7 +37,7 @@ interface MovieApiService {
         @Query("page") page: Int,
         @Query("include_adult") boolean: Boolean = false,
         @Query("api_key") apiKey: String = API_KEY
-    ): Response<AltResult>
+    ): Response<MovieResult>
 
     /**Gets movies on the [ShowsLandingPage]*/
     @GET("discover/tv")

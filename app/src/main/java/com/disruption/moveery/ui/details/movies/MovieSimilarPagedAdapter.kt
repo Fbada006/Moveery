@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
-import com.disruption.moveery.models.movies.altmovie.AltMovie
-import com.disruption.moveery.utils.AltMovieClickListener
-import com.disruption.moveery.utils.AltMovieDiffCallback
+import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.utils.Constants
+import com.disruption.moveery.utils.MovieDiffCallback
+import com.disruption.moveery.utils.OnMovieClickListener
 import kotlinx.android.synthetic.main.movie_similar_item.view.*
 
 /**For displaying similar movies in the [MovieDetailsFragment]*/
 class MovieSimilarPagedAdapter(
     private val context: Context,
-    private val onClickListener: AltMovieClickListener
+    private val onClickListener: OnMovieClickListener
 ) :
-    PagedListAdapter<AltMovie, MovieSimilarPagedAdapter.SimilarMovieViewHolder>(AltMovieDiffCallback()) {
+    PagedListAdapter<Movie, MovieSimilarPagedAdapter.SimilarMovieViewHolder>(MovieDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimilarMovieViewHolder {
         return SimilarMovieViewHolder.from(
@@ -38,7 +38,7 @@ class MovieSimilarPagedAdapter(
 
     class SimilarMovieViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
         /**Binds data to the [SimilarMovieViewHolder]*/
-        fun bind(context: Context, item: AltMovie) {
+        fun bind(context: Context, item: Movie) {
             itemView.tv_movie_title.text = item.title
             itemView.tv_movie_overview.text = item.overview
             itemView.tv_movie_year.text =

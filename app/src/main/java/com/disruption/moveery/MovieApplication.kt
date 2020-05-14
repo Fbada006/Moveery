@@ -19,7 +19,6 @@ import timber.log.Timber.DebugTree
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-
 /**The Application class*/
 class MovieApplication : Application(), HasActivityInjector {
 

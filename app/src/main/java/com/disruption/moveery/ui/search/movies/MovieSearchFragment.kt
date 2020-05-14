@@ -15,7 +15,7 @@ import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.disruption.moveery.databinding.FragmentMovieSearchBinding
 import com.disruption.moveery.di.Injectable
-import com.disruption.moveery.utils.AltMovieClickListener
+import com.disruption.moveery.utils.OnMovieClickListener
 import com.disruption.moveery.utils.listenToUserScrolls
 import com.disruption.moveery.utils.showAndHandleBackButton
 import javax.inject.Inject
@@ -45,8 +45,8 @@ class MovieSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListen
         val adapter =
             SearchedMoviePageAdapter(
                 requireContext(),
-                AltMovieClickListener {
-                    viewModel.displayMovieDetails(it)
+                OnMovieClickListener {
+                    viewModel.displayMovieDetails(it!!)
                 })
 
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.VERTICAL)
@@ -68,7 +68,6 @@ class MovieSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListen
             it.getContentIfNotHandled()?.let { movie ->
                 findNavController().navigate(
                     MovieSearchFragmentDirections.actionDestSearchFragmentToDestDetailsFragment(
-                        null,
                         movie
                     )
                 )

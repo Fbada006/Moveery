@@ -31,10 +31,6 @@
             android:name="movie"
             app:argType="com.disruption.moveery.models.movies.movie.Movie"
             app:nullable="true" />
-        <argument
-            android:name="altMovie"
-            app:argType="com.disruption.moveery.models.movies.altmovie.AltMovie"
-            app:nullable="true" />
     </fragment>
 
     <fragment

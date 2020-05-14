@@ -3,7 +3,7 @@ package com.disruption.moveery.ui.search.movies
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.disruption.moveery.models.movies.altmovie.AltMovie
+import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.repo.MovieRepo
 import com.disruption.moveery.utils.Event
 import javax.inject.Inject
@@ -23,14 +23,14 @@ class MovieSearchViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
         queryLiveData.postValue(queryString)
     }
 
-    private val _navigateToSelectedMovie = MutableLiveData<Event<AltMovie>>()
+    private val _navigateToSelectedMovie = MutableLiveData<Event<Movie>>()
 
     /**The external immutable LiveData for the click event*/
-    val navigateToSelectedMovie: LiveData<Event<AltMovie>>
+    val navigateToSelectedMovie: LiveData<Event<Movie>>
         get() = _navigateToSelectedMovie
 
     /**Called when a user clicks on a movie*/
-    fun displayMovieDetails(movie: AltMovie) {
+    fun displayMovieDetails(movie: Movie) {
         _navigateToSelectedMovie.value = Event(movie)
     }
 }

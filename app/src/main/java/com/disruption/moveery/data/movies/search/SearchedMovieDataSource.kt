@@ -1,7 +1,7 @@
 package com.disruption.moveery.data.movies.search
 
 import androidx.paging.PageKeyedDataSource
-import com.disruption.moveery.models.movies.altmovie.AltMovie
+import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.network.MovieApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
@@ -13,13 +13,13 @@ class SearchedMovieDataSource(
     private val scope: CoroutineScope,
     private val query: String
 ) :
-    PageKeyedDataSource<Int, AltMovie>() {
+    PageKeyedDataSource<Int, Movie>() {
 
     private val movieApiService = MovieApi.movieRetrofitService
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, AltMovie>
+        callback: LoadInitialCallback<Int, Movie>
     ) {
         scope.launch {
             try {
@@ -37,7 +37,7 @@ class SearchedMovieDataSource(
         }
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, AltMovie>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
         scope.launch {
             try {
                 val response = movieApiService.getMoviesByKeyword(query = query, page = params.key)
@@ -57,7 +57,7 @@ class SearchedMovieDataSource(
         }
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, AltMovie>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
         //Ignore this for now
     }
 

@@ -1,7 +1,7 @@
 package com.disruption.moveery.data.movies.similar
 
 import androidx.paging.PageKeyedDataSource
-import com.disruption.moveery.models.movies.altmovie.AltMovie
+import com.disruption.moveery.models.movies.movie.Movie
 import com.disruption.moveery.network.MovieApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
@@ -14,13 +14,13 @@ class SimilarMovieDataSource(
     private val scope: CoroutineScope,
     private val movieId: Int
 ) :
-    PageKeyedDataSource<Int, AltMovie>() {
+    PageKeyedDataSource<Int, Movie>() {
 
     private val movieApiService = MovieApi.movieRetrofitService
 
     override fun loadInitial(
         params: LoadInitialParams<Int>,
-        callback: LoadInitialCallback<Int, AltMovie>
+        callback: LoadInitialCallback<Int, Movie>
     ) {
         scope.launch {
             try {
@@ -40,7 +40,7 @@ class SimilarMovieDataSource(
         }
     }
 
-    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, AltMovie>) {
+    override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
         scope.launch {
             try {
                 val response = movieApiService.getSimilarMovies(
@@ -59,7 +59,7 @@ class SimilarMovieDataSource(
         }
     }
 
-    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, AltMovie>) {
+    override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<Int, Movie>) {
         //Ignore for now
     }
 
