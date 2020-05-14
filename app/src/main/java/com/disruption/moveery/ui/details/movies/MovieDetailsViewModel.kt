@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
-import com.disruption.moveery.models.movies.movie.Movie
+import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.repo.MovieRepo
 import javax.inject.Inject
 

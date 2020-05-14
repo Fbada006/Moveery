@@ -1,7 +1,7 @@
 package com.disruption.moveery.utils
 
 import androidx.recyclerview.widget.DiffUtil
-import com.disruption.moveery.models.movies.movie.Movie
+import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.shows.TvShow
 
 /** DiffUtil is a utility class that calculates the difference between two lists and outputs a

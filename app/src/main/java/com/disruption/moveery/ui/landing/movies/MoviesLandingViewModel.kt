@@ -3,7 +3,7 @@ package com.disruption.moveery.ui.landing.movies
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.disruption.moveery.models.movies.movie.Movie
+import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.repo.MovieRepo
 import com.disruption.moveery.utils.Event
 import javax.inject.Inject

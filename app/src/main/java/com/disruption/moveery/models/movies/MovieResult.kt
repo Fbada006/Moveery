@@ -1,5 +1,6 @@
-package com.disruption.moveery.models.movies.movie
+package com.disruption.moveery.models.movies
 
+import com.disruption.moveery.models.movies.Movie
 import com.google.gson.annotations.SerializedName
 
 /**The result that comes back from the API call with the list of [Movie] objects*/

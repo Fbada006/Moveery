@@ -15,7 +15,7 @@ import com.bumptech.glide.RequestManager
 import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentMovieDetailsBinding
 import com.disruption.moveery.di.Injectable
-import com.disruption.moveery.models.movies.movie.Movie
+import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.utils.*
 
 import javax.inject.Inject

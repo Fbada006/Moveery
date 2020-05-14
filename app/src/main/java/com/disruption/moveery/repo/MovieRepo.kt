@@ -13,7 +13,7 @@ import com.disruption.moveery.data.movies.similar.SimilarMovieDataSource
 import com.disruption.moveery.data.shows.ShowBoundaryCallBack
 import com.disruption.moveery.data.shows.search.SearchedShowDataSource
 import com.disruption.moveery.data.shows.similar.SimilarShowDataSource
-import com.disruption.moveery.models.movies.movie.Movie
+import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants.DATABASE_PAGE_SIZE
 import kotlinx.coroutines.CoroutineScope

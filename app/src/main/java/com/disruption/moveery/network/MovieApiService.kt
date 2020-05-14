@@ -1,6 +1,6 @@
 package com.disruption.moveery.network
 
-import com.disruption.moveery.models.movies.movie.MovieResult
+import com.disruption.moveery.models.movies.MovieResult
 import com.disruption.moveery.models.shows.TvShowResult
 import com.disruption.moveery.utils.Constants.API_KEY
 import kotlinx.coroutines.Deferred

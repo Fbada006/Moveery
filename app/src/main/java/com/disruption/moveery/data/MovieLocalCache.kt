@@ -1,8 +1,8 @@
 package com.disruption.moveery.data
 
 import androidx.paging.DataSource
-import com.disruption.moveery.models.movies.movie.Movie
-import com.disruption.moveery.models.movies.movie.MovieResult
+import com.disruption.moveery.models.movies.Movie
+import com.disruption.moveery.models.movies.MovieResult
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.models.shows.TvShowResult
 import javax.inject.Inject

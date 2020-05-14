@@ -2,7 +2,7 @@ package com.disruption.moveery.data.movies
 
 import androidx.paging.PagedList
 import com.disruption.moveery.data.MovieLocalCache
-import com.disruption.moveery.models.movies.movie.Movie
+import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.network.MovieApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
