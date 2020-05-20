@@ -27,6 +27,17 @@ buildscript {
         palleteVersion = '1.0.0'
         timberVersion = '4.7.1'
         assistedInjectVersion = '0.3.2'
+        truthVersion = '1.0.1'
+        rulesVersion = '1.0.1'
+        robolectricVersion = '4.3.1'
+        mockitoVersion = '2.8.9'
+        junitVersion = '4.12'
+        dexMakerVersion = '2.12.1'
+        espressoVersion = '3.2.0-beta01'
+        archTestingVersion = '2.0.0'
+        androidXTestCoreVersion = '1.2.0-beta01'
+        androidXTestExtKotlinRunnerVersion = '1.1.1-beta01'
+        androidXTestRulesVersion = '1.2.0-beta01'
     }
 
     repositories {
