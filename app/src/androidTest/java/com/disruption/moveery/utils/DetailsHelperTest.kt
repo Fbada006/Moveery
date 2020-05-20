@@ -7,12 +7,21 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.MediumTest
 import com.disruption.moveery.R
 import com.google.common.truth.Truth.assertThat
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 @MediumTest
 class DetailsHelperTest {
+
+    private lateinit var context: Context
+
+    /**Set objects*/
+    @Before
+    fun setUp() {
+        context = ApplicationProvider.getApplicationContext()
+    }
 
     /**Test that the genre strings are properly returned*/
     @Test
@@ -21,7 +30,6 @@ class DetailsHelperTest {
         val genreIds = listOf(28, 99, 18)
 
         //When getGenres() is called
-        val context = ApplicationProvider.getApplicationContext<Context>()
         val genres = DetailsHelper.getGenres(genreIds, context)
 
         //Then assert that the string is "Action, Documentary, Drama."
@@ -35,7 +43,6 @@ class DetailsHelperTest {
         val genreIds = emptyList<Int>()
 
         //When getGenres() is called
-        val context = ApplicationProvider.getApplicationContext<Context>()
         val genres = DetailsHelper.getGenres(genreIds, context)
 
         //Then assert that the string is "Genre Unknown"
@@ -49,7 +56,6 @@ class DetailsHelperTest {
         val genreIds = null
 
         //When getGenres() is called
-        val context = ApplicationProvider.getApplicationContext<Context>()
         val genres = DetailsHelper.getGenres(genreIds, context)
 
         //Then assert that the string is "Genre Unknown"
@@ -63,7 +69,6 @@ class DetailsHelperTest {
         val rating = 80
 
         //When getRatingColor() is called
-        val context = ApplicationProvider.getApplicationContext<Context>()
         val ratingColor = DetailsHelper.getRatingColor(rating, context)
 
         //Then assert that the color is lessThan100OrEqual
@@ -82,7 +87,6 @@ class DetailsHelperTest {
         val rating = 1000
 
         //When getRatingColor() is called
-        val context = ApplicationProvider.getApplicationContext<Context>()
         val ratingColor = DetailsHelper.getRatingColor(rating, context)
 
         //Then assert that the color is colorAccent
