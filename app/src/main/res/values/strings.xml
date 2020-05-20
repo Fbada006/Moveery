@@ -26,6 +26,7 @@
     <string name="genre_thriller">Thriller, </string>
     <string name="genre_war">War, </string>
     <string name="genre_western">Western, </string>
+    <string name="genre_unknown">Genre Unknown, </string>
 
     <!--Menus-->
     <string name="label_settings">Settings</string>
