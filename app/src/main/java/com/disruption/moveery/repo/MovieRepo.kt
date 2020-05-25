@@ -74,7 +74,7 @@ class MovieRepo @Inject constructor(
         }
     }
 
-    override fun initializeSearchShowPagedListBuilder(
+    private fun initializeSearchShowPagedListBuilder(
         query: String,
         scope: CoroutineScope
     ): LivePagedListBuilder<Int, TvShow> {
@@ -106,7 +106,7 @@ class MovieRepo @Inject constructor(
         }
     }
 
-    override fun initializeSimilarShowsPagedListBuilder(
+    private fun initializeSimilarShowsPagedListBuilder(
         showId: Int,
         scope: CoroutineScope
     ): LivePagedListBuilder<Int, TvShow> {
@@ -118,7 +118,7 @@ class MovieRepo @Inject constructor(
         return LivePagedListBuilder(factory, config)
     }
 
-    override fun initializeSearchMoviePagedListBuilder(
+    private fun initializeSearchMoviePagedListBuilder(
         query: String,
         scope: CoroutineScope
     ): LivePagedListBuilder<Int, Movie> {
@@ -131,7 +131,7 @@ class MovieRepo @Inject constructor(
         return LivePagedListBuilder(dataSourceFactory, config)
     }
 
-    override fun initializeSimilarMoviesPagedListBuilder(
+    private fun initializeSimilarMoviesPagedListBuilder(
         movieId: Int,
         scope: CoroutineScope
     ): LivePagedListBuilder<Int, Movie> {
