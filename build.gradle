@@ -19,7 +19,7 @@ buildscript {
         pagingVersion = '2.1.2'
         gsonVersion = '2.8.6'
         fragmentVersion = '1.2.2'
-        workVersion = '1.0.1'
+        workVersion = '2.3.4'
         preferenceVersion = '1.1.0'
         materialVersion = '1.2.0-alpha05'
         daggerVersion = '2.22'
