@@ -26,60 +26,48 @@ object DataFactory {
     }
 
     /**Make a fake movie*/
-    private fun makeMovie(): Movie {
-        return Movie(
-            id = randomInt(),
-            isForAdult = randomBoolean(),
-            backdrop_path = randomString(),
-            genre_ids = randomList(),
-            original_language = randomString(),
-            original_title = randomString(),
-            overview = randomString(),
-            poster_path = randomString(),
-            release_date = randomString(),
-            title = randomString(),
-            hasVideo = randomBoolean(),
-            vote_average = randomDouble()
-        )
-    }
+    private fun makeMovie(): Movie = Movie(
+        id = randomInt(),
+        isForAdult = randomBoolean(),
+        backdrop_path = randomString(),
+        genre_ids = randomList(),
+        original_language = randomString(),
+        original_title = randomString(),
+        overview = randomString(),
+        poster_path = randomString(),
+        release_date = randomString(),
+        title = randomString(),
+        hasVideo = randomBoolean(),
+        vote_average = randomDouble()
+    )
 
     /**Make a fake TvShow*/
-    private fun makeTvShow(): TvShow {
-        return TvShow(
-            id = randomInt(),
-            backdrop_path = randomString(),
-            genre_ids = randomList(),
-            original_language = randomString(),
-            overview = randomString(),
-            poster_path = randomString(),
-            vote_average = randomDouble(),
-            first_air_date = randomString(),
-            name = randomString(),
-            original_name = randomString(),
-            vote_count = randomInt(),
-            popularity = randomDouble()
-        )
-    }
+    private fun makeTvShow(): TvShow = TvShow(
+        id = randomInt(),
+        backdrop_path = randomString(),
+        genre_ids = randomList(),
+        original_language = randomString(),
+        overview = randomString(),
+        poster_path = randomString(),
+        vote_average = randomDouble(),
+        first_air_date = randomString(),
+        name = randomString(),
+        original_name = randomString(),
+        vote_count = randomInt(),
+        popularity = randomDouble()
+    )
 
     /**Generate random double*/
-    private fun randomDouble(): Double? {
-        return randomInt().toDouble()
-    }
+    private fun randomDouble(): Double = randomInt().toDouble()
 
     /**Generate random string*/
-    private fun randomString(): String {
-        return java.util.UUID.randomUUID().toString()
-    }
+    private fun randomString(): String = java.util.UUID.randomUUID().toString()
 
     /**Generate random int*/
-    private fun randomInt(): Int {
-        return ThreadLocalRandom.current().nextInt(0, 1000 + 1)
-    }
+    private fun randomInt(): Int = ThreadLocalRandom.current().nextInt(0, 1000 + 1)
 
     /**Generate random boolean*/
-    private fun randomBoolean(): Boolean {
-        return Math.random() < 0.5
-    }
+    private fun randomBoolean(): Boolean = Math.random() < 0.5
 
     /**Generate random list*/
     private fun randomList(): List<Int> {
