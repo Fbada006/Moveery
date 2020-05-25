@@ -6,9 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/iconTintWhiteBlack</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents">
+        <!--Change text color of the title on Toolbar-->
+        <item name="android:textColorPrimary">@color/universalWhite</item>
         <!--This line changes the color of icons in toolbar (back, overflow menu icons)-->
         <item name="android:textColorSecondary">@color/universalWhite</item>
         <!--This one changes the color of the hint text-->

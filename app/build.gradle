@@ -60,6 +60,12 @@ android {
             exclude group: "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug"
         }
     }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
