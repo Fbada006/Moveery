@@ -29,7 +29,7 @@ class MovieRepo @Inject constructor(
     private val movieBoundaryCallBack: MovieBoundaryCallBack,
     private val showBoundaryCallBack: ShowBoundaryCallBack,
     private val scope: CoroutineScope
-) {
+) : IMovieRepo {
 
     private val config = PagedList.Config.Builder()
         .setPageSize(20)
@@ -37,7 +37,7 @@ class MovieRepo @Inject constructor(
         .build()
 
     /**Get all the movies to from the local storage*/
-    fun getAllMovies(): LiveData<PagedList<Movie>> {
+    override fun getAllMovies(): LiveData<PagedList<Movie>> {
         val dataSourceFactory = movieLocalCache.getMovieData()
 
         return LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
@@ -46,7 +46,7 @@ class MovieRepo @Inject constructor(
     }
 
     /**Get all the movies from the local storage*/
-    fun getAllShows(): LiveData<PagedList<TvShow>> {
+    override fun getAllShows(): LiveData<PagedList<TvShow>> {
         val factory = movieLocalCache.getShowsData()
 
         return LivePagedListBuilder(factory, DATABASE_PAGE_SIZE)
@@ -55,7 +55,7 @@ class MovieRepo @Inject constructor(
     }
 
     /**Returns the searched movie with paging involved*/
-    fun getSearchedMovieList(
+    override fun getSearchedMovieList(
         queryLiveData: MutableLiveData<String>
     ): LiveData<PagedList<Movie>> {
 
@@ -65,7 +65,7 @@ class MovieRepo @Inject constructor(
     }
 
     /**Returns the searched show with paging involved*/
-    fun getSearchedShowList(
+    override fun getSearchedShowList(
         queryLiveData: MutableLiveData<String>
     ): LiveData<PagedList<TvShow>> {
 
@@ -74,7 +74,7 @@ class MovieRepo @Inject constructor(
         }
     }
 
-    private fun initializeSearchShowPagedListBuilder(
+    override fun initializeSearchShowPagedListBuilder(
         query: String,
         scope: CoroutineScope
     ): LivePagedListBuilder<Int, TvShow> {
@@ -87,7 +87,7 @@ class MovieRepo @Inject constructor(
     }
 
     /**Returns similar movies with paging to the [MovieDetailsFragment]*/
-    fun getSimilarMovieList(
+    override fun getSimilarMovieList(
         movieIdLiveData: MutableLiveData<Int>
     ): LiveData<PagedList<Movie>> {
 
@@ -97,7 +97,7 @@ class MovieRepo @Inject constructor(
     }
 
     /**Returns similar shows with paging to the [ShowDetailsFragment]*/
-    fun getSimilarShowsList(
+    override fun getSimilarShowsList(
         showIdLiveData: MutableLiveData<Int>
     ): LiveData<PagedList<TvShow>> {
 
@@ -106,7 +106,7 @@ class MovieRepo @Inject constructor(
         }
     }
 
-    private fun initializeSimilarShowsPagedListBuilder(
+    override fun initializeSimilarShowsPagedListBuilder(
         showId: Int,
         scope: CoroutineScope
     ): LivePagedListBuilder<Int, TvShow> {
@@ -118,7 +118,7 @@ class MovieRepo @Inject constructor(
         return LivePagedListBuilder(factory, config)
     }
 
-    private fun initializeSearchMoviePagedListBuilder(
+    override fun initializeSearchMoviePagedListBuilder(
         query: String,
         scope: CoroutineScope
     ): LivePagedListBuilder<Int, Movie> {
@@ -131,7 +131,7 @@ class MovieRepo @Inject constructor(
         return LivePagedListBuilder(dataSourceFactory, config)
     }
 
-    private fun initializeSimilarMoviesPagedListBuilder(
+    override fun initializeSimilarMoviesPagedListBuilder(
         movieId: Int,
         scope: CoroutineScope
     ): LivePagedListBuilder<Int, Movie> {

@@ -7,8 +7,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**This is the model that is queried from the network and saved in the db
- * TODO: Update domain and data models
- * */
+ */
 @Entity(tableName = "movies")
 @Parcelize
 data class Movie(
