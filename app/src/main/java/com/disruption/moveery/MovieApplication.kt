@@ -44,7 +44,8 @@ class MovieApplication : Application(), HasActivityInjector {
     private fun initWorkManagerWithDagger() {
         val factory = DaggerAppComponent.builder()
             .application(this)
-            .build().factory()
+            .build()
+            .factory()
         WorkManager.initialize(
             this, Configuration.Builder()
                 .setWorkerFactory(factory)
