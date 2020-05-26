@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**The Application class*/
-class MovieApplication : Application(), HasActivityInjector {
+open class MovieApplication : Application(), HasActivityInjector, Configuration.Provider {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
@@ -34,7 +34,7 @@ class MovieApplication : Application(), HasActivityInjector {
         super.onCreate()
 
         AppInjector.init(this)
-        initWorkManagerWithDagger()
+        //initWorkManagerWithDagger()
 
         setUpMovieRefreshWork()
         setNightMode()
@@ -44,7 +44,9 @@ class MovieApplication : Application(), HasActivityInjector {
     private fun initWorkManagerWithDagger() {
         val factory = DaggerAppComponent.builder()
             .application(this)
-            .build().factory()
+            .build()
+            .factory()
+
         WorkManager.initialize(
             this, Configuration.Builder()
                 .setWorkerFactory(factory)
@@ -78,7 +80,7 @@ class MovieApplication : Application(), HasActivityInjector {
                     .setConstraints(constraints)
                     .build()
 
-            WorkManager.getInstance().enqueueUniquePeriodicWork(
+            WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
                 RefreshMovieWork.MOVIE_WORK_NAME,
                 ExistingPeriodicWorkPolicy.KEEP,
                 repeatingMovieRefreshRequest
@@ -87,4 +89,7 @@ class MovieApplication : Application(), HasActivityInjector {
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector
+
+    override fun getWorkManagerConfiguration(): Configuration =
+        Configuration.Builder().build()
 }

@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     private fun setupNavigationMenu(navController: NavController) {
         val sideNavView = findViewById<NavigationView>(R.id.main_nav_view)
         sideNavView?.setupWithNavController(navController)
+        sideNavView.setCheckedItem(R.id.dest_movies_landing_fragment)
     }
 
     override fun onSupportNavigateUp(): Boolean {

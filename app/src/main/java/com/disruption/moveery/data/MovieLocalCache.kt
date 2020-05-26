@@ -8,21 +8,24 @@ import com.disruption.moveery.models.shows.TvShowResult
 import javax.inject.Inject
 
 /**This class gets the data from the API and saves it to the offline db*/
-class MovieLocalCache @Inject constructor(private val movieRoomDatabase: MovieRoomDatabase) {
+class MovieLocalCache @Inject constructor(private val movieRoomDatabase: MovieRoomDatabase) :
+    IMovieLocalCache {
 
     /**Room executes all queries on a separate thread.*/
-    fun getMovieData(): DataSource.Factory<Int, Movie> = movieRoomDatabase.movieDao.getAllMovies()
+    override fun getMovieData(): DataSource.Factory<Int, Movie> =
+        movieRoomDatabase.movieDao.getAllMovies()
 
     /**Get all the shows*/
-    fun getShowsData(): DataSource.Factory<Int, TvShow> = movieRoomDatabase.movieDao.getAllShows()
+    override fun getShowsData(): DataSource.Factory<Int, TvShow> =
+        movieRoomDatabase.movieDao.getAllShows()
 
     /**Insert the movies into the database on a background thread*/
-    suspend fun refreshMoviesCache(movieMovieResult: MovieResult) {
+    override suspend fun refreshMoviesCache(movieMovieResult: MovieResult) {
         movieRoomDatabase.movieDao.insertAllMovies(movieMovieResult.movieList)
     }
 
     /**Insert TV shows*/
-    suspend fun refreshShowsCache(tvShowResult: TvShowResult) {
+    override suspend fun refreshShowsCache(tvShowResult: TvShowResult) {
         movieRoomDatabase.movieDao.insertAllShows(tvShowResult.showsList)
     }
 }
