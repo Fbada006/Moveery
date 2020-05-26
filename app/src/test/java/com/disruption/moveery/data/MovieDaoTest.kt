@@ -28,7 +28,7 @@ class MovieDaoTest {
     private lateinit var movieRoomDatabase: MovieRoomDatabase
 
     @Before
-    fun initDb() {
+    fun setup() {
         movieRoomDatabase = Room.inMemoryDatabaseBuilder(
             ApplicationProvider.getApplicationContext(),
             MovieRoomDatabase::class.java
