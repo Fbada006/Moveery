@@ -22,7 +22,6 @@ class MyWorkerFactory @Inject constructor(
 
         return try {
             val factoryProvider = foundEntry?.value
-            // ?: throw IllegalArgumentException("unknown worker class name: $workerClassName")
             factoryProvider?.get()?.create(appContext, workerParameters)
         } catch (e: Exception) {
             Timber.e(e)
