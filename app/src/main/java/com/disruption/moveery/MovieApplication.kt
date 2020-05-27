@@ -20,7 +20,9 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**The Application class*/
-open class MovieApplication : Application(), HasActivityInjector, Configuration.Provider {
+open class MovieApplication : Application(), HasActivityInjector
+//, Configuration.Provider
+{
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
@@ -34,7 +36,7 @@ open class MovieApplication : Application(), HasActivityInjector, Configuration.
         super.onCreate()
 
         AppInjector.init(this)
-        //initWorkManagerWithDagger()
+        initWorkManagerWithDagger()
 
         setUpMovieRefreshWork()
         setNightMode()
@@ -90,6 +92,6 @@ open class MovieApplication : Application(), HasActivityInjector, Configuration.
 
     override fun activityInjector(): AndroidInjector<Activity> = dispatchingAndroidInjector
 
-    override fun getWorkManagerConfiguration(): Configuration =
-        Configuration.Builder().build()
+//    override fun getWorkManagerConfiguration(): Configuration =
+//        Configuration.Builder().build()
 }
