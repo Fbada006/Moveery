@@ -17,10 +17,7 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.ShowDetailsFragmentBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.shows.TvShow
-import com.disruption.moveery.utils.Constants
-import com.disruption.moveery.utils.DetailsHelper
-import com.disruption.moveery.utils.loadImage
-import com.disruption.moveery.utils.showAndHandleBackButton
+import com.disruption.moveery.utils.*
 import javax.inject.Inject
 
 /**Fragment to show details of a clicked [TvShow]*/
@@ -77,16 +74,19 @@ class ShowDetailsFragment : Fragment(), Injectable {
 
         binding.ivShowPoster.loadImage(posterUrl, requestManager)
 
-        val average = ((tvShow?.vote_average)!! * 10).toInt()
-
-        binding.tvShowTitle.text = tvShow.name
-        binding.tvShowGenre.text = DetailsHelper.getGenres(tvShow.genre_ids, requireContext())
-        binding.tvShowYear.text = tvShow.first_air_date?.substring(0, 4)
-        binding.tvShowOverview.text = tvShow.overview
-        binding.tvShowRating.text = average.toString().plus("%")
+        binding.tvShowTitle.text = tvShow?.name
+        binding.tvShowGenre.text = DetailsHelper.getGenres(tvShow?.genre_ids, requireContext())
+        binding.tvShowYear.text = tvShow?.first_air_date?.substring(0, 4)
+        binding.tvShowOverview.text = tvShow?.overview
+        binding.tvShowRating.text = tvShow?.vote_average?.toPercentage()
         binding.ratingCustomView.apply {
-            setValue(average)
-            setFillColor(DetailsHelper.getRatingColor(average, requireContext()))
+            setValue(tvShow?.vote_average?.toInt()!!.times(10))
+            setFillColor(
+                DetailsHelper.getRatingColor(
+                    tvShow.vote_average.toInt().times(10),
+                    requireContext()
+                )
+            )
             setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
         }
     }

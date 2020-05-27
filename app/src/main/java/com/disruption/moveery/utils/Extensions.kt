@@ -22,3 +22,12 @@ fun Toolbar.showAndHandleBackButton(activity: FragmentActivity?) {
         }
     }
 }
+
+/**Convert double to percentage string*/
+fun Double.toPercentage(): String {
+    return try {
+        String.format("%.0f%%%n", this.times(10))
+    } catch (ex: Exception) {
+        "N/A"
+    }
+}
