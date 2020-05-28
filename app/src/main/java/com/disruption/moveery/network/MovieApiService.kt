@@ -42,7 +42,7 @@ interface MovieApiService {
         @Query("api_key") apiKey: String = API_KEY
     ): Response<MovieResult>
 
-    /**Gets movies on the [ShowsLandingPage]*/
+    /**Gets shows on the shows landing page*/
     @GET("discover/tv")
     fun getDiscoverTvShowsAsync(
         @Query("page") page: Int,

@@ -95,18 +95,4 @@ class MovieDetailsFragment : Fragment(), Injectable {
             setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
         }
     }
-
-//    private fun setStatusBarColorFromPoster(posterBitmap: Bitmap) {
-//        Palette.from(posterBitmap).generate { palette ->
-//            val darkVibrantColor = palette?.getDarkVibrantColor(
-//                ContextCompat.getColor(
-//                    requireContext(),
-//                    R.color.colorPrimaryDark
-//                )
-//            )
-//
-//            activity?.window?.statusBarColor =
-//                ContextCompat.getColor(requireContext(), darkVibrantColor!!)
-//        }
-//    }
 }

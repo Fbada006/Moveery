@@ -9,4 +9,6 @@ object Constants {
     const val MOVIE_REFRESH_NOTIFICATION_CHANNEL_ID =
         "com.disruption.moveery.movieRefreshChannelId"
     const val MOVIE_REFRESH_NOTIFICATION_ID = 1138
+    const val MOVIE_TYPE = "com.disruption.moveery.movie"
+    const val SHOW_TYPE = "com.disruption.moveery.tv_show"
 }
