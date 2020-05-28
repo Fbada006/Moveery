@@ -1,6 +1,6 @@
 package com.disruption.moveery.models.videos
 
-/**The video for a trailer or movie*/
+/**The video for a show or movie*/
 data class Video(
     val id: String,
     val iso_3166_1: String,

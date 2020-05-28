@@ -2,6 +2,7 @@ package com.disruption.moveery.network
 
 import com.disruption.moveery.models.movies.MovieResult
 import com.disruption.moveery.models.shows.TvShowResult
+import com.disruption.moveery.models.videos.VideoResult
 import com.disruption.moveery.utils.Constants.API_KEY
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
@@ -67,4 +68,18 @@ interface MovieApiService {
         @Query("include_adult") include_adult: Boolean = false,
         @Query("api_key") apiKey: String = API_KEY
     ): Response<TvShowResult>
+
+    /**Returns videos for a movie*/
+    @GET("3/movie/{movie_id}/videos")
+    suspend fun getMovieVideos(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String = API_KEY
+    ): Response<VideoResult>
+
+    /**Returns videos for a TV Show*/
+    @GET("3/tv/{tv_id}/videos")
+    suspend fun getTvShowVideos(
+        @Path("tv_id") showId: Int,
+        @Query("api_key") apiKey: String = API_KEY
+    ): Response<VideoResult>
 }
