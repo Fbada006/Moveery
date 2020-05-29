@@ -60,9 +60,11 @@
     <string name="movie_refresh_failed">Movie refresh failed. Retrying.</string>
     <string name="movie_refresh_title">Refreshing movies</string>
 
+    <!--Other strings-->
     <string name="search">Search here</string>
     <string name="similar_movies">Similar Movies</string>
     <string name="similar_shows">Similar Shows</string>
+    <string name="videos">Videos</string>
 
     <!--Content descriptions-->
     <string name="poster_image">Image poster</string>
