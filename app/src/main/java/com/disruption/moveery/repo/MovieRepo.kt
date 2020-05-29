@@ -126,12 +126,13 @@ class MovieRepo @Inject constructor(
      */
     override suspend fun getVideos(type: String, id: Int): MutableLiveData<Resource<List<Video>>> {
         try {
-            videosLiveData.value = Resource.loading(null)
             if (type == MOVIE_TYPE) {
+                videosLiveData.value = Resource.loading(null)
                 videosDeferred = movieApiService.getMovieVideosAsync(id).await()
                 Timber.e("Videos from the movie ----------------- $${videosDeferred.results}")
                 videosLiveData.value = Resource.success(videosDeferred.results)
             } else if (type == SHOW_TYPE) {
+                videosLiveData.value = Resource.loading(null)
                 videosDeferred = movieApiService.getTvShowVideosAsync(id).await()
                 videosLiveData.value = Resource.success(videosDeferred.results)
                 Timber.e("Videos from the show ----------------- $${videosDeferred.results}")
