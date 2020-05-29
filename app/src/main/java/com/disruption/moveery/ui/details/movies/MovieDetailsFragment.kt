@@ -17,6 +17,8 @@ import com.disruption.moveery.databinding.FragmentMovieDetailsBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.utils.*
+import com.disruption.moveery.utils.Resource.Status.*
+import timber.log.Timber
 
 import javax.inject.Inject
 
@@ -41,19 +43,27 @@ class MovieDetailsFragment : Fragment(), Injectable {
     ): View? {
         binding = FragmentMovieDetailsBinding.inflate(inflater)
 
-        val movie = args.movie
-
-        if (movie != null) {
-            displayMovieDetails(movie)
-            viewModel.getSimilarMovies(movie.id)
-        }
-
         val adapter =
             MovieSimilarPagedAdapter(
                 requireContext(),
                 OnMovieClickListener {
                     //Do nothing for now
                 })
+
+        val movie = args.movie
+
+        if (movie != null) {
+            displayMovieDetails(movie)
+            viewModel.getSimilarMovies(movie.id)
+
+            viewModel.videosResource(movie.id).observe(viewLifecycleOwner, Observer {
+                when (it.status) {
+                    SUCCESS -> Timber.e("Success ------ ${it.data}")
+                    ERROR -> Timber.e("Error ------ ${it.message}")
+                    LOADING -> Timber.e("Loading ------ ")
+                }
+            })
+        }
 
         binding.similarMoviesList.adapter = adapter
 

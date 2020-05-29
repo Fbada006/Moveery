@@ -71,15 +71,15 @@ interface MovieApiService {
 
     /**Returns videos for a movie*/
     @GET("3/movie/{movie_id}/videos")
-    suspend fun getMovieVideos(
+    fun getMovieVideosAsync(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String = API_KEY
-    ): Response<VideoResult>
+    ): Deferred<VideoResult>
 
     /**Returns videos for a TV Show*/
     @GET("3/tv/{tv_id}/videos")
-    suspend fun getTvShowVideos(
+    fun getTvShowVideosAsync(
         @Path("tv_id") showId: Int,
         @Query("api_key") apiKey: String = API_KEY
-    ): Response<VideoResult>
+    ): Deferred<VideoResult>
 }

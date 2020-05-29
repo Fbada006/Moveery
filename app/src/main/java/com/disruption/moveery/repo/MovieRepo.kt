@@ -15,8 +15,15 @@ import com.disruption.moveery.data.shows.search.SearchedShowDataSource
 import com.disruption.moveery.data.shows.similar.SimilarShowDataSource
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.shows.TvShow
+import com.disruption.moveery.models.videos.Video
+import com.disruption.moveery.models.videos.VideoResult
+import com.disruption.moveery.network.MovieApi
 import com.disruption.moveery.utils.Constants.DATABASE_PAGE_SIZE
+import com.disruption.moveery.utils.Constants.MOVIE_TYPE
+import com.disruption.moveery.utils.Constants.SHOW_TYPE
+import com.disruption.moveery.utils.Resource
 import kotlinx.coroutines.CoroutineScope
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -35,6 +42,12 @@ class MovieRepo @Inject constructor(
         .setPageSize(20)
         .setEnablePlaceholders(false)
         .build()
+
+    private val videosLiveData = MutableLiveData<Resource<List<Video>>>()
+    private lateinit var videosDeferred: VideoResult
+
+    //This is bad for testing but once the API starts serving the data in V4, it will be injected
+    private val movieApiService = MovieApi.movieRetrofitService
 
     /**Get all the movies to from the local storage*/
     override fun getAllMovies(): LiveData<PagedList<Movie>> {
@@ -104,6 +117,28 @@ class MovieRepo @Inject constructor(
         return Transformations.switchMap(showIdLiveData) {
             initializeSimilarShowsPagedListBuilder(it, scope).build()
         }
+    }
+
+    /**
+     * Gets all the videos of either a movie or the show
+     * @param type is the string denoting a [Movie] or [TvShow]
+     *
+     */
+    override suspend fun getVideos(type: String, id: Int): MutableLiveData<Resource<List<Video>>> {
+        try {
+            videosLiveData.value = Resource.loading(null)
+            if (type == MOVIE_TYPE) {
+                videosDeferred = movieApiService.getMovieVideosAsync(id).await()
+                videosLiveData.value = Resource.success(videosDeferred.results)
+            } else if (type == SHOW_TYPE) {
+                videosDeferred = movieApiService.getTvShowVideosAsync(id).await()
+                videosLiveData.value = Resource.success(videosDeferred.results)
+            }
+        } catch (ex: Exception) {
+            Timber.e("Error loading videos data --------- $ex")
+            videosLiveData.value = ex.message?.let { Resource.error(it, null) }
+        }
+        return videosLiveData
     }
 
     private fun initializeSimilarShowsPagedListBuilder(
