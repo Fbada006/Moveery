@@ -17,7 +17,9 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.ShowDetailsFragmentBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.shows.TvShow
+import com.disruption.moveery.ui.details.VideoAdapter
 import com.disruption.moveery.utils.*
+import timber.log.Timber
 import javax.inject.Inject
 
 /**Fragment to show details of a clicked [TvShow]*/
@@ -50,20 +52,50 @@ class ShowDetailsFragment : Fragment(), Injectable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.showAndHandleBackButton(activity)
+
         val tvShow = args.tvshow
+
         if (tvShow != null) {
             displayShowDetails(tvShow)
             viewModel.getSimilarShows(tvShow.id)
+            viewModel.getVideosResource(tvShow.id)
         }
 
+        val videoAdapter = VideoAdapter(
+            requireContext(),
+            OnVideoClickListener { playVideo(it) }
+        )
         val adapter = ShowSimilarPagedAdapter(requireContext())
+
         binding.similarShowsList.adapter = adapter
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.similarShowsList.layoutManager = layoutManager
+        binding.videoShowsList.adapter = videoAdapter
+
+        val similarLayoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val videoLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        binding.similarShowsList.layoutManager = similarLayoutManager
+        binding.videoShowsList.layoutManager = videoLayoutManager
 
         viewModel.showList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
+
+        tvShow?.id?.let {
+            viewModel.videoRes.observe(viewLifecycleOwner, Observer { resource ->
+                when (resource.status) {
+                    Resource.Status.SUCCESS -> {
+                        videoAdapter.submitList(resource.data)
+                    }
+                    Resource.Status.ERROR -> {
+                        Timber.e("Error ------ ${resource.message}")
+                    }
+                    Resource.Status.LOADING -> {
+                        Timber.e("Loading ------ ")
+                    }
+                }
+            })
+        }
 
         binding.showDetailsViewModel = viewModel
     }

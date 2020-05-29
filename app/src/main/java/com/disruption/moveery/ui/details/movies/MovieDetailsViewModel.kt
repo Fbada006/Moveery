@@ -23,6 +23,7 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : V
 
     private val _videoRes = MutableLiveData<Resource<List<Video>>>()
 
+    /**The resource that will supply the videos*/
     val videoRes: LiveData<Resource<List<Video>>>
         get() = _videoRes
 
@@ -30,6 +31,7 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : V
         movieList = repo.getSimilarMovieList(movieIdLiveData)
     }
 
+    /**Method that gets the videos*/
     fun getVideosResource(id: Int) {
         viewModelScope.launch {
             _videoRes.value = repo.getVideos(MOVIE_TYPE, id).value

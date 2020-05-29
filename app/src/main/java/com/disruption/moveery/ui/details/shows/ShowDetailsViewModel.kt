@@ -3,20 +3,39 @@ package com.disruption.moveery.ui.details.shows
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.paging.PagedList
 import com.disruption.moveery.models.shows.TvShow
+import com.disruption.moveery.models.videos.Video
 import com.disruption.moveery.repo.MovieRepo
+import com.disruption.moveery.utils.Constants.SHOW_TYPE
+import com.disruption.moveery.utils.Resource
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**The ViewModel that handles displaying data on the [ShowDetailsFragment]*/
-class ShowDetailsViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
+class ShowDetailsViewModel @Inject constructor(private val repo: MovieRepo) : ViewModel() {
 
     private val showIdLiveData = MutableLiveData<Int>()
 
+    /**The list of similar shows*/
     val showList: LiveData<PagedList<TvShow>>
+
+    private val _videoRes = MutableLiveData<Resource<List<Video>>>()
+
+    /**The resource that will supply the videos*/
+    val videoRes: LiveData<Resource<List<Video>>>
+        get() = _videoRes
 
     init {
         showList = repo.getSimilarShowsList(showIdLiveData)
+    }
+
+    /**Method that gets the videos*/
+    fun getVideosResource(id: Int) {
+        viewModelScope.launch {
+            _videoRes.value = repo.getVideos(SHOW_TYPE, id).value
+        }
     }
 
     /**
