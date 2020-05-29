@@ -68,4 +68,7 @@
     <string name="poster_image">Image poster</string>
     <string name="video_image">Video poster</string>
     <string name="play_video">Play video</string>
+
+    <!--Error messages-->
+    <string name="cannot_play_video">Error playing video</string>
 </resources>

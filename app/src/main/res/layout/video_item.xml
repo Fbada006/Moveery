@@ -26,13 +26,14 @@
 
         <ImageView
             android:id="@+id/iv_video_play"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:contentDescription="@string/play_video"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:tint="@color/colorAccent"
             app:srcCompat="@drawable/ic_play" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

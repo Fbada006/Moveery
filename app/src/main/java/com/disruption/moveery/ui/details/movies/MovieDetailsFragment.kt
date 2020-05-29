@@ -1,5 +1,7 @@
 package com.disruption.moveery.ui.details.movies
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +19,12 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentMovieDetailsBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.movies.Movie
+import com.disruption.moveery.models.videos.Video
 import com.disruption.moveery.ui.details.VideoAdapter
 import com.disruption.moveery.utils.*
+import com.disruption.moveery.utils.Constants.YOUTUBE_VIDEO_BASE_URL
 import com.disruption.moveery.utils.Resource.Status.*
 import timber.log.Timber
-
 import javax.inject.Inject
 
 /**
@@ -54,9 +57,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
 
         val videoAdapter = VideoAdapter(
             requireContext(),
-            OnVideoClickListener {
-                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
-            }
+            OnVideoClickListener { playVideo(it) }
         )
 
         val movie = args.movie
@@ -100,6 +101,19 @@ class MovieDetailsFragment : Fragment(), Injectable {
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    private fun playVideo(video: Video?) {
+        val videoLink = String.format(YOUTUBE_VIDEO_BASE_URL, video?.key)
+        val videoIntent =
+            Intent(Intent.ACTION_VIEW, Uri.parse(videoLink))
+        try {
+            requireContext().startActivity(videoIntent)
+        } catch (ex: Exception) {
+            Timber.e("Error playing video ----------- $ex")
+            Toast.makeText(context, getString(R.string.cannot_play_video), Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     /**Display the passed in movie from the [args]*/
