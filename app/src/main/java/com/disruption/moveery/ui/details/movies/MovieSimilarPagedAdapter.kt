@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
 import com.disruption.moveery.models.movies.Movie
-import com.disruption.moveery.utils.Constants
+import com.disruption.moveery.utils.Constants.IMAGE_BASE_URL
 import com.disruption.moveery.utils.MovieDiffCallback
 import com.disruption.moveery.utils.OnMovieClickListener
 import kotlinx.android.synthetic.main.movie_similar_item.view.*
@@ -52,7 +52,7 @@ class MovieSimilarPagedAdapter(
             itemView.tv_movie_rating.text =
                 ((item.vote_average)!! * 10).toInt().toString().plus("%")
 
-            val posterUrl = Constants.IMAGE_BASE_URL + item.poster_path
+            val posterUrl = IMAGE_BASE_URL + item.poster_path
             Glide.with(context)
                 .load(posterUrl)
                 .centerCrop()

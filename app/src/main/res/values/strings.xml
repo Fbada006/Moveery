@@ -64,6 +64,8 @@
     <string name="similar_movies">Similar Movies</string>
     <string name="similar_shows">Similar Shows</string>
 
-    <!--Contente descriptions-->
+    <!--Content descriptions-->
     <string name="poster_image">Image poster</string>
+    <string name="video_image">Video poster</string>
+    <string name="play_video">Play video</string>
 </resources>

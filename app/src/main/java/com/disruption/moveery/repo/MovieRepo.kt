@@ -129,10 +129,12 @@ class MovieRepo @Inject constructor(
             videosLiveData.value = Resource.loading(null)
             if (type == MOVIE_TYPE) {
                 videosDeferred = movieApiService.getMovieVideosAsync(id).await()
+                Timber.e("Videos from the movie ----------------- $${videosDeferred.results}")
                 videosLiveData.value = Resource.success(videosDeferred.results)
             } else if (type == SHOW_TYPE) {
                 videosDeferred = movieApiService.getTvShowVideosAsync(id).await()
                 videosLiveData.value = Resource.success(videosDeferred.results)
+                Timber.e("Videos from the show ----------------- $${videosDeferred.results}")
             }
         } catch (ex: Exception) {
             Timber.e("Error loading videos data --------- $ex")

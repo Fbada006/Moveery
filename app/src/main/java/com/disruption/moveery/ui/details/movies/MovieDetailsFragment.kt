@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,6 +17,7 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentMovieDetailsBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.movies.Movie
+import com.disruption.moveery.ui.details.VideoAdapter
 import com.disruption.moveery.utils.*
 import com.disruption.moveery.utils.Resource.Status.*
 import timber.log.Timber
@@ -43,37 +45,51 @@ class MovieDetailsFragment : Fragment(), Injectable {
     ): View? {
         binding = FragmentMovieDetailsBinding.inflate(inflater)
 
-        val adapter =
+        val similarAdapter =
             MovieSimilarPagedAdapter(
                 requireContext(),
                 OnMovieClickListener {
                     //Do nothing for now
                 })
 
+        val videoAdapter = VideoAdapter(
+            requireContext(),
+            OnVideoClickListener {
+                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
+            }
+        )
+
         val movie = args.movie
 
         if (movie != null) {
             displayMovieDetails(movie)
             viewModel.getSimilarMovies(movie.id)
+            viewModel.getVideosResource(movie.id)
+        }
 
-            viewModel.videosResource(movie.id).observe(viewLifecycleOwner, Observer {
-                when (it.status) {
-                    SUCCESS -> Timber.e("Success ------ ${it.data}")
-                    ERROR -> Timber.e("Error ------ ${it.message}")
+        binding.similarMoviesList.adapter = similarAdapter
+        binding.videoMoviesList.adapter = videoAdapter
+
+        val similarLayoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        val videoLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        binding.similarMoviesList.layoutManager = similarLayoutManager
+        binding.videoMoviesList.layoutManager = videoLayoutManager
+
+        viewModel.movieList.observe(viewLifecycleOwner, Observer {
+            similarAdapter.submitList(it)
+        })
+
+        movie?.id?.let {
+            viewModel.videoRes.observe(viewLifecycleOwner, Observer { resource ->
+                when (resource.status) {
+                    SUCCESS -> videoAdapter.submitList(resource.data)
+                    ERROR -> Timber.e("Error ------ ${resource.message}")
                     LOADING -> Timber.e("Loading ------ ")
                 }
             })
         }
-
-        binding.similarMoviesList.adapter = adapter
-
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-
-        binding.similarMoviesList.layoutManager = layoutManager
-
-        viewModel.movieList.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-        })
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         listenToUserScrolls(binding.similarMoviesList)

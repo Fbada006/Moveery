@@ -21,16 +21,19 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : V
     /**The list of similar movies*/
     val movieList: LiveData<PagedList<Movie>>
 
+    private val _videoRes = MutableLiveData<Resource<List<Video>>>()
+
+    val videoRes: LiveData<Resource<List<Video>>>
+        get() = _videoRes
+
     init {
         movieList = repo.getSimilarMovieList(movieIdLiveData)
     }
 
-    fun videosResource(id: Int): LiveData<Resource<List<Video>>> {
-        var videoRes = MutableLiveData<Resource<List<Video>>>()
+    fun getVideosResource(id: Int) {
         viewModelScope.launch {
-            videoRes = repo.getVideos(MOVIE_TYPE, id)
+            _videoRes.value = repo.getVideos(MOVIE_TYPE, id).value
         }
-        return videoRes
     }
 
     /**
