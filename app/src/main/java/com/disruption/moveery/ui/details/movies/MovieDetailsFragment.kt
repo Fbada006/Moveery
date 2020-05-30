@@ -43,6 +43,13 @@ class MovieDetailsFragment : Fragment(), Injectable {
     ): View? {
         binding = FragmentMovieDetailsBinding.inflate(inflater)
 
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val similarAdapter =
             MovieSimilarPagedAdapter(
                 requireContext(),
@@ -99,9 +106,6 @@ class MovieDetailsFragment : Fragment(), Injectable {
         binding.toolbar.showAndHandleBackButton(activity)
 
         binding.movieDetailsViewModel = viewModel
-
-        // Inflate the layout for this fragment
-        return binding.root
     }
 
     /**Display the passed in movie from the [args]*/
