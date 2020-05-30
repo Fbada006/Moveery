@@ -19,7 +19,6 @@ import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.ui.details.VideoAdapter
 import com.disruption.moveery.utils.*
-import timber.log.Timber
 import javax.inject.Inject
 
 /**Fragment to show details of a clicked [TvShow]*/
@@ -78,6 +77,7 @@ class ShowDetailsFragment : Fragment(), Injectable {
         binding.videoShowsList.layoutManager = videoLayoutManager
 
         viewModel.showList.observe(viewLifecycleOwner, Observer {
+            if (it.isEmpty()) binding.similarShowsError.showView()
             adapter.submitList(it)
         })
 
@@ -85,14 +85,14 @@ class ShowDetailsFragment : Fragment(), Injectable {
             viewModel.videoRes.observe(viewLifecycleOwner, Observer { resource ->
                 when (resource.status) {
                     Resource.Status.SUCCESS -> {
-                        videoAdapter.submitList(resource.data)
+                        if (!resource.data.isNullOrEmpty()) {
+                            videoAdapter.submitList(resource.data)
+                        } else {
+                            showError()
+                        }
                     }
-                    Resource.Status.ERROR -> {
-                        Timber.e("Error ------ ${resource.message}")
-                    }
-                    Resource.Status.LOADING -> {
-                        Timber.e("Loading ------ ")
-                    }
+                    Resource.Status.ERROR -> showError()
+                    Resource.Status.LOADING -> showLoading()
                 }
             })
         }
@@ -121,5 +121,15 @@ class ShowDetailsFragment : Fragment(), Injectable {
             )
             setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
         }
+    }
+
+    private fun showLoading() {
+        binding.videoLoadingSpinner.showView()
+        binding.videoMoviesError.hideView()
+    }
+
+    private fun showError() {
+        binding.videoLoadingSpinner.hideView()
+        binding.videoMoviesError.showView()
     }
 }
