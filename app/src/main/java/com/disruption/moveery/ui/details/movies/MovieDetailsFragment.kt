@@ -19,7 +19,6 @@ import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.ui.details.VideoAdapter
 import com.disruption.moveery.utils.*
 import com.disruption.moveery.utils.Resource.Status.*
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -81,6 +80,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
         binding.videoMoviesList.layoutManager = videoLayoutManager
 
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
+            if (it.isEmpty()) binding.similarMoviesError.showView()
             similarAdapter.submitList(it)
         })
 
@@ -88,14 +88,14 @@ class MovieDetailsFragment : Fragment(), Injectable {
             viewModel.videoRes.observe(viewLifecycleOwner, Observer { resource ->
                 when (resource.status) {
                     SUCCESS -> {
-                        videoAdapter.submitList(resource.data)
+                        if (!resource.data.isNullOrEmpty()) {
+                            videoAdapter.submitList(resource.data)
+                        } else {
+                            showError()
+                        }
                     }
-                    ERROR -> {
-                        Timber.e("Error ------ ${resource.message}")
-                    }
-                    LOADING -> {
-                        Timber.e("Loading ------ ")
-                    }
+                    ERROR -> showError()
+                    LOADING -> showLoading()
                 }
             })
         }
@@ -129,5 +129,15 @@ class MovieDetailsFragment : Fragment(), Injectable {
             )
             setStrokeColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
         }
+    }
+
+    private fun showLoading() {
+        binding.videoLoadingSpinner.showView()
+        binding.videoMoviesError.hideView()
+    }
+
+    private fun showError() {
+        binding.videoLoadingSpinner.hideView()
+        binding.videoMoviesError.showView()
     }
 }

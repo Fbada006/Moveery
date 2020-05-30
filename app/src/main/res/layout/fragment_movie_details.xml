@@ -166,6 +166,15 @@
                         android:layout_gravity="center"
                         app:goneIfNotNull="@{movieDetailsViewModel.movieList}" />
 
+                    <TextView
+                        android:id="@+id/similar_movies_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/no_similar_movies_found"
+                        android:visibility="gone" />
+
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/similar_movies_list"
                         android:layout_width="match_parent"
@@ -204,6 +213,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/video_movies_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/no_videos_found"
                         android:visibility="gone" />
 
                     <androidx.recyclerview.widget.RecyclerView
