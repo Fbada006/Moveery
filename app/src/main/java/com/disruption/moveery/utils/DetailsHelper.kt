@@ -36,7 +36,6 @@ object DetailsHelper {
                 else -> stringBuilder.append(context?.getString(R.string.genre_unknown))
             }
         }
-
         return stringBuilder.toString().trimEnd(',', ' ').plus(".")
     }
 

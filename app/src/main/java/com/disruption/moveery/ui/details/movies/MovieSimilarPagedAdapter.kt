@@ -11,8 +11,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.utils.Constants.IMAGE_BASE_URL
+import com.disruption.moveery.utils.DetailsHelper
 import com.disruption.moveery.utils.MovieDiffCallback
 import com.disruption.moveery.utils.OnMovieClickListener
+import com.disruption.moveery.utils.toPercentage
 import kotlinx.android.synthetic.main.movie_similar_item.view.*
 
 /**For displaying similar movies in the [MovieDetailsFragment]*/
@@ -48,9 +50,13 @@ class MovieSimilarPagedAdapter(
                     "N/A"
                 }
 
+            val rating = item.vote_average?.times(10)?.toInt()
+
             itemView.tv_movie_language.text = item.original_language
-            itemView.tv_movie_rating.text =
-                ((item.vote_average)!! * 10).toInt().toString().plus("%")
+            itemView.tv_movie_rating.apply {
+                text = item.vote_average?.toPercentage()
+                setTextColor(DetailsHelper.getRatingColor((rating!!), context))
+            }
 
             val posterUrl = IMAGE_BASE_URL + item.poster_path
             Glide.with(context)

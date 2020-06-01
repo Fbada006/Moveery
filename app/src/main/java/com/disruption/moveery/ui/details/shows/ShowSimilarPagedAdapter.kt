@@ -11,7 +11,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.disruption.moveery.R
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.utils.Constants
+import com.disruption.moveery.utils.DetailsHelper.getRatingColor
 import com.disruption.moveery.utils.TvShowDiffCallback
+import com.disruption.moveery.utils.toPercentage
 import kotlinx.android.synthetic.main.show_item_similar.view.*
 
 class ShowSimilarPagedAdapter(private val context: Context) :
@@ -37,11 +39,14 @@ class ShowSimilarPagedAdapter(private val context: Context) :
                     "N/A"
                 }
 
+            val rating = item?.vote_average?.times(10)?.toInt()
             itemView.tv_show_language.text = item?.original_language
-            itemView.tv_show_rating.text =
-                ((item?.vote_average)!! * 10).toInt().toString().plus("%")
+            itemView.tv_show_rating.apply {
+                text = item?.vote_average?.toPercentage()
+                setTextColor(getRatingColor((rating!!), context))
+            }
 
-            val posterUrl = Constants.IMAGE_BASE_URL + item.poster_path
+            val posterUrl = Constants.IMAGE_BASE_URL + item?.poster_path
             Glide.with(context)
                 .load(posterUrl)
                 .centerCrop()
