@@ -12,27 +12,4 @@ import com.disruption.moveery.utils.IntListConverter
 @TypeConverters(IntListConverter::class)
 abstract class MovieRoomDatabase : RoomDatabase() {
     abstract val movieDao: MovieDao
-
-//    companion object {
-//        private var INSTANCE: MovieRoomDatabase? = null
-//
-//        /**Returns a database instance if it does not exist*/
-//        fun getDatabase(context: Context): MovieRoomDatabase {
-//            synchronized(this) {
-//                var instance =
-//                    INSTANCE
-//                if (instance == null) {
-//                    instance = Room.databaseBuilder(
-//                        context.applicationContext,
-//                        MovieRoomDatabase::class.java,
-//                        "movies_database"
-//                    )
-//                        .fallbackToDestructiveMigration()
-//                        .build()
-//                    INSTANCE = instance
-//                }
-//                return instance
-//            }
-//        }
-//    }
 }
