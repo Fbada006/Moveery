@@ -39,7 +39,7 @@ object DetailsHelper {
         return stringBuilder.toString().trimEnd(',', ' ').plus(".")
     }
 
-    /**Set the appropriate fill color for the [RatingCustomView]*/
+    /**Set the appropriate fill color for the [RatingCustomView] and rating text for similar movies and shows*/
     fun getRatingColor(averageRating: Int, context: Context): Int {
         return when {
             averageRating <= 40 -> ContextCompat.getColor(context, R.color.lessThan40OrEqual)
