@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="Discover">
+    <item android:title="@string/label_discover">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/dest_movies_landing_fragment"
-                    android:title="Movies" />
+                    android:title="@string/label_discover_movies" />
                 <item
                     android:id="@+id/dest_shows_landing_fragment"
-                    android:title="Tv Shows" />
+                    android:title="@string/label_discover_shows" />
             </group>
         </menu>
     </item>
