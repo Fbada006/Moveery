@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey
 data class FavMovie(
     @PrimaryKey
     val id: Int,
-    val isForAdult: Boolean?,
     val backdrop_path: String?,
     val genre_ids: List<Int>?,
     val original_language: String?,
@@ -17,6 +16,5 @@ data class FavMovie(
     val poster_path: String?,
     val release_date: String?,
     val title: String?,
-    val hasVideo: Boolean?,
     val vote_average: Double?
 )
