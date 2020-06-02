@@ -80,7 +80,7 @@ open class MovieApplication : Application(), HasActivityInjector
             val repeatingMovieRefreshRequest =
                 PeriodicWorkRequestBuilder<RefreshMovieWork>(
                     1, TimeUnit.DAYS,
-                    180, TimeUnit.MINUTES
+                    3, TimeUnit.HOURS
                 )
                     .setConstraints(constraints)
                     .build()
