@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.shows.TvShow
+import com.disruption.moveery.models.videos.Video
+import com.disruption.moveery.utils.Resource
 
 /**Fake class for the repo
  * TODO
@@ -40,6 +42,10 @@ class FakeMovieRepo : IMovieRepo {
     }
 
     override fun getSimilarShowsList(showIdLiveData: MutableLiveData<Int>): LiveData<PagedList<TvShow>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getVideos(type: String, id: Int): LiveData<Resource<List<Video>>> {
         TODO("Not yet implemented")
     }
 }
