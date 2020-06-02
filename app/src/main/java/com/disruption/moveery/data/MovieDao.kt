@@ -1,10 +1,13 @@
 package com.disruption.moveery.data
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.disruption.moveery.models.favourites.movies.FavMovie
+import com.disruption.moveery.models.favourites.shows.FavShow
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.shows.TvShow
 
@@ -28,8 +31,27 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllShows(shows: List<TvShow>)
 
-//
-//    /**Empty the database if we are getting new data*/
-//    @Query("DELETE FROM movies")
-//    suspend fun clearMoviesTable()
+    /**Get all the fav movies*/
+    @Query("SELECT * FROM favMovies")
+    fun getAllFavMovies(): DataSource.Factory<Int, FavMovie>
+
+    /**Get all the fav shows*/
+    @Query("SELECT * FROM favShows")
+    fun getAllFavShows(): DataSource<Int, FavShow>
+
+    /**Insert favourite movie into table*/
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMovieToFav(movie: FavMovie)
+
+    /**Insert favourite show into table*/
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertShowToFav(show: FavShow)
+
+    /**Get movie based on its id*/
+    @Query("SELECT * FROM favMovies WHERE id = :id")
+    fun getFavMovieById(id: Int): LiveData<FavMovie>
+
+    /**Get show based on its id*/
+    @Query("SELECT * FROM favShows WHERE id = :id")
+    fun getFavShowById(id: Int): LiveData<FavShow>
 }
