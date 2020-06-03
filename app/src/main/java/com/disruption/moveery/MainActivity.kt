@@ -41,7 +41,10 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.dest_movies_landing_fragment, R.id.dest_shows_landing_fragment),
+            setOf(
+                R.id.dest_movies_landing_fragment, R.id.dest_shows_landing_fragment,
+                R.id.dest_favourite_movies_fragment, R.id.dest_favourite_shows_fragment
+            ),
             drawerLayout
         )
 
