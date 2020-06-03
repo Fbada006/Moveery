@@ -83,7 +83,5 @@
     <string name="no_similar_movies_found">No similar movies found</string>
     <string name="no_similar_shows_found">No similar shows found</string>
     <string name="no_videos_found">No videos found for this title</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_favourites_found">There is nothing to see here. Once you save them, your favourites will appear here</string>
 </resources>
