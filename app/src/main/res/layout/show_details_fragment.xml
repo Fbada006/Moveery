@@ -68,15 +68,15 @@
                     android:id="@+id/like_button"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    app:icon_size="25dp"
+                    app:icon_size="30dp"
                     app:icon_type="heart"
-                    app:like_drawable="@drawable/ic_favorite"
-                    app:liked="false"
-                    app:unlike_drawable="@drawable/ic_favorite_border"
                     app:layout_constraintBottom_toBottomOf="@id/tv_show_year"
                     app:layout_constraintEnd_toStartOf="@id/layout_show_rating"
                     app:layout_constraintStart_toEndOf="@id/tv_show_year"
-                    app:layout_constraintTop_toBottomOf="@id/tv_show_title" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_show_title"
+                    app:like_drawable="@drawable/ic_favorite"
+                    app:liked="false"
+                    app:unlike_drawable="@drawable/ic_favorite_border" />
 
                 <LinearLayout
                     android:id="@+id/layout_show_rating"
