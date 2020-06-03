@@ -77,6 +77,7 @@
     <string name="poster_image">Image poster</string>
     <string name="video_image">Video poster</string>
     <string name="play_video">Play video</string>
+    <string name="empty_list">Empty List</string>
 
     <!--Error messages-->
     <string name="cannot_play_video">Error playing video</string>
@@ -84,4 +85,6 @@
     <string name="no_similar_shows_found">No similar shows found</string>
     <string name="no_videos_found">No videos found for this title</string>
     <string name="no_favourites_found">There is nothing to see here. Once you save them, your favourites will appear here</string>
+    <string name="no_search_results">Your search term did not yield any results. Please try again.</string>
+
 </resources>

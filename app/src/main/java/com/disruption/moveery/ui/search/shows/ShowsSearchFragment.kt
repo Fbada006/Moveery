@@ -57,6 +57,8 @@ class ShowsSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListen
 
         //The list of movies to display
         viewModel.showList.observe(viewLifecycleOwner, Observer {
+            if (it.isEmpty()) binding.emptyContainer.emptyView.visibility =
+                View.VISIBLE else View.GONE
             adapter.submitList(it)
         })
 
