@@ -19,6 +19,8 @@ import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.ui.details.VideoAdapter
 import com.disruption.moveery.utils.*
+import com.like.LikeButton
+import com.like.OnLikeListener
 import javax.inject.Inject
 
 /**Fragment to show details of a clicked [TvShow]*/
@@ -97,7 +99,28 @@ class ShowDetailsFragment : Fragment(), Injectable {
             })
         }
 
+        observeLikedState()
+        onLikeButtonClicked()
+
         binding.showDetailsViewModel = viewModel
+    }
+
+    private fun observeLikedState() {
+        viewModel.isShowInFav(args.tvshow?.id!!).observe(viewLifecycleOwner, Observer {
+            binding.likeButton.isLiked = it != null
+        })
+    }
+
+    private fun onLikeButtonClicked() {
+        binding.likeButton.setOnLikeListener(object : OnLikeListener {
+            override fun liked(likeButton: LikeButton?) {
+                args.tvshow?.let { viewModel.insertShowIntoFav(it) }
+            }
+
+            override fun unLiked(likeButton: LikeButton?) {
+                args.tvshow?.let { viewModel.deleteShowFromFav(it.id) }
+            }
+        })
     }
 
     /**Display the passed in movie from the [args]*/

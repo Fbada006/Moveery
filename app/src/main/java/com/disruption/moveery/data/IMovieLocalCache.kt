@@ -46,5 +46,5 @@ interface IMovieLocalCache {
     fun getMovieById(id: Int?): LiveData<FavMovie?>
 
     /**Get a show based on its id*/
-    fun getShowById(id: Int): LiveData<FavShow>
+    fun getShowById(id: Int?): LiveData<FavShow?>
 }

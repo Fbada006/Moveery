@@ -47,8 +47,16 @@ class ShowDetailsViewModel @Inject constructor(private val repo: MovieRepo) : Vi
 
     /**Insert a show to favourites*/
     fun insertShowIntoFav(show: TvShow) {
-        viewModelScope.launch {
-            repo.insertShowToFav(show)
-        }
+        viewModelScope.launch { repo.insertShowToFav(show) }
     }
+
+    /**Delete a show from favourites*/
+    fun deleteShowFromFav(id: Int) {
+        viewModelScope.launch { repo.deleteShowFromFav(id) }
+    }
+
+    /**If the show is null, it is not in fav and so the like button should be in the un-liked state
+     * and vice-versa
+     */
+    fun isShowInFav(id: Int) = repo.getShowById(id)
 }

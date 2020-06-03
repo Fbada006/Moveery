@@ -59,8 +59,8 @@ interface IMovieRepo {
     suspend fun deleteShowFromFav(id: Int)
 
     /**Get a movie based on its id*/
-    fun getMovieById(id: Int?): LiveData<Movie>
+    fun getMovieById(id: Int?): LiveData<Movie?>
 
     /**Get a show based on its id*/
-    fun getShowById(id: Int): LiveData<TvShow>
+    fun getShowById(id: Int?): LiveData<TvShow?>
 }

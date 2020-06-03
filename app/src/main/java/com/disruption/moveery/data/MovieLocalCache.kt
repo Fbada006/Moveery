@@ -65,6 +65,6 @@ class MovieLocalCache @Inject constructor(private val movieRoomDatabase: MovieRo
         movieRoomDatabase.movieDao.getFavMovieById(id)
 
     /**Get a show*/
-    override fun getShowById(id: Int): LiveData<FavShow> =
+    override fun getShowById(id: Int?): LiveData<FavShow?> =
         movieRoomDatabase.movieDao.getFavShowById(id)
 }

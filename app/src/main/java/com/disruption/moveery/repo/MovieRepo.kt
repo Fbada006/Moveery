@@ -184,15 +184,15 @@ class MovieRepo @Inject constructor(
     }
 
     /**Get a movie based on its id*/
-    override fun getMovieById(id: Int?): LiveData<Movie> =
+    override fun getMovieById(id: Int?): LiveData<Movie?> =
         Transformations.map(movieLocalCache.getMovieById(id)) {
             it?.toMovieDomainModel()
         }
 
     /**Get a show based on its id*/
-    override fun getShowById(id: Int): LiveData<TvShow> =
+    override fun getShowById(id: Int?): LiveData<TvShow?> =
         Transformations.map(movieLocalCache.getShowById(id)) {
-            it.toShowDomainModel()
+            it?.toShowDomainModel()
         }
 
     private fun initializeSimilarShowsPagedListBuilder(

@@ -55,6 +55,8 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : V
         viewModelScope.launch { repo.deleteMovieFromFav(id) }
     }
 
-    /**If the movie is null, it is not in fav and so the like button should be in the un-liked state*/
+    /**If the movie is null, it is not in fav and so the like button should be in the un-liked state
+     * and vice-versa
+     **/
     fun isMovieInFav(id: Int) = repo.getMovieById(id)
 }
