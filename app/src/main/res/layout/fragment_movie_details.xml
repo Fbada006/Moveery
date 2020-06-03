@@ -64,11 +64,15 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
                     tools:text="2020" />
 
-                <View
-                    android:id="@+id/divider"
-                    android:layout_width="2dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/ic_circle"
+                <com.like.LikeButton
+                    android:id="@+id/like_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    app:icon_size="25dp"
+                    app:icon_type="heart"
+                    app:like_drawable="@drawable/ic_favorite"
+                    app:liked="false"
+                    app:unlike_drawable="@drawable/ic_favorite_border"
                     app:layout_constraintBottom_toBottomOf="@id/tv_movie_year"
                     app:layout_constraintEnd_toStartOf="@id/layout_movie_rating"
                     app:layout_constraintStart_toEndOf="@id/tv_movie_year"
