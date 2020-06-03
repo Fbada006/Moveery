@@ -37,7 +37,7 @@ interface MovieDao {
 
     /**Get all the fav shows*/
     @Query("SELECT * FROM favShows")
-    fun getAllFavShows(): DataSource<Int, FavShow>
+    fun getAllFavShows(): DataSource.Factory<Int, FavShow>
 
     /**Insert favourite movie into table*/
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -1,6 +1,8 @@
 package com.disruption.moveery.data
 
 import androidx.paging.DataSource
+import com.disruption.moveery.models.favourites.movies.FavMovie
+import com.disruption.moveery.models.favourites.shows.FavShow
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.movies.MovieResult
 import com.disruption.moveery.models.shows.TvShow
@@ -18,6 +20,14 @@ class MovieLocalCache @Inject constructor(private val movieRoomDatabase: MovieRo
     /**Get all the shows*/
     override fun getShowsData(): DataSource.Factory<Int, TvShow> =
         movieRoomDatabase.movieDao.getAllShows()
+
+    /**Get all fav movies*/
+    override fun getFavMovieData(): DataSource.Factory<Int, FavMovie> =
+        movieRoomDatabase.movieDao.getAllFavMovies()
+
+    /**Get all fav shows*/
+    override fun getFavShowsData(): DataSource.Factory<Int, FavShow> =
+        movieRoomDatabase.movieDao.getAllFavShows()
 
     /**Insert the movies into the database on a background thread*/
     override suspend fun refreshMoviesCache(movieMovieResult: MovieResult) {

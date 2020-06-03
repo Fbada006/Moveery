@@ -3,6 +3,8 @@ package com.disruption.moveery.repo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
+import com.disruption.moveery.models.favourites.movies.FavMovie
+import com.disruption.moveery.models.favourites.shows.FavShow
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.models.videos.Video
@@ -16,6 +18,12 @@ interface IMovieRepo {
 
     /**Get all the movies from the local storage*/
     fun getAllShows(): LiveData<PagedList<TvShow>>
+
+    /**Get all the fav movies*/
+    fun getAllFavMovies(): LiveData<PagedList<FavMovie>>
+
+    /**Get all the fav shows*/
+    fun getAllFavShows(): LiveData<PagedList<FavShow>>
 
     /**Returns the searched movie with paging involved*/
     fun getSearchedMovieList(
