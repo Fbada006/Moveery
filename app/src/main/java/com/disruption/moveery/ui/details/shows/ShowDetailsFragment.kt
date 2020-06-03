@@ -99,6 +99,9 @@ class ShowDetailsFragment : Fragment(), Injectable {
             })
         }
 
+        //Listen to the scrolls appropriately for efficient loading with user data in mind
+        listenToUserScrolls(binding.similarShowsList)
+
         observeLikedState()
         onLikeButtonClicked()
 
