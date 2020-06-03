@@ -49,9 +49,17 @@ interface MovieDao {
 
     /**Get movie based on its id*/
     @Query("SELECT * FROM favMovies WHERE id = :id")
-    fun getFavMovieById(id: Int): LiveData<FavMovie>
+    fun getFavMovieById(id: Int?): LiveData<FavMovie?>
 
     /**Get show based on its id*/
     @Query("SELECT * FROM favShows WHERE id = :id")
     fun getFavShowById(id: Int): LiveData<FavShow>
+
+    /**Delete a movie from fav*/
+    @Query("DELETE FROM favMovies WHERE id = :id")
+    suspend fun deleteMovieFromFav(id: Int)
+
+    /**Delete a show from fav*/
+    @Query("DELETE FROM favShows WHERE id = :id")
+    suspend fun deleteShowFromFav(id: Int)
 }

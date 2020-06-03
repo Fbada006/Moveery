@@ -13,6 +13,8 @@ import com.disruption.moveery.data.movies.similar.SimilarMovieDataSource
 import com.disruption.moveery.data.shows.ShowBoundaryCallBack
 import com.disruption.moveery.data.shows.search.SearchedShowDataSource
 import com.disruption.moveery.data.shows.similar.SimilarShowDataSource
+import com.disruption.moveery.mappers.toFavMovieDataModel
+import com.disruption.moveery.mappers.toFavShowDataModel
 import com.disruption.moveery.mappers.toMovieDomainModel
 import com.disruption.moveery.mappers.toShowDomainModel
 import com.disruption.moveery.models.movies.Movie
@@ -160,6 +162,38 @@ class MovieRepo @Inject constructor(
         }
         return videosLiveData
     }
+
+    /**Save movie to fav*/
+    override suspend fun insertMovieToFav(movie: Movie) {
+        movieLocalCache.insertMovieToFav(movie.toFavMovieDataModel())
+    }
+
+    /**Save show to fav*/
+    override suspend fun insertShowToFav(show: TvShow) {
+        movieLocalCache.insertShowToFav(show.toFavShowDataModel())
+    }
+
+    /**Delete a movie from fav*/
+    override suspend fun deleteMovieFromFav(id: Int) {
+        movieLocalCache.deleteMovieFromFav(id)
+    }
+
+    /**Delete a show from fav*/
+    override suspend fun deleteShowFromFav(id: Int) {
+        movieLocalCache.deleteShowFromFav(id)
+    }
+
+    /**Get a movie based on its id*/
+    override fun getMovieById(id: Int?): LiveData<Movie> =
+        Transformations.map(movieLocalCache.getMovieById(id)) {
+            it?.toMovieDomainModel()
+        }
+
+    /**Get a show based on its id*/
+    override fun getShowById(id: Int): LiveData<TvShow> =
+        Transformations.map(movieLocalCache.getShowById(id)) {
+            it.toShowDomainModel()
+        }
 
     private fun initializeSimilarShowsPagedListBuilder(
         showId: Int,

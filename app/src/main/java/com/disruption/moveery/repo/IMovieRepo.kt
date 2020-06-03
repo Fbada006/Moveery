@@ -45,4 +45,22 @@ interface IMovieRepo {
 
     /**Gets the trailers for either the show or the movie*/
     suspend fun getVideos(type: String, id: Int): LiveData<Resource<List<Video>>>
+
+    /**Insert a single movie to favourites*/
+    suspend fun insertMovieToFav(movie: Movie)
+
+    /**Insert a show to favourites*/
+    suspend fun insertShowToFav(show: TvShow)
+
+    /**Delete a single movie from favourites*/
+    suspend fun deleteMovieFromFav(id: Int)
+
+    /**Delete a single show from favourites*/
+    suspend fun deleteShowFromFav(id: Int)
+
+    /**Get a movie based on its id*/
+    fun getMovieById(id: Int?): LiveData<Movie>
+
+    /**Get a show based on its id*/
+    fun getShowById(id: Int): LiveData<TvShow>
 }

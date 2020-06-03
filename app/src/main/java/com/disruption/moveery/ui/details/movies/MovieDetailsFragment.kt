@@ -19,6 +19,8 @@ import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.ui.details.VideoAdapter
 import com.disruption.moveery.utils.*
 import com.disruption.moveery.utils.Resource.Status.*
+import com.like.LikeButton
+import com.like.OnLikeListener
 import javax.inject.Inject
 
 /**
@@ -103,9 +105,30 @@ class MovieDetailsFragment : Fragment(), Injectable {
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         listenToUserScrolls(binding.similarMoviesList)
 
+        observeLikedState()
+        onLikeButtonClicked()
+
         binding.toolbar.showAndHandleBackButton(activity)
 
         binding.movieDetailsViewModel = viewModel
+    }
+
+    private fun observeLikedState() {
+        viewModel.isMovieInFav(args.movie?.id!!).observe(viewLifecycleOwner, Observer {
+            binding.likeButton.isLiked = it != null
+        })
+    }
+
+    private fun onLikeButtonClicked() {
+        binding.likeButton.setOnLikeListener(object : OnLikeListener {
+            override fun liked(likeButton: LikeButton?) {
+                args.movie?.let { viewModel.insertMovieIntoFav(it) }
+            }
+
+            override fun unLiked(likeButton: LikeButton?) {
+                args.movie?.let { viewModel.deleteMoveFromFav(it.id) }
+            }
+        })
     }
 
     /**Display the passed in movie from the [args]*/

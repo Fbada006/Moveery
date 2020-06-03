@@ -75,7 +75,6 @@
                     app:layout_constraintStart_toEndOf="@id/tv_movie_year"
                     app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
                     app:like_drawable="@drawable/ic_favorite"
-                    app:liked="false"
                     app:unlike_drawable="@drawable/ic_favorite_border" />
 
                 <LinearLayout

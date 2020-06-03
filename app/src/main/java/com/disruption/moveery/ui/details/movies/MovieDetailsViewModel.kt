@@ -44,4 +44,17 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : V
     fun getSimilarMovies(movieId: Int) {
         movieIdLiveData.postValue(movieId)
     }
+
+    /**Insert a movie to favourites*/
+    fun insertMovieIntoFav(movie: Movie) {
+        viewModelScope.launch { repo.insertMovieToFav(movie) }
+    }
+
+    /**Delete a movie from favourites*/
+    fun deleteMoveFromFav(id: Int) {
+        viewModelScope.launch { repo.deleteMovieFromFav(id) }
+    }
+
+    /**If the movie is null, it is not in fav and so the like button should be in the un-liked state*/
+    fun isMovieInFav(id: Int) = repo.getMovieById(id)
 }

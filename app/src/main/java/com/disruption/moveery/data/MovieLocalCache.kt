@@ -1,5 +1,6 @@
 package com.disruption.moveery.data
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import com.disruption.moveery.models.favourites.movies.FavMovie
 import com.disruption.moveery.models.favourites.shows.FavShow
@@ -38,4 +39,32 @@ class MovieLocalCache @Inject constructor(private val movieRoomDatabase: MovieRo
     override suspend fun refreshShowsCache(tvShowResult: TvShowResult) {
         movieRoomDatabase.movieDao.insertAllShows(tvShowResult.showsList)
     }
+
+    /**Insert a single movie to favourites*/
+    override suspend fun insertMovieToFav(movie: FavMovie) {
+        movieRoomDatabase.movieDao.insertMovieToFav(movie)
+    }
+
+    /**Insert a single show to favourites*/
+    override suspend fun insertShowToFav(show: FavShow) {
+        movieRoomDatabase.movieDao.insertShowToFav(show)
+    }
+
+    /**Delete a movie*/
+    override suspend fun deleteMovieFromFav(id: Int) {
+        movieRoomDatabase.movieDao.deleteMovieFromFav(id)
+    }
+
+    /**Delete a show*/
+    override suspend fun deleteShowFromFav(id: Int) {
+        movieRoomDatabase.movieDao.deleteShowFromFav(id)
+    }
+
+    /**Get a movie*/
+    override fun getMovieById(id: Int?): LiveData<FavMovie?> =
+        movieRoomDatabase.movieDao.getFavMovieById(id)
+
+    /**Get a show*/
+    override fun getShowById(id: Int): LiveData<FavShow> =
+        movieRoomDatabase.movieDao.getFavShowById(id)
 }

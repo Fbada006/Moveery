@@ -1,5 +1,6 @@
 package com.disruption.moveery.data
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import com.disruption.moveery.models.favourites.movies.FavMovie
 import com.disruption.moveery.models.favourites.shows.FavShow
@@ -28,4 +29,22 @@ interface IMovieLocalCache {
 
     /**Insert TV shows*/
     suspend fun refreshShowsCache(tvShowResult: TvShowResult)
+
+    /**Insert a single movie to favourites*/
+    suspend fun insertMovieToFav(movie: FavMovie)
+
+    /**Insert a show to favourites*/
+    suspend fun insertShowToFav(show: FavShow)
+
+    /**Delete movie from fav*/
+    suspend fun deleteMovieFromFav(id: Int)
+
+    /**Delete show from fav*/
+    suspend fun deleteShowFromFav(id: Int)
+
+    /**Get a movie based on its id*/
+    fun getMovieById(id: Int?): LiveData<FavMovie?>
+
+    /**Get a show based on its id*/
+    fun getShowById(id: Int): LiveData<FavShow>
 }

@@ -44,4 +44,11 @@ class ShowDetailsViewModel @Inject constructor(private val repo: MovieRepo) : Vi
     fun getSimilarShows(showId: Int) {
         showIdLiveData.postValue(showId)
     }
+
+    /**Insert a show to favourites*/
+    fun insertShowIntoFav(show: TvShow) {
+        viewModelScope.launch {
+            repo.insertShowToFav(show)
+        }
+    }
 }
