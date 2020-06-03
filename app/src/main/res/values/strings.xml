@@ -4,6 +4,9 @@
 
     <!--Fragment labels-->
     <string name="label_discover_frag">Discover Movies</string>
+    <string name="label_discover_shows_frag">Discover Shows</string>
+    <string name="label_fav_movies_frag">Favourite Movies</string>
+    <string name="label_fav_shows_frag">Favourite Shows</string>
     <string name="label_search_frag">Search</string>
 
     <!--Genres based on the movie IDs-->

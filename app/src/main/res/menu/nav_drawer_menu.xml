@@ -17,10 +17,10 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/dest_movies_favourites_fragment"
+                    android:id="@+id/dest_favourite_movies_fragment"
                     android:title="@string/label_discover_movies" />
                 <item
-                    android:id="@+id/dest_shows_favourites_fragment"
+                    android:id="@+id/dest_favourite_shows_fragment"
                     android:title="@string/label_discover_shows" />
             </group>
         </menu>
