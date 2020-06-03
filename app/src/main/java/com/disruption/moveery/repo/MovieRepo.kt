@@ -13,8 +13,8 @@ import com.disruption.moveery.data.movies.similar.SimilarMovieDataSource
 import com.disruption.moveery.data.shows.ShowBoundaryCallBack
 import com.disruption.moveery.data.shows.search.SearchedShowDataSource
 import com.disruption.moveery.data.shows.similar.SimilarShowDataSource
-import com.disruption.moveery.models.favourites.movies.FavMovie
-import com.disruption.moveery.models.favourites.shows.FavShow
+import com.disruption.moveery.mappers.toMovieDomainModel
+import com.disruption.moveery.mappers.toShowDomainModel
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.models.videos.Video
@@ -70,14 +70,17 @@ class MovieRepo @Inject constructor(
     }
 
     /**Get all fav movies*/
-    override fun getAllFavMovies(): LiveData<PagedList<FavMovie>> {
-        val factory = movieLocalCache.getFavMovieData()
-        return LivePagedListBuilder(factory, DATABASE_PAGE_SIZE).build()
+    override fun getAllFavMovies(): LiveData<PagedList<Movie>> {
+        val factory =
+            movieLocalCache.getFavMovieData().map { it.toMovieDomainModel() }
+        return LivePagedListBuilder(factory, DATABASE_PAGE_SIZE)
+            .build()
     }
 
     /**Get all fav shows*/
-    override fun getAllFavShows(): LiveData<PagedList<FavShow>> {
-        val factory = movieLocalCache.getFavShowsData()
+    override fun getAllFavShows(): LiveData<PagedList<TvShow>> {
+        val factory =
+            movieLocalCache.getFavShowsData().map { it.toShowDomainModel() }
         return LivePagedListBuilder(factory, DATABASE_PAGE_SIZE).build()
     }
 

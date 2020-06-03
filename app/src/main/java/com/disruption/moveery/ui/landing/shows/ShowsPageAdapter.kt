@@ -17,11 +17,11 @@ import kotlinx.android.synthetic.main.tv_show_item.view.*
 
 /**Handle displaying a paged list of [TvShow] objects on the [ShowsLandingFragment]
  * using paging for efficient loading from the API*/
-class ShowsLandingPageAdapter(
+class ShowsPageAdapter(
     private val context: Context,
     private val onClickListener: OnShowClickListener
 ) :
-    PagedListAdapter<TvShow, ShowsLandingPageAdapter.TvShowViewHolder>(TvShowDiffCallback()) {
+    PagedListAdapter<TvShow, ShowsPageAdapter.TvShowViewHolder>(TvShowDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowViewHolder {
         return TvShowViewHolder.from(parent)

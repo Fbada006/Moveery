@@ -45,7 +45,8 @@ class ShowsLandingFragment : Fragment(), Injectable {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ShowsLandingPageAdapter(requireContext(),
+        val adapter = ShowsPageAdapter(
+            requireContext(),
             OnShowClickListener { it?.let { tvShow -> viewModel.displayShowDetails(tvShow) } })
 
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL)

@@ -2,6 +2,8 @@ package com.disruption.moveery.di.modules
 
 import com.disruption.moveery.ui.details.movies.MovieDetailsFragment
 import com.disruption.moveery.ui.details.shows.ShowDetailsFragment
+import com.disruption.moveery.ui.favourites.movie.FavouriteMoviesFragment
+import com.disruption.moveery.ui.favourites.shows.FavouriteShowsFragment
 import com.disruption.moveery.ui.landing.movies.MoviesLandingFragment
 import com.disruption.moveery.ui.landing.shows.ShowsLandingFragment
 import com.disruption.moveery.ui.search.movies.MovieSearchFragment
@@ -36,4 +38,12 @@ abstract class FragmentBuildersModule {
     /**Inject [ShowsSearchFragment]*/
     @ContributesAndroidInjector
     abstract fun contributesShowsSearchFragment(): ShowsSearchFragment
+
+    /**Inject [FavouriteMoviesFragment]*/
+    @ContributesAndroidInjector
+    abstract fun contributesFavMoviesFragment(): FavouriteMoviesFragment
+
+    /**Inject [FavouriteShowsFragment]*/
+    @ContributesAndroidInjector
+    abstract fun contributesFavShowsFragment(): FavouriteShowsFragment
 }

@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.disruption.moveery.di.keys.ViewModelKey
 import com.disruption.moveery.ui.details.movies.MovieDetailsViewModel
 import com.disruption.moveery.ui.details.shows.ShowDetailsViewModel
+import com.disruption.moveery.ui.favourites.movie.FavMoviesViewModel
+import com.disruption.moveery.ui.favourites.shows.FavShowsViewModel
 import com.disruption.moveery.ui.landing.movies.MoviesLandingViewModel
 import com.disruption.moveery.ui.landing.shows.ShowsLandingViewModel
 import com.disruption.moveery.ui.search.movies.MovieSearchViewModel
@@ -51,4 +53,16 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(ShowDetailsViewModel::class)
     abstract fun bindShowsDetailsViewModel(viewModel: ShowDetailsViewModel): ViewModel
+
+    /**Create the [FavMoviesViewModel]*/
+    @Binds
+    @IntoMap
+    @ViewModelKey(FavMoviesViewModel::class)
+    abstract fun bindFavMoviesViewModel(viewModel: FavMoviesViewModel): ViewModel
+
+    /**Create the [FavShowsViewModel]*/
+    @Binds
+    @IntoMap
+    @ViewModelKey(FavShowsViewModel::class)
+    abstract fun bindFavShowsViewModel(viewModel: FavShowsViewModel): ViewModel
 }

@@ -1,4 +1,4 @@
-package com.disruption.moveery.ui.landing.movies
+package com.disruption.moveery.ui.favourites.movie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,8 +8,8 @@ import com.disruption.moveery.repo.MovieRepo
 import com.disruption.moveery.utils.Event
 import javax.inject.Inject
 
-/**The view model that handles the UI and logic for the [MoviesLandingFragment]*/
-class MoviesLandingViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
+/**The view model that handles the UI and logic for the [FavouriteMoviesFragment]*/
+class FavMoviesViewModel @Inject constructor(repo: MovieRepo) : ViewModel() {
 
     /*The internal MutableLiveData that stores the event of a click input */
     private val _navigateToSelectedMovie = MutableLiveData<Event<Movie>>()
@@ -18,8 +18,8 @@ class MoviesLandingViewModel @Inject constructor(repo: MovieRepo) : ViewModel() 
     val navigateToSelectedMovie: LiveData<Event<Movie>>
         get() = _navigateToSelectedMovie
 
-    /**These are all the movies queried from the db as a PagedList*/
-    val movieList = repo.getAllMovies()
+    /**These are all the fav movies queried from the db as a PagedList*/
+    val movieList = repo.getAllFavMovies()
 
     /**Called when a user clicks on a movie*/
     fun displayMovieDetails(movie: Movie) {

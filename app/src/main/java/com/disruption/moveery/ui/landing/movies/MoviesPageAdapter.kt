@@ -16,11 +16,11 @@ import com.disruption.moveery.utils.OnMovieClickListener
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 /**Adapter to handle displaying [Movie] objects in the [MoviesLandingFragment]*/
-class LandingPageAdapter(
+class MoviePageAdapter(
     private val context: Context,
     private val onClickListener: OnMovieClickListener
 ) :
-    PagedListAdapter<Movie, LandingPageAdapter.MovieViewHolder>(
+    PagedListAdapter<Movie, MoviePageAdapter.MovieViewHolder>(
         MovieDiffCallback()
     ) {
 
