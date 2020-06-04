@@ -62,4 +62,12 @@ interface MovieDao {
     /**Delete a show from fav*/
     @Query("DELETE FROM favShows WHERE id = :id")
     suspend fun deleteShowFromFav(id: Int)
+
+    /**Delete all movies from fav*/
+    @Query("DELETE FROM favMovies")
+    suspend fun nukeMovieFavourites()
+
+    /**Delete all shows from fav*/
+    @Query("DELETE FROM favShows")
+    suspend fun nukeShowFavourites()
 }

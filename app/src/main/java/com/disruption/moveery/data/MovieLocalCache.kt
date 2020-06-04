@@ -60,6 +60,14 @@ class MovieLocalCache @Inject constructor(private val movieRoomDatabase: MovieRo
         movieRoomDatabase.movieDao.deleteShowFromFav(id)
     }
 
+    override suspend fun nukeMovieFavourites() {
+        movieRoomDatabase.movieDao.nukeMovieFavourites()
+    }
+
+    override suspend fun nukeShowFavourites() {
+        movieRoomDatabase.movieDao.nukeShowFavourites()
+    }
+
     /**Get a movie*/
     override fun getMovieById(id: Int?): LiveData<FavMovie?> =
         movieRoomDatabase.movieDao.getFavMovieById(id)

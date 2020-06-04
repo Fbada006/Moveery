@@ -87,4 +87,8 @@
     <string name="no_favourites_found">There is nothing to see here. Once you save them, your favourites will appear here</string>
     <string name="no_search_results">Your search term did not yield any results. Please try again.</string>
 
+    <!--Dialog text-->
+    <string name="confirm_nuke">Confirm nuke</string>
+    <string name="sure_to_delete">Are you sure you want to delete all your favourites? This action cannot be undone.</string>
+
 </resources>

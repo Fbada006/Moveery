@@ -183,6 +183,14 @@ class MovieRepo @Inject constructor(
         movieLocalCache.deleteShowFromFav(id)
     }
 
+    override suspend fun nukeMovieFavourites() {
+        movieLocalCache.nukeMovieFavourites()
+    }
+
+    override suspend fun nukeShowFavourites() {
+        movieLocalCache.nukeShowFavourites()
+    }
+
     /**Get a movie based on its id*/
     override fun getMovieById(id: Int?): LiveData<Movie?> =
         Transformations.map(movieLocalCache.getMovieById(id)) {

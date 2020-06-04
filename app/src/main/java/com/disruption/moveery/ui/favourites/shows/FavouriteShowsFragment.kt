@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.azoft.carousellayoutmanager.CarouselLayoutManager
 import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener
 import com.azoft.carousellayoutmanager.CenterScrollListener
@@ -59,8 +60,13 @@ class FavouriteShowsFragment : Fragment(), Injectable {
         }
 
         viewModel.showsList.observe(viewLifecycleOwner, Observer {
-            if (it.isEmpty()) binding.emptyContainer.emptyView.visibility =
-                View.VISIBLE else View.GONE
+            if (it.isEmpty()) {
+                binding.emptyContainer.emptyView.visibility = View.VISIBLE
+                binding.nukeFavourites.visibility = View.GONE
+            } else {
+                binding.emptyContainer.emptyView.visibility = View.GONE
+                binding.nukeFavourites.visibility = View.VISIBLE
+            }
             adapter.submitList(it)
         })
 
@@ -75,10 +81,24 @@ class FavouriteShowsFragment : Fragment(), Injectable {
             }
         })
 
-        //binding.landingShowsViewModel = viewModel
+        binding.nukeFavourites.setOnClickListener { showNukeConfirmation() }
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         listenToUserScrolls(binding.favShowsList)
+    }
+
+    private fun showNukeConfirmation() {
+        SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+            .setTitleText(getString(R.string.confirm_nuke))
+            .setContentText(getString(R.string.sure_to_delete))
+            .setConfirmText(getString(android.R.string.ok))
+            .setConfirmClickListener {
+                viewModel.nukeShowFavourites()
+                it.dismissWithAnimation()
+            }
+            .setCancelText(getString(android.R.string.no))
+            .setCancelClickListener { it.dismissWithAnimation() }
+            .show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
