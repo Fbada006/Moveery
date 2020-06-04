@@ -19,7 +19,7 @@ import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.landing.shows.ShowsPageAdapter
 import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.OnShowClickListener
-import com.disruption.moveery.utils.listenToUserScrolls
+import com.disruption.moveery.utils.loadImagesWhenScrollIsPaused
 import javax.inject.Inject
 
 /**
@@ -84,7 +84,7 @@ class FavouriteShowsFragment : Fragment(), Injectable {
         binding.nukeFavourites.setOnClickListener { showNukeConfirmation() }
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
-        listenToUserScrolls(binding.favShowsList)
+        loadImagesWhenScrollIsPaused(binding.favShowsList)
     }
 
     private fun showNukeConfirmation() {

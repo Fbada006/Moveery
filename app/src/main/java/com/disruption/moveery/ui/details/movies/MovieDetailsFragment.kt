@@ -103,7 +103,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
         }
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
-        listenToUserScrolls(binding.similarMoviesList)
+        loadImagesWhenScrollIsPaused(binding.similarMoviesList)
 
         observeLikedState()
         onLikeButtonClicked()

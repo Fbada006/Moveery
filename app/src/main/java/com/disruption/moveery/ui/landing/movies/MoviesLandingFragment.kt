@@ -17,7 +17,7 @@ import com.disruption.moveery.databinding.FragmentLandingMoviesBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.OnMovieClickListener
-import com.disruption.moveery.utils.listenToUserScrolls
+import com.disruption.moveery.utils.loadImagesWhenScrollIsPaused
 import javax.inject.Inject
 
 /**The fragment that is first launched when the user opens the app*/
@@ -78,7 +78,7 @@ class MoviesLandingFragment : Fragment(), Injectable {
         binding.landingMoviesViewModel = viewModel
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
-        listenToUserScrolls(binding.moviesList)
+        loadImagesWhenScrollIsPaused(binding.moviesList)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

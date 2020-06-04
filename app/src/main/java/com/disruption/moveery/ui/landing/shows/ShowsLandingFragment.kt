@@ -16,7 +16,7 @@ import com.disruption.moveery.databinding.ShowsLandingFragmentBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.OnShowClickListener
-import com.disruption.moveery.utils.listenToUserScrolls
+import com.disruption.moveery.utils.loadImagesWhenScrollIsPaused
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -77,7 +77,7 @@ class ShowsLandingFragment : Fragment(), Injectable {
         binding.landingShowsViewModel = viewModel
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
-        listenToUserScrolls(binding.showsList)
+        loadImagesWhenScrollIsPaused(binding.showsList)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

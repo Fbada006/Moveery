@@ -17,7 +17,7 @@ import com.azoft.carousellayoutmanager.CenterScrollListener
 import com.disruption.moveery.databinding.FragmentMovieSearchBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.utils.OnMovieClickListener
-import com.disruption.moveery.utils.listenToUserScrolls
+import com.disruption.moveery.utils.loadImagesWhenScrollIsPaused
 import com.disruption.moveery.utils.showAndHandleBackButton
 import javax.inject.Inject
 
@@ -82,7 +82,7 @@ class MovieSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListen
         binding.toolbar.showAndHandleBackButton(requireActivity())
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
-        listenToUserScrolls(binding.moviesList)
+        loadImagesWhenScrollIsPaused(binding.moviesList)
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {

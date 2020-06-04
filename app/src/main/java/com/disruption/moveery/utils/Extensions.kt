@@ -42,7 +42,7 @@ fun Double.toPercentage(): String {
 }
 
 /**This method listens to scrolls and determines if Glide should load images*/
-fun Fragment.listenToUserScrolls(recyclerView: RecyclerView) {
+fun Fragment.loadImagesWhenScrollIsPaused(recyclerView: RecyclerView) {
     recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             if (newState == RecyclerView.SCROLL_STATE_IDLE ||
