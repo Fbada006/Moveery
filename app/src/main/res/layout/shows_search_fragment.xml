@@ -36,6 +36,18 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/typing"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="typing.json"
+            app:lottie_loop="true" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/shows_list"
             android:layout_width="match_parent"
@@ -43,11 +55,9 @@
             android:clipToPadding="false"
             android:padding="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:layout_constraintVertical_bias="0.0"
             tools:itemCount="16"
             tools:listitem="@layout/show_search_item" />
 

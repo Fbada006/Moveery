@@ -1,6 +1,7 @@
 package com.disruption.moveery.ui.search.movies
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -92,8 +93,8 @@ class MovieSearchFragment : Fragment(), Injectable, SearchView.OnQueryTextListen
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        //Do nothing for now
-        //TODO: Show some animation
+        if (TextUtils.isEmpty(newText)) binding.typing.visibility =
+            View.VISIBLE else binding.typing.visibility = View.GONE
         return false
     }
 }
