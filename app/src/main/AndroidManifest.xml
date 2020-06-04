@@ -17,6 +17,7 @@
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:label="@string/label_setting"
+            android:launchMode="singleInstance"
             android:parentActivityName=".MainActivity" />
 
         <activity android:name=".MainActivity">
