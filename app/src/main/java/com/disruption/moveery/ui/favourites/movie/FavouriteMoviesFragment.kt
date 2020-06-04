@@ -1,9 +1,8 @@
 package com.disruption.moveery.ui.favourites.movie
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,6 +16,7 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentFavouriteMoviesBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.ui.landing.movies.MoviePageAdapter
+import com.disruption.moveery.ui.settings.SettingsActivity
 import com.disruption.moveery.utils.OnMovieClickListener
 import com.disruption.moveery.utils.listenToUserScrolls
 import javax.inject.Inject
@@ -39,6 +39,7 @@ class FavouriteMoviesFragment : Fragment(), Injectable {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_favourite_movies, container, false)
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -83,5 +84,25 @@ class FavouriteMoviesFragment : Fragment(), Injectable {
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         listenToUserScrolls(binding.favMoviesList)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_main, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                startActivity(Intent(requireContext(), SettingsActivity::class.java))
+                true
+            }
+            R.id.action_search -> {
+                findNavController().navigate(
+                    FavouriteMoviesFragmentDirections.actionDestFavouriteMoviesFragmentToDestMovieSearchFragment()
+                )
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }

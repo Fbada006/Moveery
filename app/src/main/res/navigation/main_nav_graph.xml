@@ -97,6 +97,9 @@
         <action
             android:id="@+id/action_dest_favourite_movies_fragment_to_dest_movie_details_fragment"
             app:destination="@id/dest_movie_details_fragment" />
+        <action
+            android:id="@+id/action_dest_favourite_movies_fragment_to_dest_movie_search_fragment"
+            app:destination="@id/dest_movie_search_fragment" />
     </fragment>
 
     <fragment
@@ -107,5 +110,8 @@
         <action
             android:id="@+id/action_dest_favourite_shows_fragment_to_dest_show_details_fragment"
             app:destination="@id/dest_show_details_fragment" />
+        <action
+            android:id="@+id/action_dest_favourite_shows_fragment_to_dest_shows_search_fragment"
+            app:destination="@id/dest_shows_search_fragment" />
     </fragment>
 </navigation>
