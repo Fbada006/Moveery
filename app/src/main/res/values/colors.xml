@@ -10,4 +10,6 @@
     <color name="lessThan70OrEqual">#d2d531</color>
     <color name="lessThan40OrEqual">#db2360</color>
     <color name="lessThan100OrEqual">#21d07a</color>
+
+    <color name="ic_launcher_background">#080808</color>
 </resources>
