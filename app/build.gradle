@@ -159,6 +159,9 @@ dependencies {
     //Timber
     implementation "com.jakewharton.timber:timber:$timberVersion"
 
+    //Lottie animations
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+
     // Dependencies for local unit tests
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.google.truth:truth:$truthVersion"

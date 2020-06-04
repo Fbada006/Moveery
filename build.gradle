@@ -39,6 +39,7 @@ buildscript {
         androidXTestExtKotlinRunnerVersion = '1.1.1-beta01'
         androidXTestRulesVersion = '1.2.0-beta01'
         likeVersion = '0.2.3'
+        lottieVersion = '3.0.1'
     }
 
     repositories {
