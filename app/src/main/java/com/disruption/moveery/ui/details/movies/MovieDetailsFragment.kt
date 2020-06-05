@@ -82,7 +82,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
         binding.videoMoviesList.layoutManager = videoLayoutManager
 
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
-            if (it.isEmpty()) binding.similarMoviesError.showView()
+            if (it.isEmpty()) binding.similarMoviesError.visibility = View.VISIBLE else View.GONE
             similarAdapter.submitList(it)
         })
 
@@ -155,12 +155,12 @@ class MovieDetailsFragment : Fragment(), Injectable {
     }
 
     private fun showLoading() {
-        binding.videoLoadingSpinner.showView()
-        binding.videoMoviesError.hideView()
+        binding.videoLoadingSpinner.visibility = View.VISIBLE
+        binding.videoMoviesError.visibility = View.GONE
     }
 
     private fun showError() {
-        binding.videoLoadingSpinner.hideView()
-        binding.videoMoviesError.showView()
+        binding.videoLoadingSpinner.visibility = View.GONE
+        binding.videoMoviesError.visibility = View.VISIBLE
     }
 }

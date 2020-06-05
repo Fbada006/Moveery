@@ -2,7 +2,6 @@ package com.disruption.moveery.utils
 
 import android.content.Intent
 import android.net.Uri
-import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -71,14 +70,4 @@ fun Fragment.playVideo(video: Video?) {
         Toast.makeText(context, getString(R.string.cannot_play_video), Toast.LENGTH_SHORT)
             .show()
     }
-}
-
-/**Show a view*/
-fun View.showView() {
-    if (this.visibility == View.GONE) this.visibility = View.VISIBLE
-}
-
-/**Hide a view*/
-fun View.hideView() {
-    if (this.visibility == View.VISIBLE) this.visibility = View.GONE
 }
