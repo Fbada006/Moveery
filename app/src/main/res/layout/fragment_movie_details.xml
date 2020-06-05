@@ -31,7 +31,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="450dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@tools:sample/avatars" />
@@ -242,9 +241,9 @@
                     android:id="@+id/share_movie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
                     android:backgroundTint="@color/colorAccent"
                     android:clickable="true"
+                    android:layout_margin="4dp"
                     android:focusable="true"
                     app:layout_constraintBottom_toBottomOf="@id/iv_movie_poster"
                     app:layout_constraintEnd_toEndOf="parent"

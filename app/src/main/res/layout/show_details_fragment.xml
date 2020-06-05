@@ -247,10 +247,10 @@
                     android:id="@+id/share_movie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
                     android:backgroundTint="@color/colorAccent"
                     android:clickable="true"
                     android:focusable="true"
+                    android:layout_margin="4dp"
                     app:layout_constraintBottom_toBottomOf="@id/iv_show_poster"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_share" />
