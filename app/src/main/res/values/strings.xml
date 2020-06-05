@@ -38,6 +38,8 @@
     <string name="label_discover_movies">Movies</string>
     <string name="label_discover_shows">TV Shows</string>
     <string name="label_favourites">Favourites</string>
+    <string name="label_share">Share</string>
+    <string name="share_movie_label">"Check out this cool movie I found %s. For more of this awesome stuff, check out Moveery at %s"</string>
 
     <!--Preferences-->
     <string name="pref_night_mode_title">Night Mode</string>

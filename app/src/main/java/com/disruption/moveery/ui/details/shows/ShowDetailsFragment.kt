@@ -66,6 +66,7 @@ class ShowDetailsFragment : Fragment(), Injectable {
             requireContext(),
             OnVideoClickListener { playVideo(it) }
         )
+
         val adapter = ShowSimilarPagedAdapter(requireContext())
 
         binding.similarShowsList.adapter = adapter
@@ -104,8 +105,13 @@ class ShowDetailsFragment : Fragment(), Injectable {
 
         observeLikedState()
         onLikeButtonClicked()
+        onShareFabClicked()
 
         binding.showDetailsViewModel = viewModel
+    }
+
+    private fun onShareFabClicked() {
+        binding.shareMovie.setOnClickListener { buildMovieShareIntent(args.tvshow!!.id) }
     }
 
     private fun observeLikedState() {

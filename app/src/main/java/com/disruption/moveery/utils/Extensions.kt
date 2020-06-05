@@ -5,6 +5,7 @@ import android.net.Uri
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -70,4 +71,18 @@ fun Fragment.playVideo(video: Video?) {
         Toast.makeText(context, getString(R.string.cannot_play_video), Toast.LENGTH_SHORT)
             .show()
     }
+}
+
+/**Build a share intent*/
+fun Fragment.buildMovieShareIntent(id: Int) {
+    val movieLink = String.format(Constants.MOVIE_VIEW_BASE_URL, id)
+    val mimeType = "text/plain"
+    val title = getString(R.string.label_share)
+    ShareCompat
+        .IntentBuilder
+        .from(requireActivity())
+        .setType(mimeType)
+        .setChooserTitle(title)
+        .setText(getString(R.string.share_movie_label, movieLink, "Moveery PlayStore Link Here"))
+        .startChooser()
 }

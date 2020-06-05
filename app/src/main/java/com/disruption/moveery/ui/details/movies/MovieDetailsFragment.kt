@@ -16,6 +16,7 @@ import com.disruption.moveery.R
 import com.disruption.moveery.databinding.FragmentMovieDetailsBinding
 import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.movies.Movie
+import com.disruption.moveery.models.videos.Video
 import com.disruption.moveery.ui.details.VideoAdapter
 import com.disruption.moveery.utils.*
 import com.disruption.moveery.utils.Resource.Status.*
@@ -37,20 +38,19 @@ class MovieDetailsFragment : Fragment(), Injectable {
     private lateinit var binding: FragmentMovieDetailsBinding
     private val args: MovieDetailsFragmentArgs by navArgs()
     private val viewModel by viewModels<MovieDetailsViewModel> { viewModelFactory }
+    private lateinit var video: Video
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMovieDetailsBinding.inflate(inflater)
-
         // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val similarAdapter =
             MovieSimilarPagedAdapter(
                 requireContext(),
@@ -107,10 +107,15 @@ class MovieDetailsFragment : Fragment(), Injectable {
 
         observeLikedState()
         onLikeButtonClicked()
+        onShareFabClicked()
 
         binding.toolbar.showAndHandleBackButton(activity)
 
         binding.movieDetailsViewModel = viewModel
+    }
+
+    private fun onShareFabClicked() {
+        binding.shareMovie.setOnClickListener { buildMovieShareIntent(args.movie!!.id) }
     }
 
     private fun observeLikedState() {
