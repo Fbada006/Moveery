@@ -8,6 +8,7 @@ object Constants {
     const val YOUTUBE_IMAGE_BASE_URL = "https://img.youtube.com/vi/%s/mqdefault.jpg"
     const val YOUTUBE_VIDEO_BASE_URL = "http://www.youtube.com/watch?v=%s"
     const val MOVIE_VIEW_BASE_URL = "https://www.themoviedb.org/movie/%d"
+    const val SHOW_VIEW_BASE_URL = "https://www.themoviedb.org/tv/%d"
     const val DATABASE_PAGE_SIZE = 20
     const val MOVIE_REFRESH_NOTIFICATION_CHANNEL_ID =
         "com.disruption.moveery.movieRefreshChannelId"

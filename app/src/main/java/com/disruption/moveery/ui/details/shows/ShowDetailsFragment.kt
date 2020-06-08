@@ -19,6 +19,7 @@ import com.disruption.moveery.di.Injectable
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.ui.details.VideoAdapter
 import com.disruption.moveery.utils.*
+import com.disruption.moveery.utils.Constants.SHOW_TYPE
 import com.like.LikeButton
 import com.like.OnLikeListener
 import javax.inject.Inject
@@ -111,7 +112,7 @@ class ShowDetailsFragment : Fragment(), Injectable {
     }
 
     private fun onShareFabClicked() {
-        binding.shareMovie.setOnClickListener { buildMovieShareIntent(args.tvshow!!.id) }
+        binding.shareMovie.setOnClickListener { buildShareIntent(args.tvshow!!.id, SHOW_TYPE) }
     }
 
     private fun observeLikedState() {

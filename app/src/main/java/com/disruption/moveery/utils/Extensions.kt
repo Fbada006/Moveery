@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.disruption.moveery.R
 import com.disruption.moveery.models.videos.Video
+import com.disruption.moveery.utils.Constants.MOVIE_TYPE
+import com.disruption.moveery.utils.Constants.SHOW_TYPE
 import timber.log.Timber
 
 /**Extension function on [ImageView] to load images with [RequestManager]*/
@@ -74,8 +76,13 @@ fun Fragment.playVideo(video: Video?) {
 }
 
 /**Build a share intent*/
-fun Fragment.buildMovieShareIntent(id: Int) {
-    val movieLink = String.format(Constants.MOVIE_VIEW_BASE_URL, id)
+fun Fragment.buildShareIntent(id: Int, type: String) {
+    val link = when (type) {
+        MOVIE_TYPE -> String.format(Constants.MOVIE_VIEW_BASE_URL, id)
+        SHOW_TYPE -> String.format(Constants.SHOW_VIEW_BASE_URL, id)
+        else -> throw IllegalArgumentException()
+    }
+
     val mimeType = "text/plain"
     val title = getString(R.string.label_share)
     ShareCompat
@@ -83,6 +90,6 @@ fun Fragment.buildMovieShareIntent(id: Int) {
         .from(requireActivity())
         .setType(mimeType)
         .setChooserTitle(title)
-        .setText(getString(R.string.share_movie_label, movieLink, "Moveery PlayStore Link Here"))
+        .setText(getString(R.string.share_movie_label, link, "Moveery PlayStore Link Here"))
         .startChooser()
 }
