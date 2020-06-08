@@ -3,7 +3,6 @@ package com.disruption.moveery.ui.landing.movies
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -60,7 +59,6 @@ class MoviesLandingFragment : Fragment(), Injectable {
 
         //The list of movies to display
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
-            if (it.isEmpty()) Toast.makeText(context, "Empty here", Toast.LENGTH_SHORT).show()
             adapter.submitList(it)
         })
 
