@@ -85,7 +85,7 @@ class ShowDetailsFragment : Fragment(), Injectable {
             adapter.submitList(it)
         })
 
-        tvShow.id.let {
+        tvShow?.id.let {
             viewModel.videoRes.observe(viewLifecycleOwner, Observer { resource ->
                 when (resource.status) {
                     Resource.Status.SUCCESS -> {
@@ -116,7 +116,7 @@ class ShowDetailsFragment : Fragment(), Injectable {
     }
 
     private fun observeLikedState() {
-        viewModel.isShowInFav(args.tvshow.id!!).observe(viewLifecycleOwner, Observer {
+        viewModel.isShowInFav(args.tvshow?.id!!).observe(viewLifecycleOwner, Observer {
             binding.likeButton.isLiked = it != null
         })
     }
@@ -124,11 +124,11 @@ class ShowDetailsFragment : Fragment(), Injectable {
     private fun onLikeButtonClicked() {
         binding.likeButton.setOnLikeListener(object : OnLikeListener {
             override fun liked(likeButton: LikeButton?) {
-                args.tvshow.let { viewModel.insertShowIntoFav(it) }
+                args.tvshow?.let { viewModel.insertShowIntoFav(it) }
             }
 
             override fun unLiked(likeButton: LikeButton?) {
-                args.tvshow.let { viewModel.deleteShowFromFav(it.id) }
+                args.tvshow?.let { viewModel.deleteShowFromFav(it.id) }
             }
         })
     }
