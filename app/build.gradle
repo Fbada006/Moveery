@@ -167,6 +167,9 @@ dependencies {
     //Sweet alert
     implementation "com.github.f0ris.sweetalert:library:$sweetAlertVersion"
 
+    //Circular imageView
+    implementation "de.hdodenhof:circleimageview:$circularImageVersion"
+
     // Dependencies for local unit tests
     testImplementation "junit:junit:$junitVersion"
     testImplementation "com.google.truth:truth:$truthVersion"
