@@ -20,7 +20,6 @@ import com.disruption.moveery.mappers.toShowDomainModel
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.shows.TvShow
 import com.disruption.moveery.models.videos.Video
-import com.disruption.moveery.models.videos.VideoResult
 import com.disruption.moveery.network.MovieApi
 import com.disruption.moveery.utils.Constants.DATABASE_PAGE_SIZE
 import com.disruption.moveery.utils.Constants.MOVIE_TYPE
@@ -48,7 +47,6 @@ class MovieRepo @Inject constructor(
         .build()
 
     private val videosLiveData = MutableLiveData<Resource<List<Video>>>()
-    private lateinit var videosDeferred: VideoResult
 
     //This is bad for testing but once the API starts serving the data in V4, it will be injected
     private val movieApiService = MovieApi.movieRetrofitService
@@ -144,15 +142,14 @@ class MovieRepo @Inject constructor(
      *
      */
     override suspend fun getVideos(type: String, id: Int): MutableLiveData<Resource<List<Video>>> {
+        videosLiveData.value = Resource.loading(null)
         try {
             if (type == MOVIE_TYPE) {
-                videosLiveData.value = Resource.loading(null)
-                videosDeferred = movieApiService.getMovieVideosAsync(id).await()
+                val videosDeferred = movieApiService.getMovieVideosAsync(id).await()
                 Timber.e("Videos from the movie ----------------- $${videosDeferred.results}")
                 videosLiveData.value = Resource.success(videosDeferred.results)
             } else if (type == SHOW_TYPE) {
-                videosLiveData.value = Resource.loading(null)
-                videosDeferred = movieApiService.getTvShowVideosAsync(id).await()
+                val videosDeferred = movieApiService.getTvShowVideosAsync(id).await()
                 videosLiveData.value = Resource.success(videosDeferred.results)
                 Timber.e("Videos from the show ----------------- $${videosDeferred.results}")
             }

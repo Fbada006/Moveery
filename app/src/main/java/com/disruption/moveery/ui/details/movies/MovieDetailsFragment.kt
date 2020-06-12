@@ -81,9 +81,10 @@ class MovieDetailsFragment : Fragment(), Injectable {
 
         binding.similarMoviesList.layoutManager = similarLayoutManager
         binding.videoMoviesList.layoutManager = videoLayoutManager
+        binding.movieDetailsViewModel = viewModel
+        binding.lifecycleOwner = this
 
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
-            if (it.isEmpty()) binding.similarMoviesError.visibility = View.VISIBLE else View.GONE
             similarAdapter.submitList(it)
         })
 
@@ -92,6 +93,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
                 when (resource.status) {
                     SUCCESS -> {
                         if (!resource.data.isNullOrEmpty()) {
+                            showData()
                             videoAdapter.submitList(resource.data)
                         } else {
                             showError()
@@ -111,8 +113,6 @@ class MovieDetailsFragment : Fragment(), Injectable {
         onShareFabClicked()
 
         binding.toolbar.showAndHandleBackButton(activity)
-
-        binding.movieDetailsViewModel = viewModel
     }
 
     private fun onShareFabClicked() {
@@ -168,5 +168,10 @@ class MovieDetailsFragment : Fragment(), Injectable {
     private fun showError() {
         binding.videoLoadingSpinner.visibility = View.GONE
         binding.videoMoviesError.visibility = View.VISIBLE
+    }
+
+    private fun showData() {
+        binding.videoLoadingSpinner.visibility = View.GONE
+        binding.videoMoviesError.visibility = View.GONE
     }
 }

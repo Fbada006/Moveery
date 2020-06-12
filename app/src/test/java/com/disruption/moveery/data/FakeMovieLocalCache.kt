@@ -1,6 +1,9 @@
 package com.disruption.moveery.data
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
+import com.disruption.moveery.models.favourites.movies.FavMovie
+import com.disruption.moveery.models.favourites.shows.FavShow
 import com.disruption.moveery.models.movies.Movie
 import com.disruption.moveery.models.movies.MovieResult
 import com.disruption.moveery.models.shows.TvShow
@@ -24,6 +27,14 @@ class FakeMovieLocalCache(
         return shows!!
     }
 
+    override fun getFavMovieData(): DataSource.Factory<Int, FavMovie> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getFavShowsData(): DataSource.Factory<Int, FavShow> {
+        TODO("Not yet implemented")
+    }
+
     /**Insert all movies into the db*/
     override suspend fun refreshMoviesCache(movieMovieResult: MovieResult) {
         movieList?.addAll(movieMovieResult.movieList)
@@ -32,5 +43,37 @@ class FakeMovieLocalCache(
     /**Insert all shows into the db*/
     override suspend fun refreshShowsCache(tvShowResult: TvShowResult) {
         showsList?.addAll(tvShowResult.showsList)
+    }
+
+    override suspend fun insertMovieToFav(movie: FavMovie) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun insertShowToFav(show: FavShow) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteMovieFromFav(id: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteShowFromFav(id: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun nukeMovieFavourites() {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun nukeShowFavourites() {
+        TODO("Not yet implemented")
+    }
+
+    override fun getMovieById(id: Int?): LiveData<FavMovie?> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getShowById(id: Int?): LiveData<FavShow?> {
+        TODO("Not yet implemented")
     }
 }
