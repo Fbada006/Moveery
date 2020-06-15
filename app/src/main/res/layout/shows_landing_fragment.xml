@@ -8,7 +8,7 @@
 
         <variable
             name="landingShowsViewModel"
-            type="com.disruption.moveery.ui.landing.shows.ShowsLandingViewModel" />
+            type="com.droidafricana.moveery.ui.landing.shows.ShowsLandingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

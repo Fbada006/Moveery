@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dest_movies_landing_fragment"
-        android:name="com.disruption.moveery.ui.landing.movies.MoviesLandingFragment"
+        android:name="com.droidafricana.moveery.ui.landing.movies.MoviesLandingFragment"
         android:label="@string/label_discover_frag"
         tools:layout="@layout/fragment_landing_movies">
         <action
@@ -24,17 +24,17 @@
 
     <fragment
         android:id="@+id/dest_movie_details_fragment"
-        android:name="com.disruption.moveery.ui.details.movies.MovieDetailsFragment"
+        android:name="com.droidafricana.moveery.ui.details.movies.MovieDetailsFragment"
         tools:layout="@layout/fragment_movie_details">
         <argument
             android:name="movie"
-            app:argType="com.disruption.moveery.models.movies.Movie"
+            app:argType="com.droidafricana.moveery.models.movies.Movie"
             app:nullable="true" />
     </fragment>
 
     <fragment
         android:id="@+id/dest_movie_search_fragment"
-        android:name="com.disruption.moveery.ui.search.movies.MovieSearchFragment"
+        android:name="com.droidafricana.moveery.ui.search.movies.MovieSearchFragment"
         tools:layout="@layout/fragment_movie_search">
         <action
             android:id="@+id/action_dest_search_fragment_to_dest_details_fragment"
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/dest_shows_landing_fragment"
-        android:name="com.disruption.moveery.ui.landing.shows.ShowsLandingFragment"
+        android:name="com.droidafricana.moveery.ui.landing.shows.ShowsLandingFragment"
         android:label="@string/label_discover_shows_frag"
         tools:layout="@layout/shows_landing_fragment">
         <action
@@ -68,17 +68,17 @@
 
     <fragment
         android:id="@+id/dest_show_details_fragment"
-        android:name="com.disruption.moveery.ui.details.shows.ShowDetailsFragment"
+        android:name="com.droidafricana.moveery.ui.details.shows.ShowDetailsFragment"
         tools:layout="@layout/show_details_fragment">
         <argument
-            android:name="tvshow"
-            app:argType="com.disruption.moveery.models.shows.TvShow"
+            android:name="show"
+            app:argType="com.droidafricana.moveery.models.shows.TvShow"
             app:nullable="true" />
     </fragment>
 
     <fragment
         android:id="@+id/dest_shows_search_fragment"
-        android:name="com.disruption.moveery.ui.search.shows.ShowsSearchFragment"
+        android:name="com.droidafricana.moveery.ui.search.shows.ShowsSearchFragment"
         tools:layout="@layout/shows_search_fragment">
         <action
             android:id="@+id/action_dest_shows_search_fragment_to_dest_show_details_fragment"
@@ -91,7 +91,7 @@
 
     <fragment
         android:id="@+id/dest_favourite_movies_fragment"
-        android:name="com.disruption.moveery.ui.favourites.movie.FavouriteMoviesFragment"
+        android:name="com.droidafricana.moveery.ui.favourites.movie.FavouriteMoviesFragment"
         android:label="@string/label_fav_movies_frag"
         tools:layout="@layout/fragment_favourite_movies">
         <action
@@ -104,7 +104,7 @@
 
     <fragment
         android:id="@+id/dest_favourite_shows_fragment"
-        android:name="com.disruption.moveery.ui.favourites.shows.FavouriteShowsFragment"
+        android:name="com.droidafricana.moveery.ui.favourites.shows.FavouriteShowsFragment"
         android:label="@string/label_fav_shows_frag"
         tools:layout="@layout/fragment_favourite_shows">
         <action

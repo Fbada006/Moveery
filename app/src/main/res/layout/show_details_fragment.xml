@@ -9,7 +9,7 @@
 
         <variable
             name="showDetailsViewModel"
-            type="com.disruption.moveery.ui.details.shows.ShowDetailsViewModel" />
+            type="com.droidafricana.moveery.ui.details.shows.ShowDetailsViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -99,7 +99,7 @@
                         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
                         tools:text="67%" />
 
-                    <com.disruption.moveery.utils.RatingCustomView
+                    <com.droidafricana.moveery.utils.RatingCustomView
                         android:id="@+id/rating_custom_view"
                         android:layout_width="48dp"
                         android:layout_height="48dp"

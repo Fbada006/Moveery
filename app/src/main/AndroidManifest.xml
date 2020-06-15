@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.disruption.moveery">
+    package="com.droidafricana.moveery">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".MovieApplication"
+        android:name="com.droidafricana.moveery.MovieApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,12 +16,12 @@
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:replace="android:icon">
         <activity
-            android:name=".ui.settings.SettingsActivity"
+            android:name="com.droidafricana.moveery.ui.settings.SettingsActivity"
             android:label="@string/label_setting"
             android:launchMode="singleInstance"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.droidafricana.moveery.MainActivity" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name="com.droidafricana.moveery.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

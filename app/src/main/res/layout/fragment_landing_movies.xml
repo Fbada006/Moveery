@@ -8,7 +8,7 @@
 
         <variable
             name="landingMoviesViewModel"
-            type="com.disruption.moveery.ui.landing.movies.MoviesLandingViewModel" />
+            type="com.droidafricana.moveery.ui.landing.movies.MoviesLandingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
