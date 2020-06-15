@@ -49,6 +49,9 @@ class ShowsLandingFragment : Fragment(), Injectable {
             requireContext(),
             OnShowClickListener { it?.let { tvShow -> viewModel.displayShowDetails(tvShow) } })
 
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.landingShowsViewModel = viewModel
+
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL)
         carouselManager.setPostLayoutListener(CarouselZoomPostLayoutListener())
 
@@ -73,8 +76,6 @@ class ShowsLandingFragment : Fragment(), Injectable {
                 )
             }
         })
-
-        binding.landingShowsViewModel = viewModel
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         loadImagesWhenScrollIsPaused(binding.showsList)

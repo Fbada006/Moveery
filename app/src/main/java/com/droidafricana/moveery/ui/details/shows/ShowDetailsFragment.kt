@@ -55,6 +55,9 @@ class ShowDetailsFragment : Fragment(), Injectable {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.showAndHandleBackButton(activity)
 
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.showDetailsViewModel = viewModel
+
         val tvShow = args.show
 
         if (tvShow != null) {
@@ -107,8 +110,6 @@ class ShowDetailsFragment : Fragment(), Injectable {
         observeLikedState()
         onLikeButtonClicked()
         onShareFabClicked()
-
-        binding.showDetailsViewModel = viewModel
     }
 
     private fun onShareFabClicked() {

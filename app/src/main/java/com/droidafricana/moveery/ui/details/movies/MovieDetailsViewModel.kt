@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagedList
 import com.droidafricana.moveery.models.movies.Movie
 import com.droidafricana.moveery.models.videos.Video
 import com.droidafricana.moveery.repo.MovieRepo
@@ -19,17 +18,13 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : V
     private val movieIdLiveData = MutableLiveData<Int>()
 
     /**The list of similar movies*/
-    val movieList: LiveData<PagedList<Movie>>
+    val movieList = repo.getSimilarMovieList(movieIdLiveData)
 
     private val _videoRes = MutableLiveData<Resource<List<Video>>>()
 
     /**The resource that will supply the videos*/
     val videoRes: LiveData<Resource<List<Video>>>
         get() = _videoRes
-
-    init {
-        movieList = repo.getSimilarMovieList(movieIdLiveData)
-    }
 
     /**Method that gets the videos*/
     fun getVideosResource(id: Int) {

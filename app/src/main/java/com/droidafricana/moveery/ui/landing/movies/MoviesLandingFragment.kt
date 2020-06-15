@@ -48,6 +48,9 @@ class MoviesLandingFragment : Fragment(), Injectable {
                 viewModel.displayMovieDetails(it!!)
             })
 
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.landingMoviesViewModel = viewModel
+
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL)
         carouselManager.setPostLayoutListener(CarouselZoomPostLayoutListener())
 
@@ -72,8 +75,6 @@ class MoviesLandingFragment : Fragment(), Injectable {
                 )
             }
         })
-
-        binding.landingMoviesViewModel = viewModel
 
         //Listen to the scrolls appropriately for efficient loading with user data in mind
         loadImagesWhenScrollIsPaused(binding.moviesList)

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagedList
 import com.droidafricana.moveery.models.shows.TvShow
 import com.droidafricana.moveery.models.videos.Video
 import com.droidafricana.moveery.repo.MovieRepo
@@ -19,17 +18,13 @@ class ShowDetailsViewModel @Inject constructor(private val repo: MovieRepo) : Vi
     private val showIdLiveData = MutableLiveData<Int>()
 
     /**The list of similar shows*/
-    val showList: LiveData<PagedList<TvShow>>
+    val showList = repo.getSimilarShowsList(showIdLiveData)
 
     private val _videoRes = MutableLiveData<Resource<List<Video>>>()
 
     /**The resource that will supply the videos*/
     val videoRes: LiveData<Resource<List<Video>>>
         get() = _videoRes
-
-    init {
-        showList = repo.getSimilarShowsList(showIdLiveData)
-    }
 
     /**Method that gets the videos*/
     fun getVideosResource(id: Int) {

@@ -59,6 +59,9 @@ class MovieDetailsFragment : Fragment(), Injectable {
                     //Do nothing for now
                 })
 
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.movieDetailsViewModel = viewModel
+
         val videoAdapter = VideoAdapter(
             requireContext(),
             OnVideoClickListener { playVideo(it) }
@@ -81,8 +84,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
 
         binding.similarMoviesList.layoutManager = similarLayoutManager
         binding.videoMoviesList.layoutManager = videoLayoutManager
-        binding.movieDetailsViewModel = viewModel
-        binding.lifecycleOwner = this
+
 
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
             similarAdapter.submitList(it)
