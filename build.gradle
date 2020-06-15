@@ -42,6 +42,7 @@ buildscript {
         lottieVersion = '3.0.1'
         sweetAlertVersion = '1.6.2'
         circularImageVersion = '3.1.0'
+        firebaseAnalyticsVersion = '17.4.3'
     }
 
     repositories {
@@ -58,6 +59,7 @@ buildscript {
         classpath 'com.dicedmelon.gradle:jacoco-android:0.1.4'
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
         classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.2.0"
+        classpath 'com.google.gms:google-services:4.3.3'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

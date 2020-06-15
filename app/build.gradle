@@ -5,13 +5,14 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco-android'
 apply plugin: "androidx.navigation.safeargs"
 apply plugin: "scabbard.gradle"
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
     buildToolsVersion = '29.0.3'
 
     defaultConfig {
-        applicationId "com.disruption.moveery"
+        applicationId "com.droidafricana.moveery"
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
@@ -169,6 +170,9 @@ dependencies {
 
     //Circular imageView
     implementation "de.hdodenhof:circleimageview:$circularImageVersion"
+
+    //Firebase
+    implementation "com.google.firebase:firebase-analytics:$firebaseAnalyticsVersion"
 
     // Dependencies for local unit tests
     testImplementation "junit:junit:$junitVersion"
