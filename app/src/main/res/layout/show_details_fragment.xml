@@ -141,6 +141,56 @@
                 to this moment - the fate of Earth and existence itself has
                 never been more uncertain." />
 
+
+                <TextView
+                    android:id="@+id/tv_movie_videos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:text="@string/videos"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:typeface="serif"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_show_overview" />
+
+                <FrameLayout
+                    android:id="@+id/show_movies_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_movie_videos">
+
+                    <ProgressBar
+                        android:id="@+id/video_loading_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/video_movies_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="8dp"
+                        android:text="@string/no_videos_found"
+                        android:visibility="gone" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/video_shows_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:padding="6dp"
+                        android:scrollbars="horizontal"
+                        tools:itemCount="16"
+                        tools:listitem="@layout/video_item" />
+                </FrameLayout>
+
                 <TextView
                     android:id="@+id/tv_show_similar"
                     android:layout_width="match_parent"
@@ -153,7 +203,7 @@
                     android:typeface="serif"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_show_overview" />
+                    app:layout_constraintTop_toBottomOf="@id/show_movies_container" />
 
                 <FrameLayout
                     android:id="@+id/similar_movies_container"
@@ -192,55 +242,6 @@
                         app:layout_constraintTop_toBottomOf="@id/tv_show_similar"
                         tools:itemCount="16"
                         tools:listitem="@layout/show_item_similar" />
-                </FrameLayout>
-
-                <TextView
-                    android:id="@+id/tv_movie_videos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp"
-                    android:text="@string/videos"
-                    android:textAlignment="center"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:typeface="serif"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/similar_movies_container" />
-
-                <FrameLayout
-                    android:id="@+id/video_movies_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_movie_videos">
-
-                    <ProgressBar
-                        android:id="@+id/video_loading_spinner"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/video_movies_error"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:padding="8dp"
-                        android:text="@string/no_videos_found"
-                        android:visibility="gone" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/video_shows_list"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        android:padding="6dp"
-                        android:scrollbars="horizontal"
-                        tools:itemCount="16"
-                        tools:listitem="@layout/video_item" />
                 </FrameLayout>
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
