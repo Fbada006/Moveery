@@ -43,6 +43,7 @@ buildscript {
         sweetAlertVersion = '1.6.2'
         circularImageVersion = '3.1.0'
         firebaseAnalyticsVersion = '17.4.3'
+        firebaseCrashlyticsVersion = '17.0.1'
     }
 
     repositories {
@@ -60,6 +61,7 @@ buildscript {
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
         classpath "gradle.plugin.dev.arunkumar:scabbard-gradle-plugin:0.2.0"
         classpath 'com.google.gms:google-services:4.3.3'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.1.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
