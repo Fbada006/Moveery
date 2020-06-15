@@ -224,7 +224,6 @@
                         android:layout_gravity="center"
                         android:padding="8dp"
                         android:text="@string/no_similar_movies_found"
-                        android:visibility="gone"
                         app:goneIfNotNull="@{movieDetailsViewModel.movieList}" />
 
                     <androidx.recyclerview.widget.RecyclerView
