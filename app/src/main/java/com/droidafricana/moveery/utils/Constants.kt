@@ -15,4 +15,5 @@ object Constants {
     const val MOVIE_REFRESH_NOTIFICATION_ID = 1138
     const val MOVIE_TYPE = "com.disruption.moveery.movie"
     const val SHOW_TYPE = "com.disruption.moveery.tv_show"
+    const val MOVEERY_APP_LINK = "https://bit.ly/moveery"
 }

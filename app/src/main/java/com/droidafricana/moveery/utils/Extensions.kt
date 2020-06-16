@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.droidafricana.moveery.R
 import com.droidafricana.moveery.models.videos.Video
+import com.droidafricana.moveery.utils.Constants.MOVEERY_APP_LINK
 import com.droidafricana.moveery.utils.Constants.MOVIE_TYPE
 import com.droidafricana.moveery.utils.Constants.SHOW_TYPE
 import timber.log.Timber
@@ -90,6 +91,6 @@ fun Fragment.buildShareIntent(id: Int, type: String) {
         .from(requireActivity())
         .setType(mimeType)
         .setChooserTitle(title)
-        .setText(getString(R.string.share_movie_label, link, "Moveery PlayStore Link Here"))
+        .setText(getString(R.string.share_movie_label, link, MOVEERY_APP_LINK))
         .startChooser()
 }

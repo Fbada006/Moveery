@@ -64,7 +64,7 @@ class RefreshMovieWork @AssistedInject constructor(
                     applicationContext.getString(R.string.movie_refresh_failed)
                 )
             }
-            Result.retry()
+            Result.failure()
         }
     }
 
