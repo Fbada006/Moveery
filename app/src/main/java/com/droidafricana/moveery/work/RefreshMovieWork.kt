@@ -12,7 +12,6 @@ import com.droidafricana.moveery.utils.NotificationUtils
 import com.squareup.inject.assisted.Assisted
 import com.squareup.inject.assisted.AssistedInject
 import retrofit2.HttpException
-import timber.log.Timber
 
 /**Worker for the movies to refresh*/
 class RefreshMovieWork @AssistedInject constructor(
@@ -29,7 +28,6 @@ class RefreshMovieWork @AssistedInject constructor(
     }
 
     override suspend fun doWork(): Result {
-        // val movieLocalCache = Injection.providesCache(applicationContext)
         val sp = PreferenceManager.getDefaultSharedPreferences(applicationContext)
         val areNotificationsEnabled = sp.getBoolean(
             applicationContext.getString(R.string.pref_show_notifications_key),
@@ -48,7 +46,6 @@ class RefreshMovieWork @AssistedInject constructor(
                     movieRetrofitService.getDiscoverMoviesAsync(
                         page = 1
                     ).await()
-                Timber.e("Result is -------------------: ${result.movieList}")
                 movieLocalCache.refreshMoviesCache(result)
 
                 NotificationUtils.sendNotification(

@@ -17,7 +17,6 @@ import com.droidafricana.moveery.di.Injectable
 import com.droidafricana.moveery.ui.settings.SettingsActivity
 import com.droidafricana.moveery.utils.OnShowClickListener
 import com.droidafricana.moveery.utils.loadImagesWhenScrollIsPaused
-import timber.log.Timber
 import javax.inject.Inject
 
 /**Displays the shows on the Discover Shows screen*/
@@ -62,7 +61,6 @@ class ShowsLandingFragment : Fragment(), Injectable {
         }
 
         viewModel.showsList.observe(viewLifecycleOwner, Observer {
-            Timber.e("Shows list -----------------: $it")
             adapter.submitList(it)
         })
 
