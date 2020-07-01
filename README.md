@@ -11,4 +11,4 @@
 </p>
 
 # Movies
-This is my app working with clean architecture
+This is my app working with clean architecture. It gets data from the TMDB API and entertains the user.
