@@ -16,7 +16,6 @@ import com.droidafricana.moveery.R
 import com.droidafricana.moveery.databinding.FragmentMovieDetailsBinding
 import com.droidafricana.moveery.di.Injectable
 import com.droidafricana.moveery.models.movies.Movie
-import com.droidafricana.moveery.models.videos.Video
 import com.droidafricana.moveery.ui.details.VideoAdapter
 import com.droidafricana.moveery.utils.*
 import com.droidafricana.moveery.utils.Constants.MOVIE_TYPE
@@ -39,7 +38,6 @@ class MovieDetailsFragment : Fragment(), Injectable {
     private lateinit var binding: FragmentMovieDetailsBinding
     private val args: MovieDetailsFragmentArgs by navArgs()
     private val viewModel by viewModels<MovieDetailsViewModel> { viewModelFactory }
-    private lateinit var video: Video
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
