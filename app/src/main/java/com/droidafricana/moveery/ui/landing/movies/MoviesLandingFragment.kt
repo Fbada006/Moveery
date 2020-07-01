@@ -20,10 +20,8 @@ import com.droidafricana.moveery.utils.loadImagesWhenScrollIsPaused
 import com.droidafricana.moveery.utils.showCloseSnack
 import javax.inject.Inject
 
-
 /**The fragment that is first launched when the user opens the app*/
 class MoviesLandingFragment : Fragment(), Injectable {
-    private val TAG = "MoviesLandingFragment"
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
