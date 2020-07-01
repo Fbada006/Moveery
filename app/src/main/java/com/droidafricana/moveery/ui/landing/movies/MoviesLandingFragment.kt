@@ -3,7 +3,7 @@ package com.droidafricana.moveery.ui.landing.movies
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -18,8 +18,10 @@ import com.droidafricana.moveery.di.Injectable
 import com.droidafricana.moveery.ui.settings.SettingsActivity
 import com.droidafricana.moveery.utils.OnMovieClickListener
 import com.droidafricana.moveery.utils.loadImagesWhenScrollIsPaused
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 import javax.inject.Inject
+
 
 /**The fragment that is first launched when the user opens the app*/
 class MoviesLandingFragment : Fragment(), Injectable {
@@ -70,7 +72,18 @@ class MoviesLandingFragment : Fragment(), Injectable {
         })
 
         viewModel.errors.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(context, "\uD83D\uDE28 $it", Toast.LENGTH_LONG).show()
+            val snack = Snackbar.make(
+                requireActivity().findViewById(android.R.id.content),
+                it,
+                Snackbar.LENGTH_INDEFINITE
+            )
+
+            val snackLayout = snack.view
+            val textView =
+                snackLayout.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+            textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_close, 0)
+            textView.setOnClickListener { snack.dismiss() }
+            snack.show()
         })
 
         viewModel.loading.observe(viewLifecycleOwner, Observer {
