@@ -56,7 +56,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
             MovieSimilarPagedAdapter(
                 requireContext(),
                 OnMovieClickListener {
-                    //Do nothing for now
+                    //TODO: Create a similar movies details screen
                 })
 
         binding.lifecycleOwner = viewLifecycleOwner
