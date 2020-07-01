@@ -3,6 +3,7 @@ package com.droidafricana.moveery.utils
 import android.content.Intent
 import android.net.Uri
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ShareCompat
@@ -16,6 +17,7 @@ import com.droidafricana.moveery.models.videos.Video
 import com.droidafricana.moveery.utils.Constants.MOVEERY_APP_LINK
 import com.droidafricana.moveery.utils.Constants.MOVIE_TYPE
 import com.droidafricana.moveery.utils.Constants.SHOW_TYPE
+import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
 /**Extension function on [ImageView] to load images with [RequestManager]*/
@@ -93,4 +95,20 @@ fun Fragment.buildShareIntent(id: Int, type: String) {
         .setChooserTitle(title)
         .setText(getString(R.string.share_movie_label, link, MOVEERY_APP_LINK))
         .startChooser()
+}
+
+/**Show a snackbar with a close icon*/
+fun Fragment.showCloseSnack(message: String) {
+    val snack = Snackbar.make(
+        requireActivity().findViewById(android.R.id.content),
+        message,
+        Snackbar.LENGTH_INDEFINITE
+    )
+
+    val snackLayout = snack.view
+    val textView =
+        snackLayout.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
+    textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_close, 0)
+    textView.setOnClickListener { snack.dismiss() }
+    snack.show()
 }

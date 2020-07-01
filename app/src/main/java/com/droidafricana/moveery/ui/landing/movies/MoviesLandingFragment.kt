@@ -3,7 +3,6 @@ package com.droidafricana.moveery.ui.landing.movies
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -18,8 +17,7 @@ import com.droidafricana.moveery.di.Injectable
 import com.droidafricana.moveery.ui.settings.SettingsActivity
 import com.droidafricana.moveery.utils.OnMovieClickListener
 import com.droidafricana.moveery.utils.loadImagesWhenScrollIsPaused
-import com.google.android.material.snackbar.Snackbar
-import timber.log.Timber
+import com.droidafricana.moveery.utils.showCloseSnack
 import javax.inject.Inject
 
 
@@ -62,32 +60,16 @@ class MoviesLandingFragment : Fragment(), Injectable {
             this.adapter = adapter
             layoutManager = carouselManager
             addOnScrollListener(CenterScrollListener())
-            visibility = View.GONE
         }
 
         //The list of movies to display
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
-            Timber.e("The data back from the db is $it")
         })
 
-        viewModel.errors.observe(viewLifecycleOwner, Observer {
-            val snack = Snackbar.make(
-                requireActivity().findViewById(android.R.id.content),
-                it,
-                Snackbar.LENGTH_INDEFINITE
-            )
-
-            val snackLayout = snack.view
-            val textView =
-                snackLayout.findViewById<TextView>(com.google.android.material.R.id.snackbar_text)
-            textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_close, 0)
-            textView.setOnClickListener { snack.dismiss() }
-            snack.show()
-        })
+        viewModel.errors.observe(viewLifecycleOwner, Observer { showCloseSnack(it) })
 
         viewModel.loading.observe(viewLifecycleOwner, Observer {
-            Timber.e("Loading status is $it")
             if (it) binding.loadingSpinner.visibility =
                 View.VISIBLE else binding.loadingSpinner.visibility = View.GONE
         })
