@@ -17,6 +17,7 @@ import com.droidafricana.moveery.mappers.toFavMovieDataModel
 import com.droidafricana.moveery.mappers.toFavShowDataModel
 import com.droidafricana.moveery.mappers.toMovieDomainModel
 import com.droidafricana.moveery.mappers.toShowDomainModel
+import com.droidafricana.moveery.models.movies.LandingMovieResult
 import com.droidafricana.moveery.models.movies.Movie
 import com.droidafricana.moveery.models.shows.TvShow
 import com.droidafricana.moveery.models.videos.Video
@@ -52,12 +53,17 @@ class MovieRepo @Inject constructor(
     private val movieApiService = MovieApi.movieRetrofitService
 
     /**Get all the movies to from the local storage*/
-    override fun getAllMovies(): LiveData<PagedList<Movie>> {
+    override fun getLandingMovies(): LandingMovieResult {
         val dataSourceFactory = movieLocalCache.getMovieData()
 
-        return LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
+        val data = LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
             .setBoundaryCallback(movieBoundaryCallBack)
             .build()
+
+        val errors = movieBoundaryCallBack.networkErrors
+        val loadingStatus = movieBoundaryCallBack.loadingStatus
+
+        return LandingMovieResult(data, loadingStatus, errors)
     }
 
     /**Get all the movies from the local storage*/

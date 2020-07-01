@@ -85,7 +85,6 @@ class MovieDetailsFragment : Fragment(), Injectable {
         binding.similarMoviesList.layoutManager = similarLayoutManager
         binding.videoMoviesList.layoutManager = videoLayoutManager
 
-
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
             similarAdapter.submitList(it)
         })

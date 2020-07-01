@@ -3,6 +3,7 @@ package com.droidafricana.moveery.ui.landing.movies
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -17,10 +18,12 @@ import com.droidafricana.moveery.di.Injectable
 import com.droidafricana.moveery.ui.settings.SettingsActivity
 import com.droidafricana.moveery.utils.OnMovieClickListener
 import com.droidafricana.moveery.utils.loadImagesWhenScrollIsPaused
+import timber.log.Timber
 import javax.inject.Inject
 
 /**The fragment that is first launched when the user opens the app*/
 class MoviesLandingFragment : Fragment(), Injectable {
+    private val TAG = "MoviesLandingFragment"
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -49,7 +52,6 @@ class MoviesLandingFragment : Fragment(), Injectable {
             })
 
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.landingMoviesViewModel = viewModel
 
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL)
         carouselManager.setPostLayoutListener(CarouselZoomPostLayoutListener())
@@ -58,11 +60,23 @@ class MoviesLandingFragment : Fragment(), Injectable {
             this.adapter = adapter
             layoutManager = carouselManager
             addOnScrollListener(CenterScrollListener())
+            visibility = View.GONE
         }
 
         //The list of movies to display
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
+            Timber.e("The data back from the db is $it")
+        })
+
+        viewModel.errors.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, "\uD83D\uDE28 $it", Toast.LENGTH_LONG).show()
+        })
+
+        viewModel.loading.observe(viewLifecycleOwner, Observer {
+            Timber.e("Loading status is $it")
+            if (it) binding.loadingSpinner.visibility =
+                View.VISIBLE else binding.loadingSpinner.visibility = View.GONE
         })
 
         //Observe the navigation event as well using the convenient Event class
