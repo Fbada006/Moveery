@@ -26,10 +26,6 @@ class ShowsLandingFragment : Fragment(), Injectable {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    companion object {
-        fun newInstance() = ShowsLandingFragment()
-    }
-
     private val viewModel by viewModels<ShowsLandingViewModel> { viewModelFactory }
     private lateinit var binding: ShowsLandingFragmentBinding
 
