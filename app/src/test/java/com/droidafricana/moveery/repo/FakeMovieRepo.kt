@@ -3,7 +3,9 @@ package com.droidafricana.moveery.repo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
+import com.droidafricana.moveery.models.movies.LandingMovieResource
 import com.droidafricana.moveery.models.movies.Movie
+import com.droidafricana.moveery.models.shows.LandingShowResource
 import com.droidafricana.moveery.models.shows.TvShow
 import com.droidafricana.moveery.models.videos.Video
 import com.droidafricana.moveery.utils.Resource
@@ -15,11 +17,12 @@ class FakeMovieRepo : IMovieRepo {
 
     private val observableMovies = MutableLiveData<PagedList<Movie>>()
     private val observableShows = MutableLiveData<PagedList<Short>>()
-    override fun getAllMovies(): LiveData<PagedList<Movie>> {
+
+    override fun getLandingMovies(): LandingMovieResource {
         TODO("Not yet implemented")
     }
 
-    override fun getAllShows(): LiveData<PagedList<TvShow>> {
+    override fun getLandingShows(): LandingShowResource {
         TODO("Not yet implemented")
     }
 

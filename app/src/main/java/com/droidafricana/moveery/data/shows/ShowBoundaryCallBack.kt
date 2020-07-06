@@ -1,12 +1,14 @@
 package com.droidafricana.moveery.data.shows
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import com.droidafricana.moveery.data.MovieLocalCache
 import com.droidafricana.moveery.models.shows.TvShow
 import com.droidafricana.moveery.network.MovieApiService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import timber.log.Timber
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 /**This class listens to when zero items were returned from the initial data request or
@@ -23,6 +25,17 @@ class ShowBoundaryCallBack @Inject constructor(
 
     // avoid triggering multiple requests in the same time
     private var isRequestInProgress = false
+
+    private val _networkErrors = MutableLiveData<String>()
+    private val _loadingStatus = MutableLiveData<Boolean>()
+
+    /**LiveData of network errors.*/
+    val networkErrors: LiveData<String>
+        get() = _networkErrors
+
+    /**LiveData of loading.*/
+    val loadingStatus: LiveData<Boolean>
+        get() = _loadingStatus
 
     override fun onZeroItemsLoaded() {
         coroutineScope.launch {
@@ -42,18 +55,20 @@ class ShowBoundaryCallBack @Inject constructor(
 
         try {
             isRequestInProgress = true
+            _loadingStatus.postValue(true)
             val result =
                 movieRetrofitService.getDiscoverTvShowsAsync(
                     page = lastRequestedPage
                 ).await()
 
-            Timber.e("Result of the shows call ================= $result")
             localCache.refreshShowsCache(result)
             lastRequestedPage++
             isRequestInProgress = false
+            _loadingStatus.postValue(false)
         } catch (ex: Exception) {
-            Timber.e("Error in shows boundary==================== ${ex.message}")
+            _networkErrors.postValue(if (ex is UnknownHostException) "Connection error" else "Something has gone wrong")
             isRequestInProgress = false
+            _loadingStatus.postValue(false)
         }
     }
 }

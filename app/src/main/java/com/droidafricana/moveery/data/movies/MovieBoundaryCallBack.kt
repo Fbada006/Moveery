@@ -29,11 +29,11 @@ class MovieBoundaryCallBack @Inject constructor(
     private val _networkErrors = MutableLiveData<String>()
     private val _loadingStatus = MutableLiveData<Boolean>()
 
-    // LiveData of network errors.
+    /**LiveData of network errors.*/
     val networkErrors: LiveData<String>
         get() = _networkErrors
 
-    // LiveData of loading.
+    /**LiveData of loading.*/
     val loadingStatus: LiveData<Boolean>
         get() = _loadingStatus
 

@@ -17,8 +17,9 @@ import com.droidafricana.moveery.mappers.toFavMovieDataModel
 import com.droidafricana.moveery.mappers.toFavShowDataModel
 import com.droidafricana.moveery.mappers.toMovieDomainModel
 import com.droidafricana.moveery.mappers.toShowDomainModel
-import com.droidafricana.moveery.models.movies.LandingMovieResult
+import com.droidafricana.moveery.models.movies.LandingMovieResource
 import com.droidafricana.moveery.models.movies.Movie
+import com.droidafricana.moveery.models.shows.LandingShowResource
 import com.droidafricana.moveery.models.shows.TvShow
 import com.droidafricana.moveery.models.videos.Video
 import com.droidafricana.moveery.network.MovieApi
@@ -53,7 +54,7 @@ class MovieRepo @Inject constructor(
     private val movieApiService = MovieApi.movieRetrofitService
 
     /**Get all the movies to from the local storage*/
-    override fun getLandingMovies(): LandingMovieResult {
+    override fun getLandingMovies(): LandingMovieResource {
         val dataSourceFactory = movieLocalCache.getMovieData()
 
         val data = LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
@@ -63,16 +64,21 @@ class MovieRepo @Inject constructor(
         val errors = movieBoundaryCallBack.networkErrors
         val loadingStatus = movieBoundaryCallBack.loadingStatus
 
-        return LandingMovieResult(data, loadingStatus, errors)
+        return LandingMovieResource(data, loadingStatus, errors)
     }
 
     /**Get all the movies from the local storage*/
-    override fun getAllShows(): LiveData<PagedList<TvShow>> {
+    override fun getLandingShows(): LandingShowResource {
         val factory = movieLocalCache.getShowsData()
 
-        return LivePagedListBuilder(factory, DATABASE_PAGE_SIZE)
+        val data = LivePagedListBuilder(factory, DATABASE_PAGE_SIZE)
             .setBoundaryCallback(showBoundaryCallBack)
             .build()
+
+        val errors = showBoundaryCallBack.networkErrors
+        val loadingStatus = showBoundaryCallBack.loadingStatus
+
+        return LandingShowResource(data, loadingStatus, errors)
     }
 
     /**Get all fav movies*/

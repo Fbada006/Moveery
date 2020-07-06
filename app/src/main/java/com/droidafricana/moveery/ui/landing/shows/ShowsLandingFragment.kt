@@ -17,6 +17,7 @@ import com.droidafricana.moveery.di.Injectable
 import com.droidafricana.moveery.ui.settings.SettingsActivity
 import com.droidafricana.moveery.utils.OnShowClickListener
 import com.droidafricana.moveery.utils.loadImagesWhenScrollIsPaused
+import com.droidafricana.moveery.utils.showCloseSnack
 import javax.inject.Inject
 
 /**Displays the shows on the Discover Shows screen*/
@@ -49,7 +50,6 @@ class ShowsLandingFragment : Fragment(), Injectable {
             OnShowClickListener { it?.let { tvShow -> viewModel.displayShowDetails(tvShow) } })
 
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.landingShowsViewModel = viewModel
 
         val carouselManager = CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL)
         carouselManager.setPostLayoutListener(CarouselZoomPostLayoutListener())
@@ -62,6 +62,13 @@ class ShowsLandingFragment : Fragment(), Injectable {
 
         viewModel.showsList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
+        })
+
+        viewModel.errors.observe(viewLifecycleOwner, Observer { showCloseSnack(it) })
+
+        viewModel.loading.observe(viewLifecycleOwner, Observer {
+            if (it) binding.loadingSpinner.visibility =
+                View.VISIBLE else binding.loadingSpinner.visibility = View.GONE
         })
 
         //Observe the navigation event as well using the convenient Event class

@@ -17,9 +17,7 @@ class MoviesLandingViewModel @Inject constructor(repo: MovieRepo) : ViewModel() 
         get() = _navigateToSelectedMovie
 
     /*The landing result from the repo*/
-    private val landingMovieResult = liveData {
-        emit(repo.getLandingMovies())
-    }
+    private val landingMovieResult = liveData { emit(repo.getLandingMovies()) }
 
     /**These are all the movies queried from the db as a PagedList*/
     val movieList = Transformations.switchMap(landingMovieResult) {

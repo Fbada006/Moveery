@@ -7,7 +7,7 @@ import androidx.paging.PagedList
  * RepoSearchResult from a movies load, which contains LiveData<List<Movie>> holding movie data,
  * and a LiveData<String> of network error state.
  */
-data class LandingMovieResult(
+data class LandingMovieResource(
     val data: LiveData<PagedList<Movie>>,
     val loading: LiveData<Boolean>,
     val errors: LiveData<String>

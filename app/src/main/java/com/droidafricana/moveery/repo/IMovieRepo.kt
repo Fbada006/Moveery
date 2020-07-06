@@ -3,8 +3,9 @@ package com.droidafricana.moveery.repo
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
-import com.droidafricana.moveery.models.movies.LandingMovieResult
+import com.droidafricana.moveery.models.movies.LandingMovieResource
 import com.droidafricana.moveery.models.movies.Movie
+import com.droidafricana.moveery.models.shows.LandingShowResource
 import com.droidafricana.moveery.models.shows.TvShow
 import com.droidafricana.moveery.models.videos.Video
 import com.droidafricana.moveery.utils.Resource
@@ -13,10 +14,10 @@ import com.droidafricana.moveery.utils.Resource
 interface IMovieRepo {
 
     /**Get all the movies to from the local storage*/
-    fun getLandingMovies(): LandingMovieResult
+    fun getLandingMovies(): LandingMovieResource
 
     /**Get all the movies from the local storage*/
-    fun getAllShows(): LiveData<PagedList<TvShow>>
+    fun getLandingShows(): LandingShowResource
 
     /**Get all the fav movies*/
     fun getAllFavMovies(): LiveData<PagedList<Movie>>
