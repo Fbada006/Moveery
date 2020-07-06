@@ -4,13 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="landingShowsViewModel"
-            type="com.droidafricana.moveery.ui.landing.shows.ShowsLandingViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/content_container"
         android:layout_width="match_parent"
@@ -33,6 +26,7 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:scrollbars="horizontal"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
