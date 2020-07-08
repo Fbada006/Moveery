@@ -36,7 +36,7 @@ object NotificationUtils {
             NotificationCompat.Builder(context, MOVIE_REFRESH_NOTIFICATION_CHANNEL_ID)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
                 .setSmallIcon(R.drawable.launcher)
-                .setContentTitle(context.getString(R.string.movie_refresh_title))
+                .setContentTitle(context.getString(R.string.app_name))
                 .setContentText(message)
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setAutoCancel(true)

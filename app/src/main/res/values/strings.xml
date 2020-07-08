@@ -67,7 +67,6 @@
     <string name="movie_refresh_starting">Movie refresh has started.</string>
     <string name="movie_refresh_successful">Movie refresh successful.</string>
     <string name="movie_refresh_failed">Movie refresh failed. Will retry next time.</string>
-    <string name="movie_refresh_title">Refreshing movies</string>
 
     <!--Other strings-->
     <string name="search">Search here</string>
