@@ -10,7 +10,9 @@
 This is my app working with clean architecture. It gets data from the TMDB API and entertains the user using
 clean architecture and MVVM.
 
-
+<a href="https://bit.ly/moveery">
+  <img align="center" alt="Get it on Google Play" src="https://github.com/Fbada006/Moveery/blob/master/art/play.png" />
+</a>
 
 ## Prerequisite
 
