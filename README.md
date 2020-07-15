@@ -32,7 +32,6 @@ although there is a test key provided already for convenience.
 - [Flow](#flow)
 - [Libraries](#libraries)
 - [Extras](#extras)
-- [Screenshots](#screenshots)
 
 ## Architecture
 
@@ -72,6 +71,7 @@ This app takes use of the following libraries:
   - [Navigation](https://developer.android.com/guide/navigation/) - Handle everything needed for in-app navigation
   - [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager) - Manage your Android background jobs
   - [Room DB](https://developer.android.com/topic/libraries/architecture/room) - Fluent SQLite database access
+  - [Paging](https://developer.android.com/topic/libraries/architecture/paging) - Load and display small chunks of data at a time
   - [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) - Notify views when underlying database changes
 - [Retrofit](https://square.github.io/retrofit/) - type safe http client with coroutines support
 - [Gson](https://github.com/google/gson) - A Java serialization/deserialization library to convert Java Objects into JSON and back
@@ -84,6 +84,7 @@ This app takes use of the following libraries:
 - [Like Button](https://github.com/jd-alexander/LikeButton) - Twitter's heart animation for Android
 - [Lottie](https://github.com/airbnb/lottie-android) - Render awesome After Effects animations natively on Android and iOS, Web, and React Native
 - [Glide](https://github.com/bumptech/glide) - Hassle-free image loading
+- [Timber](https://github.com/JakeWharton/timber) - A logger with a small, extensible API which provides utility on top of Android's normal Log class.
 
 
 ## Extras
@@ -95,5 +96,5 @@ to the repo. The configuration is in the ***.travis.yml*** file
 
 #### Code Analysis and test coverage
 
-This code uses [Codacy](https://www.codacy.com/) for analyszing the quality of the code, which is
+This code uses [Codacy](https://www.codacy.com/) for analysing the quality of the code, which is
 always going to be A :)
