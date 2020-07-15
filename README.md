@@ -22,8 +22,11 @@ Gradle build system
 
 Be sure to create a [firebase project](https://firebase.google.com/) so that you can get your own
 ***google-services.json*** file to take full advantage of features like crashlytics. It can run without
-the file but it is better if you do. Head over to the api above and get your own API-KEY as well
-although there is a test key provided already for convenience.
+the file but it is better if you do. The package of the app must be
+```
+com.droidafricana.moveery
+```
+Head over to the api above and get your own API-KEY as well.
 
 
 ## TOC
