@@ -8,14 +8,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.droidafricana.moveery.R
-import com.droidafricana.moveery.databinding.FragmentSimilarShowDetailsBinding
+import com.droidafricana.moveery.databinding.FragmentSimilarMovieDetailsBinding
 
 /**
  *Display similar show details excluding the "Similar" section
  */
 class SimilarShowDetails : Fragment() {
 
-    private lateinit var binding: FragmentSimilarShowDetailsBinding
+    private lateinit var binding: FragmentSimilarMovieDetailsBinding
     private lateinit var viewModel: SimilarMovieDetailsViewModel
 
     override fun onCreateView(
@@ -24,7 +24,7 @@ class SimilarShowDetails : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_similar_show_details,
+            R.layout.fragment_similar_movie_details,
             container,
             false
         )
