@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.droidafricana.moveery.R
 import com.droidafricana.moveery.databinding.FragmentSimilarMovieDetailsBinding
 
@@ -35,7 +35,7 @@ class SimilarShowDetails : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SimilarMovieDetailsViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SimilarMovieDetailsViewModel::class.java)
         // TODO: Use the ViewModel
     }
 
