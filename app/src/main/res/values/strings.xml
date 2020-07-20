@@ -91,7 +91,5 @@
     <!--Dialog text-->
     <string name="confirm_nuke">Confirm nuke</string>
     <string name="sure_to_delete">Are you sure you want to delete all your favourites? This action cannot be undone.</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
