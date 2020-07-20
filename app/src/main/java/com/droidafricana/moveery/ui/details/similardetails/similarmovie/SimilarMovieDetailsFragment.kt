@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.droidafricana.moveery.R
 import com.droidafricana.moveery.databinding.FragmentSimilarShowDetailsBinding
 
@@ -15,6 +16,7 @@ import com.droidafricana.moveery.databinding.FragmentSimilarShowDetailsBinding
 class SimilarShowDetails : Fragment() {
 
     private lateinit var binding: FragmentSimilarShowDetailsBinding
+    private lateinit var viewModel: SimilarMovieDetailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,6 +31,12 @@ class SimilarShowDetails : Fragment() {
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel = ViewModelProviders.of(this).get(SimilarMovieDetailsViewModel::class.java)
+        // TODO: Use the ViewModel
     }
 
 }
