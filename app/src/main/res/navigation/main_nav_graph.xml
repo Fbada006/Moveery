@@ -122,7 +122,7 @@
     </fragment>
     <fragment
         android:id="@+id/dest_similar_show_details"
-        android:name="com.droidafricana.moveery.ui.details.similardetails.similarmovie.SimilarShowDetails"
+        android:name="com.droidafricana.moveery.ui.details.similardetails.similarmovie.SimilarShowDetailsFragment"
         android:label="SimilarShowDetails">
         <argument
             android:name="similarShow"
@@ -130,7 +130,7 @@
     </fragment>
     <fragment
         android:id="@+id/dest_similar_movie_details"
-        android:name="com.droidafricana.moveery.ui.details.similardetails.similarshow.SimilarMovieDetails"
+        android:name="com.droidafricana.moveery.ui.details.similardetails.similarshow.SimilarMovieDetailsFragment"
         android:label="SimilarMovieDetails">
         <argument
             android:name="similarMovie"
