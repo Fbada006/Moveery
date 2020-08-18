@@ -2,6 +2,8 @@ package com.droidafricana.moveery.di.modules
 
 import com.droidafricana.moveery.ui.details.movies.MovieDetailsFragment
 import com.droidafricana.moveery.ui.details.shows.ShowDetailsFragment
+import com.droidafricana.moveery.ui.details.similardetails.similarmovie.SimilarMovieDetailsFragment
+import com.droidafricana.moveery.ui.details.similardetails.similarshow.SimilarShowDetailsFragment
 import com.droidafricana.moveery.ui.favourites.movie.FavouriteMoviesFragment
 import com.droidafricana.moveery.ui.favourites.shows.FavouriteShowsFragment
 import com.droidafricana.moveery.ui.landing.movies.MoviesLandingFragment
@@ -46,4 +48,12 @@ abstract class FragmentBuildersModule {
     /**Inject [FavouriteShowsFragment]*/
     @ContributesAndroidInjector
     abstract fun contributesFavShowsFragment(): FavouriteShowsFragment
+
+    /**Inject [SimilarMovieDetailsFragment]*/
+    @ContributesAndroidInjector
+    abstract fun contributesSimilarMoviesFragment(): SimilarMovieDetailsFragment
+
+    /**Inject [SimilarShowDetailsFragment]*/
+    @ContributesAndroidInjector
+    abstract fun contributesSimilarShowsFragment(): SimilarShowDetailsFragment
 }
