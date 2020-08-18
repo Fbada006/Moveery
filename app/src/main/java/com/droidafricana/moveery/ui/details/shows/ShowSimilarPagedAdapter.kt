@@ -12,11 +12,20 @@ import com.droidafricana.moveery.R
 import com.droidafricana.moveery.models.shows.TvShow
 import com.droidafricana.moveery.utils.Constants
 import com.droidafricana.moveery.utils.DetailsHelper.getRatingColor
+import com.droidafricana.moveery.utils.OnShowClickListener
 import com.droidafricana.moveery.utils.TvShowDiffCallback
 import com.droidafricana.moveery.utils.toPercentage
-import kotlinx.android.synthetic.main.show_item_similar.view.*
+import kotlinx.android.synthetic.main.show_item_similar.view.iv_show_poster
+import kotlinx.android.synthetic.main.show_item_similar.view.tv_show_language
+import kotlinx.android.synthetic.main.show_item_similar.view.tv_show_overview
+import kotlinx.android.synthetic.main.show_item_similar.view.tv_show_rating
+import kotlinx.android.synthetic.main.show_item_similar.view.tv_show_title
+import kotlinx.android.synthetic.main.show_item_similar.view.tv_show_year
 
-class ShowSimilarPagedAdapter(private val context: Context) :
+class ShowSimilarPagedAdapter(
+    private val context: Context,
+    private val onClickListener: OnShowClickListener
+) :
     PagedListAdapter<TvShow, ShowSimilarPagedAdapter.TvShowViewHolder>(TvShowDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TvShowViewHolder {
@@ -24,8 +33,9 @@ class ShowSimilarPagedAdapter(private val context: Context) :
     }
 
     override fun onBindViewHolder(holder: TvShowViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(context, item)
+        val tvShow = getItem(position)
+        holder.itemView.setOnClickListener { onClickListener.onClick(tvShow) }
+        holder.bind(context, tvShow)
     }
 
     class TvShowViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {

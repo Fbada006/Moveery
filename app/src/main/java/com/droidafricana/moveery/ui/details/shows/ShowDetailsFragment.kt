@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
@@ -18,8 +19,18 @@ import com.droidafricana.moveery.databinding.ShowDetailsFragmentBinding
 import com.droidafricana.moveery.di.Injectable
 import com.droidafricana.moveery.models.shows.TvShow
 import com.droidafricana.moveery.ui.details.VideoAdapter
-import com.droidafricana.moveery.utils.*
+import com.droidafricana.moveery.utils.Constants
 import com.droidafricana.moveery.utils.Constants.SHOW_TYPE
+import com.droidafricana.moveery.utils.DetailsHelper
+import com.droidafricana.moveery.utils.OnShowClickListener
+import com.droidafricana.moveery.utils.OnVideoClickListener
+import com.droidafricana.moveery.utils.Resource
+import com.droidafricana.moveery.utils.buildShareIntent
+import com.droidafricana.moveery.utils.loadImage
+import com.droidafricana.moveery.utils.loadImagesWhenScrollIsPaused
+import com.droidafricana.moveery.utils.playVideo
+import com.droidafricana.moveery.utils.showAndHandleBackButton
+import com.droidafricana.moveery.utils.toPercentage
 import com.like.LikeButton
 import com.like.OnLikeListener
 import javax.inject.Inject
@@ -71,7 +82,9 @@ class ShowDetailsFragment : Fragment(), Injectable {
             OnVideoClickListener { playVideo(it) }
         )
 
-        val adapter = ShowSimilarPagedAdapter(requireContext())
+        val adapter = ShowSimilarPagedAdapter(requireContext(), OnShowClickListener {
+            viewModel.displayShowDetails(it!!)
+        })
 
         binding.similarShowsList.adapter = adapter
         binding.videoShowsList.adapter = videoAdapter
@@ -86,6 +99,17 @@ class ShowDetailsFragment : Fragment(), Injectable {
         viewModel.showList.observe(viewLifecycleOwner, Observer {
             if (it.isEmpty()) binding.similarShowsError.visibility = View.VISIBLE else View.GONE
             adapter.submitList(it)
+        })
+
+        //Observe the navigation event as well using the convenient Event class
+        viewModel.navigateToSelectedShow.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let { tvShow ->
+                findNavController().navigate(
+                    ShowDetailsFragmentDirections.actionDestShowDetailsFragmentToDestSimilarShowFragment(
+                        tvShow
+                    )
+                )
+            }
         })
 
         tvShow?.id.let {
