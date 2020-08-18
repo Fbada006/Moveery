@@ -13,7 +13,7 @@ import com.droidafricana.moveery.databinding.FragmentSimilarShowDetailsBinding
 /**
  *Display similar movie details excluding the "Similar" section
  */
-class SimilarMovieDetails : Fragment() {
+class SimilarShowDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentSimilarShowDetailsBinding
     private lateinit var viewModel: SimilarShowsViewModel

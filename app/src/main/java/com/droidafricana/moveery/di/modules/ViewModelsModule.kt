@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import com.droidafricana.moveery.di.keys.ViewModelKey
 import com.droidafricana.moveery.ui.details.movies.MovieDetailsViewModel
 import com.droidafricana.moveery.ui.details.shows.ShowDetailsViewModel
+import com.droidafricana.moveery.ui.details.similardetails.similarmovie.SimilarMovieDetailsViewModel
+import com.droidafricana.moveery.ui.details.similardetails.similarshow.SimilarShowsViewModel
 import com.droidafricana.moveery.ui.favourites.movie.FavMoviesViewModel
 import com.droidafricana.moveery.ui.favourites.shows.FavShowsViewModel
 import com.droidafricana.moveery.ui.landing.movies.MoviesLandingViewModel
@@ -65,4 +67,16 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(FavShowsViewModel::class)
     abstract fun bindFavShowsViewModel(viewModel: FavShowsViewModel): ViewModel
+
+    /**Create the [SimilarMovieDetailsViewModel]*/
+    @Binds
+    @IntoMap
+    @ViewModelKey(SimilarMovieDetailsViewModel::class)
+    abstract fun bindSimilarMoviesViewModel(viewModel: SimilarMovieDetailsViewModel): ViewModel
+
+    /**Create the [SimilarShowsViewModel]*/
+    @Binds
+    @IntoMap
+    @ViewModelKey(SimilarShowsViewModel::class)
+    abstract fun bindSimilarShowsViewModel(viewModel: SimilarShowsViewModel): ViewModel
 }
