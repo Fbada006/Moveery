@@ -62,4 +62,9 @@ class ShowDetailsViewModel @Inject constructor(private val repo: MovieRepo) : Vi
      * and vice-versa
      */
     fun isShowInFav(id: Int) = repo.getShowById(id)
+
+    /**Called when a user clicks on a show*/
+    fun displayShowDetails(show: TvShow) {
+        _navigateToSelectedShow.value = Event(show)
+    }
 }
