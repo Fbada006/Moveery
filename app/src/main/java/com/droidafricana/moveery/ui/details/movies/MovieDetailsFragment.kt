@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
@@ -17,8 +18,18 @@ import com.droidafricana.moveery.databinding.FragmentMovieDetailsBinding
 import com.droidafricana.moveery.di.Injectable
 import com.droidafricana.moveery.models.movies.Movie
 import com.droidafricana.moveery.ui.details.VideoAdapter
-import com.droidafricana.moveery.utils.*
+import com.droidafricana.moveery.utils.Constants
 import com.droidafricana.moveery.utils.Constants.MOVIE_TYPE
+import com.droidafricana.moveery.utils.DetailsHelper
+import com.droidafricana.moveery.utils.OnMovieClickListener
+import com.droidafricana.moveery.utils.OnVideoClickListener
+import com.droidafricana.moveery.utils.Resource
+import com.droidafricana.moveery.utils.buildShareIntent
+import com.droidafricana.moveery.utils.loadImage
+import com.droidafricana.moveery.utils.loadImagesWhenScrollIsPaused
+import com.droidafricana.moveery.utils.playVideo
+import com.droidafricana.moveery.utils.showAndHandleBackButton
+import com.droidafricana.moveery.utils.toPercentage
 import com.like.LikeButton
 import com.like.OnLikeListener
 import javax.inject.Inject
@@ -49,15 +60,16 @@ class MovieDetailsFragment : Fragment(), Injectable {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.movieDetailsViewModel = viewModel
+
         val similarAdapter =
             MovieSimilarPagedAdapter(
                 requireContext(),
                 OnMovieClickListener {
-                    //TODO: Create a similar movies details screen
+                    viewModel.displayMovieDetails(it!!)
                 })
-
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.movieDetailsViewModel = viewModel
 
         val videoAdapter = VideoAdapter(
             requireContext(),
@@ -84,6 +96,16 @@ class MovieDetailsFragment : Fragment(), Injectable {
 
         viewModel.movieList.observe(viewLifecycleOwner, Observer {
             similarAdapter.submitList(it)
+        })
+
+        viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let { movie ->
+                findNavController().navigate(
+                    MovieDetailsFragmentDirections.actionDestMovieDetailsFragmentToSimilarMovieDetailsFragment(
+                        movie
+                    )
+                )
+            }
         })
 
         movie?.id?.let {

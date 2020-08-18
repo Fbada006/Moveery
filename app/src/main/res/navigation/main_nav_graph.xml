@@ -31,8 +31,8 @@
             app:argType="com.droidafricana.moveery.models.movies.Movie"
             app:nullable="true" />
         <action
-            android:id="@+id/action_dest_movie_details_fragment_to_dest_similar_movie_details"
-            app:destination="@id/dest_similar_movie_details" />
+            android:id="@+id/action_dest_movie_details_fragment_to_similarMovieDetailsFragment"
+            app:destination="@id/dest_similar_movie_fragment" />
     </fragment>
 
     <fragment
@@ -77,9 +77,9 @@
             android:name="show"
             app:argType="com.droidafricana.moveery.models.shows.TvShow"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_dest_show_details_fragment_to_dest_similar_show_details"
-            app:destination="@id/dest_similar_show_details" />
+<!--        <action-->
+<!--            android:id="@+id/action_dest_show_details_fragment_to_dest_similar_show_details"-->
+<!--            app:destination="@id/dest_similar_show_details" />-->
     </fragment>
 
     <fragment
@@ -120,18 +120,18 @@
             android:id="@+id/action_dest_favourite_shows_fragment_to_dest_shows_search_fragment"
             app:destination="@id/dest_shows_search_fragment" />
     </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/dest_similar_show_details"-->
+<!--        android:name="com.droidafricana.moveery.ui.details.similardetails.similarmovie.SimilarShowDetailsFragment"-->
+<!--        android:label="SimilarShowDetails">-->
+<!--        <argument-->
+<!--            android:name="similarShow"-->
+<!--            app:argType="com.droidafricana.moveery.models.shows.TvShow" />-->
+<!--    </fragment>-->
     <fragment
-        android:id="@+id/dest_similar_show_details"
-        android:name="com.droidafricana.moveery.ui.details.similardetails.similarmovie.SimilarShowDetailsFragment"
-        android:label="SimilarShowDetails">
-        <argument
-            android:name="similarShow"
-            app:argType="com.droidafricana.moveery.models.shows.TvShow" />
-    </fragment>
-    <fragment
-        android:id="@+id/dest_similar_movie_details"
-        android:name="com.droidafricana.moveery.ui.details.similardetails.similarshow.SimilarMovieDetailsFragment"
-        android:label="SimilarMovieDetails">
+        android:id="@+id/dest_similar_movie_fragment"
+        android:name="com.droidafricana.moveery.ui.details.similardetails.similarmovie.SimilarMovieDetailsFragment"
+        android:label="SimilarMovieDetailsFragment" >
         <argument
             android:name="similarMovie"
             app:argType="com.droidafricana.moveery.models.movies.Movie" />

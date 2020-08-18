@@ -15,7 +15,12 @@ import com.droidafricana.moveery.utils.DetailsHelper
 import com.droidafricana.moveery.utils.MovieDiffCallback
 import com.droidafricana.moveery.utils.OnMovieClickListener
 import com.droidafricana.moveery.utils.toPercentage
-import kotlinx.android.synthetic.main.movie_similar_item.view.*
+import kotlinx.android.synthetic.main.movie_similar_item.view.iv_movie_poster
+import kotlinx.android.synthetic.main.movie_similar_item.view.tv_movie_language
+import kotlinx.android.synthetic.main.movie_similar_item.view.tv_movie_overview
+import kotlinx.android.synthetic.main.movie_similar_item.view.tv_movie_rating
+import kotlinx.android.synthetic.main.movie_similar_item.view.tv_movie_title
+import kotlinx.android.synthetic.main.movie_similar_item.view.tv_movie_year
 
 /**For displaying similar movies in the [MovieDetailsFragment]*/
 class MovieSimilarPagedAdapter(

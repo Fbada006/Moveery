@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.droidafricana.moveery.R
 import com.droidafricana.moveery.databinding.FragmentSimilarMovieDetailsBinding
+import timber.log.Timber
 
 /**
  *Display similar show details excluding the "Similar" section
@@ -17,6 +19,7 @@ class SimilarMovieDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentSimilarMovieDetailsBinding
     private lateinit var viewModel: SimilarMovieDetailsViewModel
+    private val args: SimilarMovieDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,8 @@ class SimilarMovieDetailsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(SimilarMovieDetailsViewModel::class.java)
         // TODO: Use the ViewModel
+        val movie = args.similarMovie
+        Timber.e("Movie title similar is ------------ ${movie.title}")
     }
 
 }
