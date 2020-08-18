@@ -77,6 +77,9 @@
             android:name="show"
             app:argType="com.droidafricana.moveery.models.shows.TvShow"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_dest_show_details_fragment_to_dest_similar_show_fragment"
+            app:destination="@id/dest_similar_show_fragment" />
 
     </fragment>
 
@@ -122,9 +125,20 @@
     <fragment
         android:id="@+id/dest_similar_movie_fragment"
         android:name="com.droidafricana.moveery.ui.details.similardetails.similarmovie.SimilarMovieDetailsFragment"
-        android:label="SimilarMovieDetailsFragment" >
+        android:label="SimilarMovieDetailsFragment"
+        tools:layout="@layout/fragment_similar_movie_details">
         <argument
             android:name="similarMovie"
             app:argType="com.droidafricana.moveery.models.movies.Movie" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dest_similar_show_fragment"
+        android:name="com.droidafricana.moveery.ui.details.similardetails.similarshow.SimilarShowDetailsFragment"
+        android:label="similar_shows_fragment"
+        tools:layout="@layout/similar_shows_fragment" >
+        <argument
+            android:name="tvShow"
+            app:argType="com.droidafricana.moveery.models.shows.TvShow" />
     </fragment>
 </navigation>
