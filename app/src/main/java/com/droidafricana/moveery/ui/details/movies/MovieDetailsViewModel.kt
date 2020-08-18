@@ -8,12 +8,21 @@ import com.droidafricana.moveery.models.movies.Movie
 import com.droidafricana.moveery.models.videos.Video
 import com.droidafricana.moveery.repo.MovieRepo
 import com.droidafricana.moveery.utils.Constants.MOVIE_TYPE
+import com.droidafricana.moveery.utils.Event
 import com.droidafricana.moveery.utils.Resource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**The viewModel to display data in the [MovieDetailsFragment]*/
 class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : ViewModel() {
+
+
+    /*The internal MutableLiveData that stores the event of a click input */
+    private val _navigateToSelectedMovie = MutableLiveData<Event<Movie>>()
+
+    /**The external immutable LiveData for the click event*/
+    val navigateToSelectedMovie: LiveData<Event<Movie>>
+        get() = _navigateToSelectedMovie
 
     private val movieIdLiveData = MutableLiveData<Int>()
 
@@ -54,4 +63,9 @@ class MovieDetailsViewModel @Inject constructor(private val repo: MovieRepo) : V
      * and vice-versa
      **/
     fun isMovieInFav(id: Int) = repo.getMovieById(id)
+
+    /**Called when a user clicks on a movie*/
+    fun displayMovieDetails(movie: Movie) {
+        _navigateToSelectedMovie.value = Event(movie)
+    }
 }
