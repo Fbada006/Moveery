@@ -8,12 +8,20 @@ import com.droidafricana.moveery.models.shows.TvShow
 import com.droidafricana.moveery.models.videos.Video
 import com.droidafricana.moveery.repo.MovieRepo
 import com.droidafricana.moveery.utils.Constants.SHOW_TYPE
+import com.droidafricana.moveery.utils.Event
 import com.droidafricana.moveery.utils.Resource
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**The ViewModel that handles displaying data on the [ShowDetailsFragment]*/
 class ShowDetailsViewModel @Inject constructor(private val repo: MovieRepo) : ViewModel() {
+
+    /* The internal MutableLiveData that stores the event of a click input */
+    private val _navigateToSelectedShow = MutableLiveData<Event<TvShow>>()
+
+    /**The external immutable LiveData for the click event*/
+    val navigateToSelectedShow: LiveData<Event<TvShow>>
+        get() = _navigateToSelectedShow
 
     private val showIdLiveData = MutableLiveData<Int>()
 
