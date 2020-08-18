@@ -19,7 +19,6 @@ import com.droidafricana.moveery.models.movies.Movie
 import com.droidafricana.moveery.ui.details.VideoAdapter
 import com.droidafricana.moveery.utils.*
 import com.droidafricana.moveery.utils.Constants.MOVIE_TYPE
-import com.droidafricana.moveery.utils.Resource.Status.*
 import com.like.LikeButton
 import com.like.OnLikeListener
 import javax.inject.Inject
@@ -90,7 +89,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
         movie?.id?.let {
             viewModel.videoRes.observe(viewLifecycleOwner, Observer { resource ->
                 when (resource.status) {
-                    SUCCESS -> {
+                    Resource.Status.SUCCESS -> {
                         if (!resource.data.isNullOrEmpty()) {
                             showData()
                             videoAdapter.submitList(resource.data)
@@ -98,8 +97,8 @@ class MovieDetailsFragment : Fragment(), Injectable {
                             showError()
                         }
                     }
-                    ERROR -> showError()
-                    LOADING -> showLoading()
+                    Resource.Status.ERROR -> showError()
+                    Resource.Status.LOADING -> showLoading()
                 }
             })
         }
