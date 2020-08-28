@@ -6,6 +6,7 @@ import com.droidafricana.moveery.R
 
 /**Handles getting the genres of the selected movie*/
 object DetailsHelper {
+    // TODO Clean this up
     /**Returns the genres of the movie from the given [genreIds]*/
     fun getGenres(genreIds: List<Int>?, context: Context?): String {
         if (genreIds.isNullOrEmpty()) return context?.getString(R.string.genre_unknown)!!
