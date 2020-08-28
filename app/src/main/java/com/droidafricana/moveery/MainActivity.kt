@@ -15,7 +15,7 @@ import com.google.android.material.navigation.NavigationView
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.toolbar
 import javax.inject.Inject
 
 /**
@@ -49,10 +49,13 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         )
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            // TODO Clean this logic
             if (destination.id == R.id.dest_movie_details_fragment ||
                 destination.id == R.id.dest_movie_search_fragment ||
                 destination.id == R.id.dest_shows_search_fragment ||
-                destination.id == R.id.dest_show_details_fragment
+                destination.id == R.id.dest_show_details_fragment ||
+                destination.id == R.id.dest_similar_movie_fragment ||
+                destination.id == R.id.dest_similar_show_fragment
             ) {
                 //Hide the toolbar
                 toolbar.visibility = View.GONE
