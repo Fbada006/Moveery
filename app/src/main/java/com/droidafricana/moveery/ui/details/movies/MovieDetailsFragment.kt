@@ -67,9 +67,7 @@ class MovieDetailsFragment : Fragment(), Injectable {
         val similarAdapter =
             MovieSimilarPagedAdapter(
                 requireContext(),
-                OnMovieClickListener {
-                    viewModel.displayMovieDetails(it!!)
-                })
+                OnMovieClickListener { viewModel.displayMovieDetails(it!!) })
 
         val videoAdapter = VideoAdapter(
             requireContext(),

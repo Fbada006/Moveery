@@ -9,18 +9,26 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.RequestManager
 import com.droidafricana.moveery.R
 import com.droidafricana.moveery.databinding.FragmentSimilarMovieDetailsBinding
 import com.droidafricana.moveery.di.Injectable
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  *Display similar show details excluding the "Similar" section
  */
 class SimilarMovieDetailsFragment : Fragment(), Injectable {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var requestManager: RequestManager
+
     private lateinit var binding: FragmentSimilarMovieDetailsBinding
-    private val viewModel: SimilarMovieDetailsViewModel by viewModels()
+    private val viewModel: SimilarMovieDetailsViewModel by viewModels{viewModelFactory}
     private val args: SimilarMovieDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
