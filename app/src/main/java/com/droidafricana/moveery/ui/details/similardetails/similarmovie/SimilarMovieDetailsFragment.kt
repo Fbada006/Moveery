@@ -67,7 +67,6 @@ class SimilarMovieDetailsFragment : Fragment(), Injectable {
         super.onActivityCreated(savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.similarViewModel = viewModel
 
         val movie = args.similarMovie
 
