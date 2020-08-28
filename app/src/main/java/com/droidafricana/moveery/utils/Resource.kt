@@ -1,6 +1,8 @@
 package com.droidafricana.moveery.utils
 
-import com.droidafricana.moveery.utils.Resource.Status.*
+import com.droidafricana.moveery.utils.Resource.Status.ERROR
+import com.droidafricana.moveery.utils.Resource.Status.LOADING
+import com.droidafricana.moveery.utils.Resource.Status.SUCCESS
 
 /**
  * A generic class that holds a value with its loading status.
