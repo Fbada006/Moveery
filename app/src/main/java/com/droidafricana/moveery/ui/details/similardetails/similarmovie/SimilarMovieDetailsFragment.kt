@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.RequestManager
@@ -19,7 +18,6 @@ import com.droidafricana.moveery.databinding.FragmentSimilarMovieDetailsBinding
 import com.droidafricana.moveery.di.Injectable
 import com.droidafricana.moveery.models.movies.Movie
 import com.droidafricana.moveery.ui.details.VideoAdapter
-import com.droidafricana.moveery.ui.details.movies.MovieDetailsFragmentDirections
 import com.droidafricana.moveery.utils.Constants
 import com.droidafricana.moveery.utils.DetailsHelper
 import com.droidafricana.moveery.utils.OnVideoClickListener
@@ -85,16 +83,6 @@ class SimilarMovieDetailsFragment : Fragment(), Injectable {
         val videoLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         binding.similarVideoMoviesList.layoutManager = videoLayoutManager
-
-        viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
-            it.getContentIfNotHandled()?.let { movie ->
-                findNavController().navigate(
-                    MovieDetailsFragmentDirections.actionDestMovieDetailsFragmentToSimilarMovieDetailsFragment(
-                        movie
-                    )
-                )
-            }
-        })
 
         movie?.id?.let {
             viewModel.videoRes.observe(viewLifecycleOwner, Observer { resource ->
