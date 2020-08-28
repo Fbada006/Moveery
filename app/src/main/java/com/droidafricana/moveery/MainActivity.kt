@@ -27,6 +27,14 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private val destinationsList = listOf(
+        R.id.dest_movie_details_fragment,
+        R.id.dest_movie_search_fragment,
+        R.id.dest_shows_search_fragment,
+        R.id.dest_show_details_fragment,
+        R.id.dest_similar_movie_fragment,
+        R.id.dest_similar_show_fragment
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,14 +57,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         )
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            // TODO Clean this logic
-            if (destination.id == R.id.dest_movie_details_fragment ||
-                destination.id == R.id.dest_movie_search_fragment ||
-                destination.id == R.id.dest_shows_search_fragment ||
-                destination.id == R.id.dest_show_details_fragment ||
-                destination.id == R.id.dest_similar_movie_fragment ||
-                destination.id == R.id.dest_similar_show_fragment
-            ) {
+            if (destination.id in destinationsList) {
                 //Hide the toolbar
                 toolbar.visibility = View.GONE
             } else toolbar.visibility = View.VISIBLE
