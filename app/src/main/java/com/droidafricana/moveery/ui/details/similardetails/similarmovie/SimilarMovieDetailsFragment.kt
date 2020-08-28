@@ -40,7 +40,6 @@ class SimilarMovieDetailsFragment : Fragment(), Injectable {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
         val movie = args.similarMovie
         Timber.e("Movie title similar is ------------ ${movie.title}")
     }
