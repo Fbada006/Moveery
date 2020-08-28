@@ -3,7 +3,12 @@ package com.droidafricana.moveery
 import android.app.Activity
 import android.app.Application
 import android.content.SharedPreferences
-import androidx.work.*
+import androidx.work.Configuration
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.droidafricana.moveery.di.AppInjector
 import com.droidafricana.moveery.di.DaggerAppComponent
 import com.droidafricana.moveery.utils.ThemeHelper
