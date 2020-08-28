@@ -129,16 +129,18 @@
         tools:layout="@layout/fragment_similar_movie_details">
         <argument
             android:name="similarMovie"
-            app:argType="com.droidafricana.moveery.models.movies.Movie" />
+            app:argType="com.droidafricana.moveery.models.movies.Movie"
+            app:nullable="true" />
     </fragment>
 
     <fragment
         android:id="@+id/dest_similar_show_fragment"
         android:name="com.droidafricana.moveery.ui.details.similardetails.similarshow.SimilarShowDetailsFragment"
         android:label="similar_shows_fragment"
-        tools:layout="@layout/similar_shows_fragment" >
+        tools:layout="@layout/similar_shows_fragment">
         <argument
             android:name="tvShow"
-            app:argType="com.droidafricana.moveery.models.shows.TvShow" />
+            app:argType="com.droidafricana.moveery.models.shows.TvShow"
+            app:nullable="true" />
     </fragment>
 </navigation>

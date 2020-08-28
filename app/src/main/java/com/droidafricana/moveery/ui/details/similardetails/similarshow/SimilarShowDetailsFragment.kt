@@ -39,7 +39,7 @@ class SimilarShowDetailsFragment : Fragment(), Injectable {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val show = args.tvShow
-        Timber.e("The show is ------------ ${show.name}")
+        Timber.e("The show is ------------ ${show?.name}")
     }
 
 }
